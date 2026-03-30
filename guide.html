@@ -1,0 +1,1152 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SetupClaude · Guide complet</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <script>(function(){var t=localStorage.getItem('theme')||'dark';document.documentElement.setAttribute('data-theme',t);})();</script>
+</head>
+<body>
+
+  <div class="scroll-progress" id="scroll-progress"></div>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <a href="index.html" class="navbar-logo"><span class="prompt">$</span> SetupClaude</a>
+    <ul class="navbar-links">
+      <li class="has-dropdown">
+        <a>Installer <span class="nav-arrow">▾</span></a>
+        <div class="nav-dropdown">
+          <a href="#installation">01 · Claude CLI</a>
+          <a href="#kit-installation">02 · Kit global</a>
+          <a href="#nouveau-projet">03 · Nouveau projet</a>
+        </div>
+      </li>
+      <li class="has-dropdown">
+        <a>Configurer <span class="nav-arrow">▾</span></a>
+        <div class="nav-dropdown">
+          <a href="#claudemd">04 · CLAUDE.md</a>
+          <a href="#commandes-ps">05 · Commandes PS</a>
+        </div>
+      </li>
+      <li class="has-dropdown">
+        <a>Utiliser <span class="nav-arrow">▾</span></a>
+        <div class="nav-dropdown">
+          <a href="#skills">06 · Skills</a>
+          <a href="#sous-agents">07 · Sous-agents</a>
+          <a href="#raccourcis">08 · Raccourcis</a>
+          <a href="#workflow">09 · Workflow</a>
+        </div>
+      </li>
+      <li class="has-dropdown">
+        <a>Ressources <span class="nav-arrow">▾</span></a>
+        <div class="nav-dropdown">
+          <a href="#prompts">10 · Prompts</a>
+          <a href="#telechargements">11 · Téléchargements</a>
+          <a href="#troubleshooting">12 · Problèmes</a>
+        </div>
+      </li>
+      <li><a href="claude.html" style="color:var(--accent-light)">Comprendre Claude</a></li>
+    </ul>
+    <div class="navbar-right">
+      <button class="navbar-burger" onclick="toggleMobileNav()" aria-label="Menu"><span></span><span></span><span></span></button>
+      <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()">Clair</button>
+      <a href="https://claude.ai" target="_blank" class="btn-nav">Ouvrir Claude ↗</a>
+    </div>
+  </nav>
+
+  <!-- GUIDE HEADER -->
+  <div class="guide-header">
+    <div class="container">
+      <div class="guide-breadcrumb"><a href="index.html">← Accueil</a> / Guide complet</div>
+      <h1 class="guide-title">Guide <span class="accent">SetupClaude</span></h1>
+      <p class="guide-sub">12 sections · ~20 min · Windows 11 + PowerShell · Mis à jour mars 2026</p>
+      <div class="hero-badges" style="margin-top:0.75rem">
+        <span class="hero-badge">Testé sur Windows 11</span>
+        <span class="hero-badge">Node.js 18+</span>
+        <span class="hero-badge">Claude Code 2026</span>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════
+       01 — INSTALLATION CLAUDE CLI
+  ══════════════════════════════════════════ -->
+  <section class="section" id="installation">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title"><span class="section-num">01 ·</span> Installation Claude CLI</h2>
+        <p class="section-sub">Installe Claude Code dans ton terminal. À faire une seule fois.</p>
+      </div>
+
+      <div class="steps">
+        <div class="step-card">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <h3>Vérifie Node.js</h3>
+            <p>Claude Code tourne avec Node.js 18+. Vérifie qu'il est installé :</p>
+            <div class="code-block">
+              <div class="code-bar"><span class="code-lang">bash</span><button class="btn-copy" onclick="copier(this, 'node --version')">Copier</button></div>
+              <pre><code>node --version</code></pre>
+            </div>
+            <div class="info-box">Pas installé ? Télécharge la version LTS sur <strong>nodejs.org</strong></div>
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <h3>Installe Claude Code</h3>
+            <div class="code-block">
+              <div class="code-bar"><span class="code-lang">bash</span><button class="btn-copy" onclick="copier(this, 'npm install -g @anthropic-ai/claude-code')">Copier</button></div>
+              <pre><code>npm install -g @anthropic-ai/claude-code</code></pre>
+            </div>
+            <div class="code-block">
+              <div class="code-bar"><span class="code-lang">bash</span><button class="btn-copy" onclick="copier(this, 'claude --version')">Copier</button></div>
+              <pre><code><span class="t-comment"># Vérifie l'installation</span>
+claude --version</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <h3>Connecte ton compte</h3>
+            <p>Connecte Claude à ton compte Anthropic, une page s'ouvre dans le navigateur.</p>
+            <div class="code-block">
+              <div class="code-bar"><span class="code-lang">bash</span><button class="btn-copy" onclick="copier(this, 'claude login')">Copier</button></div>
+              <pre><code>claude login</code></pre>
+            </div>
+            <div class="warn-box">Utilise ton compte <strong>claude.ai</strong>. Un abonnement Pro ou une clé API est nécessaire pour une utilisation intensive.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       02 — INSTALLATION DU KIT
+  ══════════════════════════════════════════ -->
+  <section class="section section-alt" id="kit-installation">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title"><span class="section-num">02 ·</span> Installation globale du kit</h2>
+        <p class="section-sub">Copie le student kit dans ton profil. À faire une seule fois sur ton PC.</p>
+      </div>
+
+      <!-- CHECKLIST -->
+      <div class="checklist-card">
+        <div class="checklist-header">
+          <span>Progression</span>
+          <span id="checklist-count">0 / 5 étapes</span>
+        </div>
+        <div class="checklist-bar"><div class="checklist-fill" id="checklist-fill"></div></div>
+      </div>
+
+      <div class="steps">
+        <div class="step-card">
+          <div class="step-num">
+            <input type="checkbox" class="step-check" data-step="kit-1" onchange="updateChecklist()" />
+          </div>
+          <div class="step-content">
+            <h3>Étape 1 : Télécharger et extraire le kit</h3>
+            <p>Télécharge <code>student-kit.zip</code> depuis la section <a href="#telechargements">Téléchargements</a>, puis extrais-le dans ton dossier Téléchargements.</p>
+            <div class="success-box">Tu dois avoir un dossier <code>student-kit\</code> dans tes Téléchargements.</div>
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-num">
+            <input type="checkbox" class="step-check" data-step="kit-2" onchange="updateChecklist()" />
+          </div>
+          <div class="step-content">
+            <h3>Étape 2 : Ouvrir PowerShell</h3>
+            <p>Ouvre <strong>PowerShell</strong> (le terminal du PC, pas VS Code). Touche Windows → tape "powershell" → Entrée.</p>
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-num">
+            <input type="checkbox" class="step-check" data-step="kit-3" onchange="updateChecklist()" />
+          </div>
+          <div class="step-content">
+            <h3>Étape 3 : Aller dans le dossier extrait</h3>
+            <div class="code-block">
+              <div class="code-bar"><span class="code-lang">powershell</span><button class="btn-copy" onclick="copier(this, 'cd $HOME\\Downloads\\student-kit')">Copier</button></div>
+              <pre><code>cd $HOME\Downloads\student-kit</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-num">
+            <input type="checkbox" class="step-check" data-step="kit-4" onchange="updateChecklist()" />
+          </div>
+          <div class="step-content">
+            <h3>Étape 4 : Copier les fichiers globaux</h3>
+            <div class="code-block">
+              <div class="code-bar"><span class="code-lang">powershell</span><button class="btn-copy" onclick="copier(this, 'mkdir -Force $HOME\\.claude\\skills\nmkdir -Force $HOME\\.claude\\agents\nCopy-Item -Recurse .\\.claude\\skills\\* $HOME\\.claude\\skills\\\nCopy-Item -Recurse .\\.claude\\agents\\* $HOME\\.claude\\agents\\\nCopy-Item .\\.claude\\settings.json $HOME\\.claude\\settings.json\nCopy-Item .\\CLAUDE.md $HOME\\.claude\\CLAUDE.md')">Copier</button></div>
+              <pre><code>mkdir -Force $HOME\.claude\skills
+mkdir -Force $HOME\.claude\agents
+Copy-Item -Recurse .\.claude\skills\* $HOME\.claude\skills\
+Copy-Item -Recurse .\.claude\agents\* $HOME\.claude\agents\
+Copy-Item .\.claude\settings.json $HOME\.claude\settings.json
+Copy-Item .\CLAUDE.md $HOME\.claude\CLAUDE.md</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <div class="step-card" id="step-profil-ps">
+          <div class="step-num">
+            <input type="checkbox" class="step-check" data-step="kit-5" onchange="updateChecklist()" />
+          </div>
+          <div class="step-content">
+            <h3>Étape 5 : Installer le profil PowerShell</h3>
+            <p>Télécharge <code>claude-profile.ps1</code>, puis :</p>
+            <div class="code-block">
+              <div class="code-bar"><span class="code-lang">powershell</span><button class="btn-copy" onclick="copier(this, 'New-Item -Path $PROFILE -ItemType File -Force\nnotepad $PROFILE')">Copier</button></div>
+              <pre><code><span class="t-comment"># Crée et ouvre ton profil PowerShell</span>
+New-Item -Path $PROFILE -ItemType File -Force
+notepad $PROFILE</code></pre>
+            </div>
+            <p style="margin-top:0.8rem">Colle le contenu de <code>claude-profile.ps1</code> dans Notepad, fais <kbd>Ctrl+S</kbd>, ferme. Puis recharge :</p>
+            <div class="code-block">
+              <div class="code-bar"><span class="code-lang">powershell</span><button class="btn-copy" onclick="copier(this, '. $PROFILE')">Copier</button></div>
+              <pre><code>. $PROFILE</code></pre>
+            </div>
+            <div class="success-box">Tu dois voir : <code>Kit Claude chargé. Tape aide-claude pour voir les commandes.</code></div>
+          </div>
+        </div>
+
+        <div class="step-card" id="step-route-skill">
+          <div class="step-num">
+            <input type="checkbox" class="step-check" data-step="kit-6" onchange="updateChecklist()" />
+          </div>
+          <div class="step-content">
+            <h3>Étape 6 : Installer la skill /route</h3>
+            <p>Télécharge <code>route-SKILL.md</code> depuis la section <a href="#telechargements">Téléchargements</a>, puis :</p>
+            <div class="code-block">
+              <div class="code-bar"><span class="code-lang">powershell</span><button class="btn-copy" onclick="copier(this, 'mkdir -Force $HOME\\.claude\\skills\\route\nCopy-Item $HOME\\Downloads\\route-SKILL.md $HOME\\.claude\\skills\\route\\SKILL.md')">Copier</button></div>
+              <pre><code>mkdir -Force $HOME\.claude\skills\route
+Copy-Item $HOME\Downloads\route-SKILL.md $HOME\.claude\skills\route\SKILL.md</code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-box" style="margin-top:1.5rem">
+        <strong>Ce que settings.json configure automatiquement :</strong>
+        <ul style="margin-top:0.6rem;display:flex;flex-direction:column;gap:0.3rem;padding-left:1rem">
+          <li>Lint automatique après chaque édition de fichier</li>
+          <li>Rappel de mettre à jour <code>lessons.md</code> en fin de session</li>
+          <li>Permissions pré-autorisées : <code>npm run build</code>, <code>npm run test</code>, <code>npm run lint</code>, <code>git status</code>, <code>git diff</code>, <code>git add</code>, <code>git commit</code>, <code>git push</code>, <code>git pull</code></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       03 — NOUVEAU PROJET
+  ══════════════════════════════════════════ -->
+  <section class="section" id="nouveau-projet">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title"><span class="section-num">03 ·</span> Nouveau projet</h2>
+        <p class="section-sub">À faire à chaque nouveau projet. Prend 30 secondes.</p>
+      </div>
+
+      <div class="steps">
+        <div class="step-card">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <h3>Aller dans ton projet</h3>
+            <div class="code-block">
+              <div class="code-bar"><span class="code-lang">powershell</span><button class="btn-copy" onclick="copier(this, 'cd C:\\chemin\\vers\\ton-projet')">Copier</button></div>
+              <pre><code>cd C:\chemin\vers\ton-projet</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <h3>Initialiser le projet</h3>
+            <div class="code-block">
+              <div class="code-bar"><span class="code-lang">powershell</span><button class="btn-copy" onclick="copier(this, 'nouveau-projet')">Copier</button></div>
+              <pre><code>nouveau-projet</code></pre>
+            </div>
+            <p>Copie <code>CLAUDE.md</code> et <code>tasks\</code> dans le projet actuel.</p>
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <h3>Configurer le CLAUDE.md du projet</h3>
+            <p>Ouvre <code>CLAUDE.md</code> et modifie la ligne <strong>Stack</strong> selon ton projet (Java, React, etc.).</p>
+            <div class="code-block">
+              <div class="code-bar"><span class="code-lang">powershell</span><button class="btn-copy" onclick="copier(this, 'notepad CLAUDE.md')">Copier</button></div>
+              <pre><code>notepad CLAUDE.md</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-num">4</div>
+          <div class="step-content">
+            <h3>Lancer Claude</h3>
+            <div class="code-block">
+              <div class="code-bar"><span class="code-lang">powershell</span><button class="btn-copy" onclick="copier(this, 'claude')">Copier</button></div>
+              <pre><code>claude</code></pre>
+            </div>
+            <div class="success-box">Claude lit automatiquement ton CLAUDE.md et est prêt à travailler.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-box" style="margin-top:1.5rem">
+        <strong>Fichiers copiés dans chaque projet :</strong>
+        <ul style="margin-top:0.6rem;display:flex;flex-direction:column;gap:0.3rem;padding-left:1rem">
+          <li><code>CLAUDE.md</code> · mémoire du projet (stack, conventions, règles)</li>
+          <li><code>tasks/todo.md</code> · plan de session (Claude remplit automatiquement)</li>
+          <li><code>tasks/lessons.md</code> · erreurs apprises (Claude remplit automatiquement)</li>
+          <li><code>tasks/session-log.md</code> · journal de sessions (Claude crée et met à jour à chaque démarrage)</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       04 — CLAUDE.MD
+  ══════════════════════════════════════════ -->
+  <section class="section section-alt" id="claudemd">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title"><span class="section-num">04 ·</span> Le fichier CLAUDE.md</h2>
+        <p class="section-sub">La mémoire persistante de Claude. Il le relit à chaque session.</p>
+      </div>
+
+      <div class="two-col">
+        <div>
+          <h3 class="sub-title">C'est quoi ?</h3>
+          <p>CLAUDE.md est un fichier Markdown que tu places à la racine de ton projet. Claude le lit automatiquement au démarrage, pas besoin de ré-expliquer le contexte à chaque fois.</p>
+          <br>
+          <ul class="feature-list">
+            <li><span class="check">✓</span> Stack et objectifs du projet</li>
+            <li><span class="check">✓</span> Règles de code (conventions, style)</li>
+            <li><span class="check">✓</span> Comportements à éviter</li>
+            <li><span class="check">✓</span> Leçons apprises (éviter de répéter les erreurs)</li>
+          </ul>
+          <div class="info-box" style="margin-top:1.5rem">Plus ton CLAUDE.md est précis, moins tu réexpliquer le contexte.</div>
+        </div>
+        <div>
+          <h3 class="sub-title">Où le mettre ?</h3>
+          <div class="file-tree">
+            <div class="ft-item ft-folder">$HOME\.claude\</div>
+            <div class="ft-item ft-file ft-indent"><span class="ft-highlight">CLAUDE.md</span> <span class="ft-badge ft-badge-global">global</span></div>
+            <br>
+            <div class="ft-item ft-folder">mon-projet\</div>
+            <div class="ft-item ft-file ft-indent"><span class="ft-highlight">CLAUDE.md</span> <span class="ft-badge">projet</span></div>
+            <div class="ft-item ft-file ft-indent">package.json</div>
+            <div class="ft-item ft-folder ft-indent">src\</div>
+          </div>
+          <div class="info-box" style="margin-top:1rem">
+            <strong>Global</strong> → tes préférences perso, s'applique partout.<br>
+            <strong>Projet</strong> → spécificités de la codebase.
+          </div>
+        </div>
+      </div>
+
+      <h3 class="sub-title" style="margin-top:3rem">Exemple de CLAUDE.md</h3>
+      <div class="code-block code-tall">
+        <div class="code-bar">
+          <span class="code-lang">markdown</span>
+          <button class="btn-copy" onclick="copierBloc(this, 'claudemd-example')">Copier</button>
+        </div>
+        <pre id="claudemd-example"><code><span class="t-key">## PROJET</span>
+Stack : Java + MySQL
+Objectif : Application de gestion de bibliothèque
+Niveau développeur : intermédiaire
+
+<span class="t-key">## RÈGLES DE CODE</span>
+- Toujours fermer les ressources avec try-with-resources
+- PreparedStatement obligatoire, jamais de concaténation SQL
+- Nommage : classes PascalCase, méthodes camelCase
+
+<span class="t-key">## COMPORTEMENTS</span>
+- Planifier avant de coder pour les tâches 3+ étapes
+- Corriger les bugs directement sans demander confirmation
+- Réponses courtes et directes
+
+<span class="t-key">## LEÇONS APPRISES</span>
+<span class="t-comment"># [date] | problème | règle pour éviter</span>
+- 2026-01-15 | connexion non fermée | toujours try-with-resources</code></pre>
+      </div>
+
+      <div class="tips-grid">
+        <div class="tip-card"><h4>Sois précis</h4><p>Vague = réponses vagues. Détaille le contexte.</p></div>
+        <div class="tip-card"><h4>Mets à jour</h4><p>Ajoute tes leçons après chaque bug corrigé.</p></div>
+        <div class="tip-card"><h4>Global vs Projet</h4><p>Global pour tes préfs perso, projet pour la codebase.</p></div>
+        <div class="tip-card"><h4>Pas de secrets</h4><p>Jamais de tokens ou mots de passe dans CLAUDE.md.</p></div>
+      </div>
+
+      <div class="claudemd-dl-card">
+        <div class="claudemd-dl-left">
+          <div>
+            <div class="claudemd-dl-title">Mon CLAUDE.md étudiant</div>
+            <div class="claudemd-dl-desc">Le vrai fichier que j'utilise : Java, MySQL, MongoDB. Workflow complet avec session-log, sous-agents et leçons auto. Modifie juste la ligne <code>Stack</code> pour l'adapter à ton projet.</div>
+          </div>
+        </div>
+        <div class="claudemd-dl-actions">
+          <a href="downloads/CLAUDE.md" download class="btn btn-primary">⬇ Télécharger CLAUDE.md</a>
+          <a href="#telechargements" class="btn btn-ghost">Voir tous les fichiers →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       05 — COMMANDES POWERSHELL
+  ══════════════════════════════════════════ -->
+  <section class="section" id="commandes-ps">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title"><span class="section-num">05 ·</span> Commandes PowerShell</h2>
+        <p class="section-sub">Les commandes ajoutées par le profil PowerShell du kit.</p>
+      </div>
+
+      <div class="cmd-table-card">
+        <table class="cmd-table">
+          <thead>
+            <tr><th>Commande</th><th>Description</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code class="cmd-inline">nouveau-projet</code></td>
+              <td>Copie <code>CLAUDE.md</code> et <code>tasks\</code> dans le dossier actuel</td>
+            </tr>
+            <tr>
+              <td><code class="cmd-inline">nouveau-projet-vide</code></td>
+              <td>Copie uniquement <code>tasks\</code> (sans CLAUDE.md)</td>
+            </tr>
+            <tr>
+              <td><code class="cmd-inline">aller-projet [chemin]</code></td>
+              <td>Va dans un projet et lance Claude directement</td>
+            </tr>
+            <tr>
+              <td><code class="cmd-inline">update-kit</code></td>
+              <td>Met à jour les skills et agents globaux depuis le kit</td>
+            </tr>
+            <tr>
+              <td><code class="cmd-inline">aide-claude</code></td>
+              <td>Affiche toutes les commandes disponibles</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="sub-title" style="margin-top:2rem">Exemples d'utilisation</h3>
+      <div class="code-block">
+        <div class="code-bar"><span class="code-lang">powershell</span><button class="btn-copy" onclick="copier(this, 'cd C:\\projets\\mon-app\nnouveau-projet\nclaude')">Copier</button></div>
+        <pre><code><span class="t-comment"># Démarrer un nouveau projet</span>
+cd C:\projets\mon-app
+nouveau-projet
+claude
+
+<span class="t-comment"># Aller directement dans un projet</span>
+aller-projet C:\projets\mon-app
+
+<span class="t-comment"># Mettre à jour les skills après une mise à jour du kit</span>
+update-kit</code></pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       06 — SKILLS
+  ══════════════════════════════════════════ -->
+  <section class="section section-alt" id="skills">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title"><span class="section-num">06 ·</span> Skills disponibles</h2>
+        <p class="section-sub">Des slash commands spécialisées, incluses dans le kit. Tape-les directement dans Claude.</p>
+      </div>
+
+      <div class="skills-table-card">
+        <table class="skills-table">
+          <thead>
+            <tr><th>Commande</th><th>Description</th><th>Exemple à copier</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="skill-td-cmd">/route [tâche]</td>
+              <td class="skill-td-desc">Savoir si aller dans l'extension VS Code ou le terminal Claude Code</td>
+              <td class="skill-td-copy"><button class="btn-copy" onclick="copier(this, '/route créer un composant React')">Copier</button></td>
+            </tr>
+            <tr>
+              <td class="skill-td-cmd">/debug-java</td>
+              <td class="skill-td-desc">Corriger une erreur Java : colle le stack trace après la commande</td>
+              <td class="skill-td-copy"><button class="btn-copy" onclick="copier(this, '/debug-java NullPointerException at Main.java:42')">Copier</button></td>
+            </tr>
+            <tr>
+              <td class="skill-td-cmd">/explain [concept]</td>
+              <td class="skill-td-desc">Comprendre un concept de cours avec analogie, exemple et piège classique</td>
+              <td class="skill-td-copy"><button class="btn-copy" onclick="copier(this, '/explain l\'héritage en Java')">Copier</button></td>
+            </tr>
+            <tr>
+              <td class="skill-td-cmd">/sql [question]</td>
+              <td class="skill-td-desc">Écrire, corriger ou optimiser une requête MySQL</td>
+              <td class="skill-td-copy"><button class="btn-copy" onclick="copier(this, '/sql sélectionner les clients qui ont commandé 3 fois')">Copier</button></td>
+            </tr>
+            <tr>
+              <td class="skill-td-cmd">/mongo [question]</td>
+              <td class="skill-td-desc">Aide avec MongoDB : requêtes, agrégations, schémas</td>
+              <td class="skill-td-copy"><button class="btn-copy" onclick="copier(this, '/mongo agréger les ventes par mois')">Copier</button></td>
+            </tr>
+            <tr>
+              <td class="skill-td-cmd">/simplify</td>
+              <td class="skill-td-desc">Simplifier un bloc de code complexe sans changer son comportement</td>
+              <td class="skill-td-copy"><button class="btn-copy" onclick="copier(this, '/simplify')">Copier</button></td>
+            </tr>
+            <tr>
+              <td class="skill-td-cmd">/techdebt</td>
+              <td class="skill-td-desc">Analyser la dette technique : identifier ce qui est à refactorer</td>
+              <td class="skill-td-copy"><button class="btn-copy" onclick="copier(this, '/techdebt')">Copier</button></td>
+            </tr>
+            <tr>
+              <td class="skill-td-cmd">/commit-push-pr</td>
+              <td class="skill-td-desc">Commit propre + push + Pull Request automatique en une commande</td>
+              <td class="skill-td-copy"><button class="btn-copy" onclick="copier(this, '/commit-push-pr')">Copier</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       07 — SOUS-AGENTS
+  ══════════════════════════════════════════ -->
+  <section class="section" id="sous-agents">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title"><span class="section-num">07 ·</span> Sous-agents disponibles</h2>
+        <p class="section-sub">Des assistants spécialisés que Claude peut déléguer automatiquement.</p>
+      </div>
+
+      <div class="agents-grid">
+        <div class="agent-card">
+<div class="agent-info">
+            <div class="agent-name">tutor</div>
+            <div class="agent-desc">Explique comme un prof : essentiel en une phrase, analogie du quotidien, exemple minimal, piège classique, question de vérification.</div>
+          </div>
+        </div>
+        <div class="agent-card">
+<div class="agent-info">
+            <div class="agent-name">java-reviewer</div>
+            <div class="agent-desc">Relit le code Java comme un senior : bugs, NullPointer, ressources non fermées, sécurité SQL, bonnes pratiques.</div>
+          </div>
+        </div>
+        <div class="agent-card">
+<div class="agent-info">
+            <div class="agent-name">code-reviewer</div>
+            <div class="agent-desc">Revue de code tous langages : bugs, sécurité, performance, lisibilité, tests manquants.</div>
+          </div>
+        </div>
+        <div class="agent-card">
+<div class="agent-info">
+            <div class="agent-name">test-writer</div>
+            <div class="agent-desc">Écrit les tests unitaires : cas nominal, cas limites, cas d'erreur. Vitest ou Jest selon le projet.</div>
+          </div>
+        </div>
+        <div class="agent-card">
+<div class="agent-info">
+            <div class="agent-name">doc-generator</div>
+            <div class="agent-desc">Génère la documentation utile : Javadoc, JSDoc, commentaires. Jamais de documentation évidente.</div>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="sub-title" style="margin-top:2rem">Comment les utiliser</h3>
+      <div class="code-block">
+        <div class="code-bar"><span class="code-lang">claude</span><button class="btn-copy" onclick="copier(this, 'Utilise le sous-agent tutor pour m\'expliquer l\'héritage en Java')">Copier</button></div>
+        <pre><code><span class="t-comment"># Demande directement à Claude de déléguer</span>
+Utilise le sous-agent tutor pour m'expliquer l'héritage en Java
+
+Délègue l'écriture des tests au sous-agent test-writer
+
+Utilise java-reviewer pour relire ce fichier</code></pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       08 — RACCOURCIS
+  ══════════════════════════════════════════ -->
+  <section class="section section-alt" id="raccourcis">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title"><span class="section-num">08 ·</span> Raccourcis dans Claude Code</h2>
+        <p class="section-sub">Les touches et mots-clés qui font toute la différence.</p>
+      </div>
+
+      <div class="raccourcis-grid">
+        <div class="raccourci-card raccourci-featured">
+          <div class="raccourci-key">Shift + Tab <span class="r-times">× 2</span></div>
+          <div class="raccourci-label">Plan Mode</div>
+          <div class="raccourci-desc">Active le mode planification. Claude réfléchit à voix haute et te soumet un plan <strong>avant</strong> de toucher le code. Indispensable pour les tâches complexes.</div>
+        </div>
+        <div class="raccourci-card raccourci-featured">
+          <div class="raccourci-key">ultrathink</div>
+          <div class="raccourci-label">Réflexion profonde</div>
+          <div class="raccourci-desc">Écris <code>ultrathink</code> dans ton message. Force Claude à analyser très profondément avant de répondre. Utile pour les bugs difficiles.</div>
+        </div>
+        <div class="raccourci-card">
+          <div class="raccourci-key">/voice</div>
+          <div class="raccourci-label">Mode vocal</div>
+          <div class="raccourci-desc">Mode push-to-talk. Maintenir la barre espace pour parler, relâcher pour envoyer.</div>
+        </div>
+        <div class="raccourci-card">
+          <div class="raccourci-key">Ctrl + C</div>
+          <div class="raccourci-label">Interrompre</div>
+          <div class="raccourci-desc">Arrête une réponse en cours immédiatement.</div>
+        </div>
+        <div class="raccourci-card">
+          <div class="raccourci-key">! commande</div>
+          <div class="raccourci-label">Shell direct</div>
+          <div class="raccourci-desc">Exécute une commande shell depuis Claude. Ex : <code>! git status</code></div>
+        </div>
+        <div class="raccourci-card">
+          <div class="raccourci-key">Shift + Enter</div>
+          <div class="raccourci-label">Saut de ligne</div>
+          <div class="raccourci-desc">Nouvelle ligne sans envoyer le message.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       09 — WORKFLOW QUOTIDIEN
+  ══════════════════════════════════════════ -->
+  <section class="section" id="workflow">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title"><span class="section-num">09 ·</span> Workflow quotidien</h2>
+        <p class="section-sub">Les bons réflexes à prendre dès maintenant.</p>
+      </div>
+
+      <div class="workflow-grid">
+        <div class="workflow-block">
+          <div class="workflow-title">Chaque jour</div>
+          <div class="workflow-steps">
+            <div class="wf-step"><span class="wf-num">1</span><span>Ouvrir PowerShell dans ton projet</span></div>
+            <div class="wf-step"><span class="wf-num">2</span><span>Taper <code>claude</code> : Claude relit le CLAUDE.md automatiquement</span></div>
+            <div class="wf-step"><span class="wf-num">3</span><span><kbd>Shift+Tab</kbd> × 2 si la tâche est complexe (Plan Mode)</span></div>
+            <div class="wf-step"><span class="wf-num">4</span><span>Si Claude fait une erreur → lui dire <code>"ajoute dans tasks/lessons.md"</code></span></div>
+          </div>
+          <div class="code-block" style="margin-top:1rem">
+            <div class="code-bar"><span class="code-lang">powershell</span><button class="btn-copy" onclick="copier(this, 'cd C:\\projets\\mon-app\nclaude')">Copier</button></div>
+            <pre><code>cd C:\projets\mon-app
+claude</code></pre>
+          </div>
+        </div>
+
+        <div class="workflow-block">
+          <div class="workflow-title">Chaque nouveau projet</div>
+          <div class="workflow-steps">
+            <div class="wf-step"><span class="wf-num">1</span><span>Aller dans le dossier du projet</span></div>
+            <div class="wf-step"><span class="wf-num">2</span><span>Taper <code>nouveau-projet</code></span></div>
+            <div class="wf-step"><span class="wf-num">3</span><span>Modifier la ligne <strong>Stack</strong> dans <code>CLAUDE.md</code></span></div>
+            <div class="wf-step"><span class="wf-num">4</span><span>Taper <code>claude</code> et commencer</span></div>
+          </div>
+          <div class="code-block" style="margin-top:1rem">
+            <div class="code-bar"><span class="code-lang">powershell</span><button class="btn-copy" onclick="copier(this, 'cd C:\\projets\\nouveau-projet\nnouveau-projet\nnotepad CLAUDE.md\nclaude')">Copier</button></div>
+            <pre><code>cd C:\projets\nouveau-projet
+nouveau-projet
+notepad CLAUDE.md
+claude</code></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-box" style="margin-top:2rem">
+        <strong>Le cercle vertueux :</strong> Claude lit les leçons → fait moins d'erreurs → tu ajoutes de nouvelles leçons → Claude s'améliore encore. Le fichier <code>tasks/lessons.md</code> est ta mémoire partagée avec lui.
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       10 — PROMPTS
+  ══════════════════════════════════════════ -->
+  <section class="section section-alt" id="prompts">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title"><span class="section-num">10 ·</span> Exemples de prompts</h2>
+        <p class="section-sub">Ce que tu peux demander, clique pour copier.</p>
+      </div>
+
+      <div class="prompts-grid">
+        <div class="prompt-category">
+          <h3>Débogage</h3>
+          <div class="prompt-examples">
+            <div class="prompt-card" onclick="copierPrompt(this)"><div class="prompt-text">Corrige ce bug : <em>[colle le stack trace]</em></div><span class="prompt-copy-hint">cliquer pour copier</span></div>
+            <div class="prompt-card" onclick="copierPrompt(this)"><div class="prompt-text">Lis les logs et trouve la cause racine du problème.</div><span class="prompt-copy-hint">cliquer pour copier</span></div>
+            <div class="prompt-card" onclick="copierPrompt(this)"><div class="prompt-text">Pourquoi ce test échoue ? Corrige-le sans changer le comportement.</div><span class="prompt-copy-hint">cliquer pour copier</span></div>
+          </div>
+        </div>
+
+        <div class="prompt-category">
+          <h3>Nouvelles fonctionnalités</h3>
+          <div class="prompt-examples">
+            <div class="prompt-card" onclick="copierPrompt(this)"><div class="prompt-text">Ajoute <em>[fonctionnalité]</em>. Planifie d'abord, puis implémente.</div><span class="prompt-copy-hint">cliquer pour copier</span></div>
+            <div class="prompt-card" onclick="copierPrompt(this)"><div class="prompt-text">Crée la classe <em>[nom]</em> qui fait <em>[comportement]</em>. Suis les conventions du projet.</div><span class="prompt-copy-hint">cliquer pour copier</span></div>
+          </div>
+        </div>
+
+        <div class="prompt-category">
+          <h3>Compréhension</h3>
+          <div class="prompt-examples">
+            <div class="prompt-card" onclick="copierPrompt(this)"><div class="prompt-text">Explique ce que fait cette méthode et pourquoi elle est structurée ainsi.</div><span class="prompt-copy-hint">cliquer pour copier</span></div>
+            <div class="prompt-card" onclick="copierPrompt(this)"><div class="prompt-text">Fais une revue de code de mes derniers changements. Signale ce qui peut poser problème.</div><span class="prompt-copy-hint">cliquer pour copier</span></div>
+            <div class="prompt-card" onclick="copierPrompt(this)"><div class="prompt-text">Explore le projet et explique l'architecture en 5 lignes.</div><span class="prompt-copy-hint">cliquer pour copier</span></div>
+          </div>
+        </div>
+
+        <div class="prompt-category">
+          <h3>Git</h3>
+          <div class="prompt-examples">
+            <div class="prompt-card" onclick="copierPrompt(this)"><div class="prompt-text">Crée un commit propre avec un message clair pour ces changements.</div><span class="prompt-copy-hint">cliquer pour copier</span></div>
+            <div class="prompt-card" onclick="copierPrompt(this)"><div class="prompt-text">Résume tout ce qui a changé depuis main et crée une PR avec une bonne description.</div><span class="prompt-copy-hint">cliquer pour copier</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="best-practices">
+        <h3 class="sub-title">Bonnes pratiques</h3>
+        <div class="bp-grid">
+          <div class="bp-card bp-good">
+            <div class="bp-header">A faire</div>
+            <ul>
+              <li>Donne le contexte : fichier, méthode, erreur</li>
+              <li>Demande de planifier avant d'implémenter</li>
+              <li>Sois spécifique sur ce que tu attends</li>
+              <li>Demande une explication si tu ne comprends pas</li>
+            </ul>
+          </div>
+          <div class="bp-card bp-bad">
+            <div class="bp-header">A eviter</div>
+            <ul>
+              <li>"Améliore mon code" sans préciser quoi</li>
+              <li>Coller 500 lignes sans contexte</li>
+              <li>Enchaîner 10 demandes sans valider</li>
+              <li>Ignorer les warnings de Claude</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       11 — TÉLÉCHARGEMENTS
+  ══════════════════════════════════════════ -->
+  <section class="section" id="telechargements">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title"><span class="section-num">11 ·</span> Téléchargements</h2>
+        <p class="section-sub">Tout est préconfiguré, copie-colle et c'est prêt.</p>
+      </div>
+
+      <div class="dl-grid">
+        <div class="dl-card dl-card-featured">
+          <div class="dl-card-header">
+            <div class="dl-badge">Recommandé</div>
+          </div>
+          <h3>Student Kit</h3>
+          <p>Le setup complet pour un étudiant en développement. Contient CLAUDE.md, agents Java, skills SQL/MongoDB et les templates de tâches.</p>
+          <div class="dl-contents">
+            <div class="dl-content-title">Contenu :</div>
+            <ul>
+              <li>CLAUDE.md · config principale</li>
+              <li>agents/java-reviewer.md</li>
+              <li>agents/tutor.md</li>
+              <li>skills/debug-java, explain, sql, mongo</li>
+              <li>tasks/lessons.md + todo.md + session-log.md</li>
+              <li>.claude/settings.json · hooks + permissions</li>
+            </ul>
+          </div>
+          <div class="dl-install">
+            <div class="dl-install-title">Après téléchargement :</div>
+            <div class="code-block" style="margin:0.5rem 0">
+              <div class="code-bar"><span class="code-lang">powershell</span><button class="btn-copy" onclick="copier(this, 'cd $HOME\\Downloads\\student-kit\nmkdir -Force $HOME\\.claude\\skills\nmkdir -Force $HOME\\.claude\\agents\nCopy-Item -Recurse .\\.claude\\skills\\* $HOME\\.claude\\skills\\\nCopy-Item -Recurse .\\.claude\\agents\\* $HOME\\.claude\\agents\\\nCopy-Item .\\.claude\\settings.json $HOME\\.claude\\settings.json\nCopy-Item .\\CLAUDE.md $HOME\\.claude\\CLAUDE.md')">Copier</button></div>
+              <pre><code>cd $HOME\Downloads\student-kit
+mkdir -Force $HOME\.claude\skills
+mkdir -Force $HOME\.claude\agents
+Copy-Item -Recurse .\.claude\skills\* $HOME\.claude\skills\
+Copy-Item -Recurse .\.claude\agents\* $HOME\.claude\agents\
+Copy-Item .\.claude\settings.json $HOME\.claude\settings.json
+Copy-Item .\CLAUDE.md $HOME\.claude\CLAUDE.md</code></pre>
+            </div>
+          </div>
+          <a href="downloads/student-kit.zip" download class="btn btn-primary dl-btn">⬇ Télécharger le kit complet (.zip)</a>
+          <a href="#kit-installation" class="btn-retour" onclick="retourInstallation(event, '#kit-installation')">← Reprendre l'installation</a>
+        </div>
+
+        <div class="dl-card">
+          <div class="dl-card-header">
+          </div>
+          <h3>Profil PowerShell</h3>
+          <p>Ajoute les commandes <code>nouveau-projet</code>, <code>aide-claude</code> et les raccourcis dans ton terminal Windows.</p>
+          <div class="dl-contents">
+            <div class="dl-content-title">Ce que ça ajoute :</div>
+            <ul>
+              <li><span class="dl-file-icon">✓</span> <code>nouveau-projet</code> · init rapide</li>
+              <li><span class="dl-file-icon">✓</span> <code>aller-projet</code> · navigation</li>
+              <li><span class="dl-file-icon">✓</span> <code>update-kit</code> · mise à jour</li>
+              <li><span class="dl-file-icon">✓</span> <code>aide-claude</code> · aide intégrée</li>
+            </ul>
+          </div>
+          <div class="dl-install">
+            <div class="dl-install-title">Installation :</div>
+            <div class="code-block" style="margin:0.5rem 0">
+              <div class="code-bar"><span class="code-lang">powershell</span><button class="btn-copy" onclick="copier(this, 'New-Item -Path $PROFILE -ItemType File -Force\nnotepad $PROFILE')">Copier</button></div>
+              <pre><code>New-Item -Path $PROFILE -ItemType File -Force
+notepad $PROFILE
+<span class="t-comment"># Coller le contenu → Ctrl+S → fermer → . $PROFILE</span></code></pre>
+            </div>
+          </div>
+          <a href="downloads/claude-profile.ps1" download class="btn btn-ghost dl-btn">⬇ Télécharger claude-profile.ps1</a>
+          <a href="#step-profil-ps" class="btn-retour" onclick="retourInstallation(event, '#step-profil-ps')">← Reprendre à l'étape 5</a>
+        </div>
+      </div>
+
+      <div class="dl-extra-row">
+        <div class="dl-card dl-card-small">
+          <div class="dl-card-header">
+          </div>
+          <h3>Skill /route</h3>
+          <p>La skill qui aide Claude à savoir s'il faut utiliser l'extension VS Code ou le terminal. À installer une seule fois.</p>
+          <div class="dl-install">
+            <div class="dl-install-title">Installation :</div>
+            <div class="code-block" style="margin:0.5rem 0">
+              <div class="code-bar"><span class="code-lang">powershell</span><button class="btn-copy" onclick="copier(this, 'mkdir -Force $HOME\\.claude\\skills\\route\nCopy-Item $HOME\\Downloads\\route-SKILL.md $HOME\\.claude\\skills\\route\\SKILL.md')">Copier</button></div>
+              <pre><code>mkdir -Force $HOME\.claude\skills\route
+Copy-Item $HOME\Downloads\route-SKILL.md $HOME\.claude\skills\route\SKILL.md</code></pre>
+            </div>
+          </div>
+          <a href="downloads/route-SKILL.md" download class="btn btn-ghost dl-btn">⬇ Télécharger route-SKILL.md</a>
+          <a href="#step-route-skill" class="btn-retour" onclick="retourInstallation(event, '#step-route-skill')">← Reprendre à l'étape 6</a>
+        </div>
+      </div>
+
+      <div class="info-box" style="margin-top:2rem">
+        <strong>Dans le doute</strong>, télécharge les deux, installe le profil PowerShell en premier, puis copie le kit. La section <a href="#kit-installation">02 · Installation du kit</a> détaille chaque étape.
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       12 — TROUBLESHOOTING
+  ══════════════════════════════════════════ -->
+  <section class="section section-alt" id="troubleshooting">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title"><span class="section-num">12 ·</span> Ça marche pas ?</h2>
+        <p class="section-sub">Les erreurs les plus courantes et comment les régler en 2 minutes.</p>
+      </div>
+
+      <div class="steps">
+
+        <div class="step-card">
+          <div class="step-num">!</div>
+          <div class="step-content">
+            <h3>node: command not found / 'node' n'est pas reconnu</h3>
+            <p>Node.js n'est pas installé ou pas dans le PATH.</p>
+            <div class="code-block">
+              <div class="code-bar"><span class="code-lang">bash</span><button class="btn-copy" onclick="copier(this, 'node --version')">Copier</button></div>
+              <pre><code><span class="t-comment"># Vérifie si Node est installé</span>
+node --version
+<span class="t-comment"># Si erreur → télécharge Node.js LTS sur nodejs.org</span></code></pre>
+            </div>
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-num">!</div>
+          <div class="step-content">
+            <h3>npm ERR! permission denied / EACCES</h3>
+            <p>Problème de permissions lors de l'installation globale. Sur Windows, ouvre PowerShell en <strong>administrateur</strong>.</p>
+            <div class="code-block">
+              <div class="code-bar"><span class="code-lang">powershell</span><button class="btn-copy" onclick="copier(this, 'npm install -g @anthropic-ai/claude-code --force')">Copier</button></div>
+              <pre><code><span class="t-comment"># Dans PowerShell en admin :</span>
+npm install -g @anthropic-ai/claude-code --force</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-num">!</div>
+          <div class="step-content">
+            <h3>'claude' n'est pas reconnu comme commande</h3>
+            <p>Claude Code est installé mais pas dans le PATH. Ferme et réouvre PowerShell. Si ça persiste :</p>
+            <div class="code-block">
+              <div class="code-bar"><span class="code-lang">powershell</span><button class="btn-copy" onclick="copier(this, '$env:PATH += \";\" + (npm root -g) + \"\\..\\bin\"\nnpx claude --version')">Copier</button></div>
+              <pre><code><span class="t-comment"># Ajoute npm global au PATH temporairement</span>
+$env:PATH += ";" + (npm root -g) + "\..\bin"
+npx claude --version</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-num">!</div>
+          <div class="step-content">
+            <h3>PowerShell : "l'exécution de scripts est désactivée"</h3>
+            <p>La politique d'exécution PowerShell bloque les scripts (.ps1). À faire une seule fois :</p>
+            <div class="code-block">
+              <div class="code-bar"><span class="code-lang">powershell</span><button class="btn-copy" onclick="copier(this, 'Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser')">Copier</button></div>
+              <pre><code><span class="t-comment"># Dans PowerShell en admin :</span>
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser</code></pre>
+            </div>
+            <div class="success-box">Réponds <code>O</code> (Oui) quand PowerShell te demande confirmation.</div>
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-num">!</div>
+          <div class="step-content">
+            <h3>Erreur 401 : Clé API invalide dans le terminal IA</h3>
+            <p>Ta clé API est expirée ou incorrecte. Tape <code>/reset</code> dans le terminal IA du site pour en entrer une nouvelle, ou régénère-en une sur :</p>
+            <div class="code-block">
+              <div class="code-bar"><span class="code-lang">bash</span><button class="btn-copy" onclick="copier(this, 'https://console.anthropic.com/settings/keys')">Copier</button></div>
+              <pre><code>https://console.anthropic.com/settings/keys</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-num">!</div>
+          <div class="step-content">
+            <h3>Erreur 400 : Solde insuffisant</h3>
+            <p>Ton compte API n'a plus de crédits. L'abonnement Claude.ai (Pro) ne couvre pas les appels directs à l'API, ce sont deux choses séparées.</p>
+            <div class="info-box">Pour utiliser le terminal IA du site ou appeler l'API directement, tu as besoin de crédits API séparés sur <a href="https://console.anthropic.com/settings/billing" target="_blank">console.anthropic.com → Plans &amp; Billing ↗</a></div>
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-num">!</div>
+          <div class="step-content">
+            <h3>nouveau-projet ne fonctionne pas / commande inconnue</h3>
+            <p>Le profil PowerShell n'est pas chargé ou pas installé correctement. Vérifie :</p>
+            <div class="code-block">
+              <div class="code-bar"><span class="code-lang">powershell</span><button class="btn-copy" onclick="copier(this, 'Test-Path $PROFILE\n. $PROFILE\naide-claude')">Copier</button></div>
+              <pre><code><span class="t-comment"># Vérifie si le profil existe</span>
+Test-Path $PROFILE
+<span class="t-comment"># Recharge-le</span>
+. $PROFILE
+<span class="t-comment"># Test</span>
+aide-claude</code></pre>
+            </div>
+            <p style="margin-top:0.8rem">Si le profil n'existe pas → reprends l'<a href="#step-profil-ps">étape 5 de l'installation</a>.</p>
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-num">!</div>
+          <div class="step-content">
+            <h3>Claude ne lit pas mon CLAUDE.md</h3>
+            <p>Vérifie que le fichier est bien à la racine du projet (là où tu lances <code>claude</code>) et qu'il s'appelle exactement <code>CLAUDE.md</code> (majuscules).</p>
+            <div class="code-block">
+              <div class="code-bar"><span class="code-lang">powershell</span><button class="btn-copy" onclick="copier(this, 'ls CLAUDE.md\nclaude')">Copier</button></div>
+              <pre><code><span class="t-comment"># Vérifie depuis le dossier du projet</span>
+ls CLAUDE.md
+<span class="t-comment"># Puis lance Claude</span>
+claude</code></pre>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="info-box" style="margin-top:2rem">
+        <strong>Problème non listé ?</strong> Ouvre le terminal en bas à droite et décris ton erreur, Claude t'aidera à diagnostiquer.
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <span class="prompt">$</span> SetupClaude
+        <p>Un guide fait par et pour des devs. Pas officiel, juste utile.</p>
+        <p class="footer-credit">Réalisé par <strong>Jibril Filali</strong> · <a href="https://jibril-filali.page.gd/" target="_blank" style="color:var(--text-dim);text-decoration:underline;font-size:0.8rem">Portfolio</a></p>
+      </div>
+      <div class="footer-nav-cols">
+        <div class="footer-nav-col">
+          <span class="footer-nav-title">Installer</span>
+          <a href="#installation">01 · Claude CLI</a>
+          <a href="#kit-installation">02 · Kit global</a>
+          <a href="#nouveau-projet">03 · Nouveau projet</a>
+        </div>
+        <div class="footer-nav-col">
+          <span class="footer-nav-title">Configurer</span>
+          <a href="#claudemd">04 · CLAUDE.md</a>
+          <a href="#commandes-ps">05 · Commandes PS</a>
+          <a href="#skills">06 · Skills</a>
+        </div>
+        <div class="footer-nav-col">
+          <span class="footer-nav-title">Utiliser</span>
+          <a href="#sous-agents">07 · Sous-agents</a>
+          <a href="#raccourcis">08 · Raccourcis</a>
+          <a href="#workflow">09 · Workflow</a>
+          <a href="#prompts">10 · Prompts</a>
+          <a href="#telechargements">11 · Downloads</a>
+          <a href="#troubleshooting">12 · Problemes</a>
+        </div>
+        <div class="footer-nav-col">
+          <span class="footer-nav-title">Liens</span>
+          <a href="index.html">Accueil</a>
+          <a href="claude.html">Comprendre Claude</a>
+          <a href="https://docs.anthropic.com" target="_blank">Docs officielles</a>
+          <a href="https://console.anthropic.com" target="_blank">Console Anthropic</a>
+          <a href="https://claude.ai" target="_blank">Claude.ai</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">Réalisé par <strong>Jibril Filali</strong> · 4 mois de travail · Guide à jour pour Claude Code 2026</div>
+  </footer>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast"></div>
+
+  <!-- TERMINAL IA FLOTTANT -->
+  <div class="ai-terminal-btn" id="ai-terminal-btn" onclick="toggleTerminal()" title="Assistant Claude">
+    <span id="ai-btn-label">Assistant</span>
+  </div>
+
+  <div class="ai-terminal-panel" id="ai-terminal-panel">
+    <div class="ai-panel-header">
+      <div class="ai-panel-title">
+        <span class="dot green"></span>
+        <span>Assistant Claude · SetupClaude</span>
+      </div>
+      <div class="ai-panel-actions">
+        <button onclick="clearTerminalHistory()" title="Effacer l'historique">Vider</button>
+        <button onclick="toggleTerminal()" title="Fermer">✕</button>
+      </div>
+    </div>
+
+    <!-- ÉCRAN CLÉ API -->
+    <div class="ai-apikey-screen" id="ai-apikey-screen">
+      <div class="apikey-content">
+        <h3>Clé API Anthropic</h3>
+        <p>Pour utiliser l'assistant, entre ta clé API. Elle reste uniquement dans ton navigateur (sessionStorage) et n'est jamais envoyée ailleurs que l'API Anthropic.</p>
+        <div class="apikey-where">
+          <strong>Où la trouver ?</strong><br>
+          <a href="https://console.anthropic.com/settings/keys" target="_blank">console.anthropic.com → API Keys ↗</a>
+        </div>
+        <input type="password" id="apikey-input" placeholder="sk-ant-api03-..." autocomplete="off" onkeydown="if(event.key==='Enter') validerApiKey()" />
+        <button class="btn btn-primary" onclick="validerApiKey()" style="width:100%;margin-top:0.5rem">Valider →</button>
+        <div class="apikey-error" id="apikey-error"></div>
+      </div>
+    </div>
+
+    <!-- TERMINAL -->
+    <div class="ai-terminal-body" id="ai-terminal-body" style="display:none">
+      <div class="ai-messages" id="ai-messages"></div>
+      <div class="ai-input-row">
+        <span class="ai-prompt">visitor@setupclaude:~$</span>
+        <input type="text" id="ai-input" placeholder="Pose une question..." onkeydown="handleTerminalKey(event)" />
+        <button onclick="envoyerMessage()" class="ai-send-btn">↵</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SEARCH MODAL -->
+  <div class="search-overlay" id="search-overlay">
+    <div class="search-box">
+      <div class="search-input-wrap">
+        <input type="text" id="search-input" placeholder="Rechercher une section, commande..." autocomplete="off" />
+        <span class="search-esc">Esc</span>
+      </div>
+      <div class="search-results" id="search-results"></div>
+      <div class="search-hint">↑↓ naviguer &nbsp;·&nbsp; Enter ouvrir &nbsp;·&nbsp; Esc fermer</div>
+    </div>
+  </div>
+
+  <!-- CHEAT SHEET -->
+  <button class="cheatsheet-btn" onclick="toggleCheatsheet()">Recap</button>
+  <div class="cheatsheet-panel" id="cheatsheet-panel">
+    <div class="cheatsheet-panel-header">
+      <strong>Cheat Sheet</strong>
+      <button onclick="toggleCheatsheet()">✕</button>
+    </div>
+    <div class="cheatsheet-section">
+      <div class="cheatsheet-section-title">Installation</div>
+      <div class="cheatsheet-row"><span class="cheatsheet-cmd">npm i -g @anthropic-ai/claude-code</span><span class="cheatsheet-desc">installer</span></div>
+      <div class="cheatsheet-row"><span class="cheatsheet-cmd">claude login</span><span class="cheatsheet-desc">se connecter</span></div>
+      <div class="cheatsheet-row"><span class="cheatsheet-cmd">nouveau-projet</span><span class="cheatsheet-desc">init projet</span></div>
+      <div class="cheatsheet-row"><span class="cheatsheet-cmd">claude --version</span><span class="cheatsheet-desc">vérifier version</span></div>
+    </div>
+    <div class="cheatsheet-section">
+      <div class="cheatsheet-section-title">Commandes quotidiennes</div>
+      <div class="cheatsheet-row"><span class="cheatsheet-cmd">claude</span><span class="cheatsheet-desc">démarrer</span></div>
+      <div class="cheatsheet-row"><span class="cheatsheet-cmd">claude -c</span><span class="cheatsheet-desc">continuer session</span></div>
+      <div class="cheatsheet-row"><span class="cheatsheet-cmd">claude --dangerously-skip-permissions</span><span class="cheatsheet-desc">mode auto</span></div>
+      <div class="cheatsheet-row"><span class="cheatsheet-cmd">claude -p "prompt"</span><span class="cheatsheet-desc">prompt direct</span></div>
+    </div>
+    <div class="cheatsheet-section">
+      <div class="cheatsheet-section-title">Dans Claude (slash commands)</div>
+      <div class="cheatsheet-row"><span class="cheatsheet-cmd">/route</span><span class="cheatsheet-desc">router vers agent</span></div>
+      <div class="cheatsheet-row"><span class="cheatsheet-cmd">/reset</span><span class="cheatsheet-desc">reset contexte</span></div>
+      <div class="cheatsheet-row"><span class="cheatsheet-cmd">/compact</span><span class="cheatsheet-desc">compresser l'historique</span></div>
+      <div class="cheatsheet-row"><span class="cheatsheet-cmd">/help</span><span class="cheatsheet-desc">aide</span></div>
+    </div>
+    <div class="cheatsheet-section">
+      <div class="cheatsheet-section-title">Raccourcis clavier</div>
+      <div class="cheatsheet-row"><span class="cheatsheet-cmd">Ctrl K</span><span class="cheatsheet-desc">recherche rapide (ce site)</span></div>
+      <div class="cheatsheet-row"><span class="cheatsheet-cmd">Ctrl C</span><span class="cheatsheet-desc">interrompre Claude</span></div>
+      <div class="cheatsheet-row"><span class="cheatsheet-cmd">↑ flèche</span><span class="cheatsheet-desc">historique commandes</span></div>
+      <div class="cheatsheet-row"><span class="cheatsheet-cmd">Ctrl R</span><span class="cheatsheet-desc">recherche historique shell</span></div>
+    </div>
+    <div class="cheatsheet-section">
+      <div class="cheatsheet-section-title">Fichiers importants</div>
+      <div class="cheatsheet-row"><span class="cheatsheet-cmd">CLAUDE.md</span><span class="cheatsheet-desc">instructions projet</span></div>
+      <div class="cheatsheet-row"><span class="cheatsheet-cmd">.claude/settings.json</span><span class="cheatsheet-desc">permissions</span></div>
+      <div class="cheatsheet-row"><span class="cheatsheet-cmd">tasks/todo.md</span><span class="cheatsheet-desc">tâches en cours</span></div>
+      <div class="cheatsheet-row"><span class="cheatsheet-cmd">tasks/lessons.md</span><span class="cheatsheet-desc">leçons apprises</span></div>
+      <div class="cheatsheet-row"><span class="cheatsheet-cmd">tasks/session-log.md</span><span class="cheatsheet-desc">log de sessions</span></div>
+    </div>
+  </div>
+
+  <!-- WIZARD MODE -->
+  <button class="wizard-btn" onclick="openWizard()">Mode guide</button>
+  <div class="wizard-overlay" id="wizard-overlay">
+    <div class="wizard-modal">
+      <div class="wizard-modal-header">
+        <span>Installation guidee</span>
+        <button onclick="closeWizard()">✕</button>
+      </div>
+      <div class="wizard-progress"><div class="wizard-fill" id="wizard-fill"></div></div>
+      <div class="wizard-body" id="wizard-body"></div>
+      <div class="wizard-nav">
+        <button class="btn btn-ghost" id="wizard-prev" onclick="wizardPrev()">← Précédent</button>
+        <span class="wizard-count" id="wizard-count">1 / 8</span>
+        <button class="btn btn-primary" id="wizard-next" onclick="wizardNext()">Suivant →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- CURSEUR + SIDEBAR -->
+  <div class="cursor-dot" id="cursor-dot"></div>
+  <div class="cursor-ring" id="cursor-ring"></div>
+  <div class="sidebar-right" id="sidebar-right"></div>
+
+  <script src="js/main.js"></script>
+  <script src="js/terminal.js"></script>
+</body>
+</html>

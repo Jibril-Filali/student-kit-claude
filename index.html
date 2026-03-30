@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SetupClaude · Installe Claude Code en 5 minutes</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <script>(function(){var t=localStorage.getItem('theme')||'dark';document.documentElement.setAttribute('data-theme',t);})();</script>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <a href="index.html" class="navbar-logo"><span class="prompt">$</span> SetupClaude</a>
+    <ul class="navbar-links">
+      <li class="has-dropdown">
+        <a>Installer <span class="nav-arrow">▾</span></a>
+        <div class="nav-dropdown">
+          <a href="guide.html#installation">01 · Claude CLI</a>
+          <a href="guide.html#kit-installation">02 · Kit global</a>
+          <a href="guide.html#nouveau-projet">03 · Nouveau projet</a>
+        </div>
+      </li>
+      <li class="has-dropdown">
+        <a>Configurer <span class="nav-arrow">▾</span></a>
+        <div class="nav-dropdown">
+          <a href="guide.html#claudemd">04 · CLAUDE.md</a>
+          <a href="guide.html#commandes-ps">05 · Commandes PS</a>
+        </div>
+      </li>
+      <li class="has-dropdown">
+        <a>Utiliser <span class="nav-arrow">▾</span></a>
+        <div class="nav-dropdown">
+          <a href="guide.html#skills">06 · Skills</a>
+          <a href="guide.html#sous-agents">07 · Sous-agents</a>
+          <a href="guide.html#raccourcis">08 · Raccourcis</a>
+          <a href="guide.html#workflow">09 · Workflow</a>
+        </div>
+      </li>
+      <li class="has-dropdown">
+        <a>Ressources <span class="nav-arrow">▾</span></a>
+        <div class="nav-dropdown">
+          <a href="guide.html#prompts">10 · Prompts</a>
+          <a href="guide.html#telechargements">11 · Téléchargements</a>
+          <a href="guide.html#troubleshooting">12 · Problèmes</a>
+        </div>
+      </li>
+      <li><a href="claude.html" style="color:var(--accent-light)">Comprendre Claude</a></li>
+    </ul>
+    <div class="navbar-right">
+      <button class="navbar-burger" onclick="toggleMobileNav()" aria-label="Menu"><span></span><span></span><span></span></button>
+      <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()">Clair</button>
+      <a href="https://claude.ai" target="_blank" class="btn-nav">Ouvrir Claude ↗</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="hero-terminal">
+        <div class="terminal-bar">
+          <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+          <span class="terminal-title">bash · ~</span>
+        </div>
+        <div class="terminal-body">
+          <p><span class="t-prompt">~</span> <span class="t-cmd" id="hero-cmd"></span><span class="cursor">▋</span></p>
+          <p class="t-output" id="hero-output" style="display:none"></p>
+        </div>
+      </div>
+      <div class="hero-text">
+        <div class="hero-badges">
+          <div class="hero-badge">Guide complet · 2026</div>
+          <div class="hero-badge">~8 min de lecture</div>
+        </div>
+        <h1>Installe <span class="accent">Claude Code</span><br>en 5 minutes.</h1>
+        <p>Le guide complet pour toi et tes potes : installation, student kit, skills, sous-agents, workflow et terminal IA intégré.</p>
+        <div class="hero-actions">
+          <a href="guide.html#telechargements" class="btn btn-primary">Télécharger le kit</a>
+          <a href="guide.html" class="btn btn-ghost">Lire le guide →</a>
+        </div>
+        <div class="hero-stats">
+          <div class="hstat"><strong>12</strong><span>sections</span></div>
+          <div class="hstat"><strong>8+</strong><span>skills</span></div>
+          <div class="hstat"><strong>5 min</strong><span>setup</span></div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- FEATURES -->
+  <section class="landing-features">
+    <h2 class="landing-features-title">Tout ce dont tu as besoin pour bien démarrer</h2>
+    <div class="features-grid">
+      <a href="guide.html#installation" class="feat-card">
+        <div class="feat-title">Installer</div>
+        <ul class="feat-items">
+          <li>Claude CLI</li>
+          <li>Kit global</li>
+          <li>Nouveau projet</li>
+        </ul>
+      </a>
+      <a href="guide.html#claudemd" class="feat-card">
+        <div class="feat-title">Configurer</div>
+        <ul class="feat-items">
+          <li>CLAUDE.md</li>
+          <li>Commandes PS</li>
+          <li>Profil PowerShell</li>
+        </ul>
+      </a>
+      <a href="guide.html#skills" class="feat-card">
+        <div class="feat-title">Utiliser</div>
+        <ul class="feat-items">
+          <li>8 skills inclus</li>
+          <li>5 sous-agents</li>
+          <li>Raccourcis + workflow</li>
+        </ul>
+      </a>
+      <a href="guide.html#telechargements" class="feat-card">
+        <div class="feat-title">Ressources</div>
+        <ul class="feat-items">
+          <li>Student kit (.zip)</li>
+          <li>Profil PowerShell</li>
+          <li>Prompts prêts à l'emploi</li>
+        </ul>
+      </a>
+    </div>
+  </section>
+
+  <!-- COMPRENDRE CLAUDE -->
+  <section class="claude-cta-section">
+    <div class="container">
+      <div class="claude-cta-card">
+        <div class="claude-cta-left">
+          <span class="claude-cta-label">Avant de te lancer</span>
+          <h2>Tu sais vraiment ce qu'est <span class="accent">Claude</span> ?</h2>
+          <p>Comment il fonctionne, d'où il vient, quelles sont ses vraies limites, et la différence entre Haiku, Sonnet et Opus. Six minutes qui changent la façon dont tu l'utilises.</p>
+          <div class="claude-cta-meta">
+            <span>8 sections</span>
+            <span>~6 min</span>
+            <span>histoire · modèles · limites</span>
+          </div>
+        </div>
+        <div class="claude-cta-right">
+          <a href="claude.html" class="btn btn-primary" style="font-size:1rem;padding:0.75rem 1.75rem;">Comprendre Claude →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUICK START -->
+  <section class="landing-quickstart">
+    <div class="container">
+      <div class="quickstart-inner">
+        <div class="quickstart-text">
+          <h2>Prêt en <span class="accent">3 commandes</span></h2>
+          <p>Installe Claude Code, copie le kit, lance ton premier projet. C'est tout.</p>
+          <a href="guide.html" class="btn btn-primary" style="margin-top:1.5rem">Voir le guide complet →</a>
+        </div>
+        <div class="quickstart-code">
+          <div class="code-block">
+            <div class="code-bar">
+              <span class="code-lang">powershell</span>
+              <button class="btn-copy" onclick="copier(this, 'npm install -g @anthropic-ai/claude-code\ncd $HOME\\Downloads\\student-kit && . $PROFILE\nnouveau-projet && claude')">Copier</button>
+            </div>
+            <pre><code><span class="t-comment"># 1. Installe Claude Code</span>
+npm install -g @anthropic-ai/claude-code
+
+<span class="t-comment"># 2. Installe le kit + profil</span>
+cd $HOME\Downloads\student-kit &amp;&amp; . $PROFILE
+
+<span class="t-comment"># 3. Lance ton premier projet</span>
+nouveau-projet &amp;&amp; claude</code></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <span class="prompt">$</span> SetupClaude
+        <p>Un guide fait par et pour des devs. Pas officiel, juste utile.</p>
+        <p class="footer-credit">Réalisé par <strong>Jibril Filali</strong> · <a href="https://jibril-filali.page.gd/" target="_blank" style="color:var(--text-dim);text-decoration:underline;font-size:0.8rem">Portfolio</a></p>
+      </div>
+      <div class="footer-nav-cols">
+        <div class="footer-nav-col">
+          <span class="footer-nav-title">Installer</span>
+          <a href="guide.html#installation">01 · Claude CLI</a>
+          <a href="guide.html#kit-installation">02 · Kit global</a>
+          <a href="guide.html#nouveau-projet">03 · Nouveau projet</a>
+        </div>
+        <div class="footer-nav-col">
+          <span class="footer-nav-title">Configurer</span>
+          <a href="guide.html#claudemd">04 · CLAUDE.md</a>
+          <a href="guide.html#commandes-ps">05 · Commandes PS</a>
+          <a href="guide.html#skills">06 · Skills</a>
+        </div>
+        <div class="footer-nav-col">
+          <span class="footer-nav-title">Utiliser</span>
+          <a href="guide.html#sous-agents">07 · Sous-agents</a>
+          <a href="guide.html#raccourcis">08 · Raccourcis</a>
+          <a href="guide.html#workflow">09 · Workflow</a>
+          <a href="guide.html#prompts">10 · Prompts</a>
+          <a href="guide.html#telechargements">11 · Downloads</a>
+          <a href="guide.html#troubleshooting">12 · Problemes</a>
+        </div>
+        <div class="footer-nav-col">
+          <span class="footer-nav-title">Liens</span>
+          <a href="claude.html">Comprendre Claude</a>
+          <a href="https://docs.anthropic.com" target="_blank">Docs officielles</a>
+          <a href="https://console.anthropic.com" target="_blank">Console Anthropic</a>
+          <a href="https://claude.ai" target="_blank">Claude.ai</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">Réalisé par <strong>Jibril Filali</strong> · 4 mois de travail · Guide à jour pour Claude Code 2026</div>
+  </footer>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast"></div>
+
+  <!-- TERMINAL IA FLOTTANT -->
+  <div class="ai-terminal-btn" id="ai-terminal-btn" onclick="toggleTerminal()" title="Assistant Claude">
+    <span id="ai-btn-label">Assistant</span>
+  </div>
+
+  <div class="ai-terminal-panel" id="ai-terminal-panel">
+    <div class="ai-panel-header">
+      <div class="ai-panel-title">
+        <span class="dot green"></span>
+        <span>Assistant Claude · SetupClaude</span>
+      </div>
+      <div class="ai-panel-actions">
+        <button onclick="clearTerminalHistory()" title="Effacer l'historique">Vider</button>
+        <button onclick="toggleTerminal()" title="Fermer">✕</button>
+      </div>
+    </div>
+
+    <!-- ÉCRAN CLÉ API -->
+    <div class="ai-apikey-screen" id="ai-apikey-screen">
+      <div class="apikey-content">
+        <h3>Clé API Anthropic</h3>
+        <p>Pour utiliser l'assistant, entre ta clé API. Elle reste uniquement dans ton navigateur (sessionStorage) et n'est jamais envoyée ailleurs que l'API Anthropic.</p>
+        <div class="apikey-where">
+          <strong>Où la trouver ?</strong><br>
+          <a href="https://console.anthropic.com/settings/keys" target="_blank">console.anthropic.com → API Keys ↗</a>
+        </div>
+        <input type="password" id="apikey-input" placeholder="sk-ant-api03-..." autocomplete="off" onkeydown="if(event.key==='Enter') validerApiKey()" />
+        <button class="btn btn-primary" onclick="validerApiKey()" style="width:100%;margin-top:0.5rem">Valider →</button>
+        <div class="apikey-error" id="apikey-error"></div>
+      </div>
+    </div>
+
+    <!-- TERMINAL -->
+    <div class="ai-terminal-body" id="ai-terminal-body" style="display:none">
+      <div class="ai-messages" id="ai-messages"></div>
+      <div class="ai-input-row">
+        <span class="ai-prompt">visitor@setupclaude:~$</span>
+        <input type="text" id="ai-input" placeholder="Pose une question..." onkeydown="handleTerminalKey(event)" />
+        <button onclick="envoyerMessage()" class="ai-send-btn">↵</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SEARCH MODAL -->
+  <div class="search-overlay" id="search-overlay">
+    <div class="search-box">
+      <div class="search-input-wrap">
+        <input type="text" id="search-input" placeholder="Rechercher une section, commande..." autocomplete="off" />
+        <span class="search-esc">Esc</span>
+      </div>
+      <div class="search-results" id="search-results"></div>
+      <div class="search-hint">↑↓ naviguer &nbsp;·&nbsp; Enter ouvrir &nbsp;·&nbsp; Esc fermer</div>
+    </div>
+  </div>
+
+  <!-- CHEAT SHEET -->
+  <button class="cheatsheet-btn" onclick="toggleCheatsheet()">Recap</button>
+  <div class="cheatsheet-panel" id="cheatsheet-panel">
+    <div class="cheatsheet-panel-header">
+      <strong>Cheat Sheet</strong>
+      <button onclick="toggleCheatsheet()">✕</button>
+    </div>
+    <div class="cheatsheet-section">
+      <div class="cheatsheet-section-title">Installation</div>
+      <div class="cheatsheet-row"><span class="cheatsheet-cmd">npm i -g @anthropic-ai/claude-code</span><span class="cheatsheet-desc">installer</span></div>
+      <div class="cheatsheet-row"><span class="cheatsheet-cmd">claude login</span><span class="cheatsheet-desc">se connecter</span></div>
+      <div class="cheatsheet-row"><span class="cheatsheet-cmd">nouveau-projet</span><span class="cheatsheet-desc">init projet</span></div>
+      <div class="cheatsheet-row"><span class="cheatsheet-cmd">claude --version</span><span class="cheatsheet-desc">vérifier version</span></div>
+    </div>
+    <div class="cheatsheet-section">
+      <div class="cheatsheet-section-title">Commandes quotidiennes</div>
+      <div class="cheatsheet-row"><span class="cheatsheet-cmd">claude</span><span class="cheatsheet-desc">démarrer</span></div>
+      <div class="cheatsheet-row"><span class="cheatsheet-cmd">claude -c</span><span class="cheatsheet-desc">continuer session</span></div>
+      <div class="cheatsheet-row"><span class="cheatsheet-cmd">claude --dangerously-skip-permissions</span><span class="cheatsheet-desc">mode auto</span></div>
+      <div class="cheatsheet-row"><span class="cheatsheet-cmd">claude -p "prompt"</span><span class="cheatsheet-desc">prompt direct</span></div>
+    </div>
+    <div class="cheatsheet-section">
+      <div class="cheatsheet-section-title">Dans Claude (slash commands)</div>
+      <div class="cheatsheet-row"><span class="cheatsheet-cmd">/route</span><span class="cheatsheet-desc">router vers agent</span></div>
+      <div class="cheatsheet-row"><span class="cheatsheet-cmd">/reset</span><span class="cheatsheet-desc">reset contexte</span></div>
+      <div class="cheatsheet-row"><span class="cheatsheet-cmd">/compact</span><span class="cheatsheet-desc">compresser l'historique</span></div>
+      <div class="cheatsheet-row"><span class="cheatsheet-cmd">/help</span><span class="cheatsheet-desc">aide</span></div>
+    </div>
+    <div class="cheatsheet-section">
+      <div class="cheatsheet-section-title">Raccourcis clavier</div>
+      <div class="cheatsheet-row"><span class="cheatsheet-cmd">Ctrl K</span><span class="cheatsheet-desc">recherche rapide (ce site)</span></div>
+      <div class="cheatsheet-row"><span class="cheatsheet-cmd">Ctrl C</span><span class="cheatsheet-desc">interrompre Claude</span></div>
+      <div class="cheatsheet-row"><span class="cheatsheet-cmd">↑ flèche</span><span class="cheatsheet-desc">historique commandes</span></div>
+      <div class="cheatsheet-row"><span class="cheatsheet-cmd">Ctrl R</span><span class="cheatsheet-desc">recherche historique shell</span></div>
+    </div>
+    <div class="cheatsheet-section">
+      <div class="cheatsheet-section-title">Fichiers importants</div>
+      <div class="cheatsheet-row"><span class="cheatsheet-cmd">CLAUDE.md</span><span class="cheatsheet-desc">instructions projet</span></div>
+      <div class="cheatsheet-row"><span class="cheatsheet-cmd">.claude/settings.json</span><span class="cheatsheet-desc">permissions</span></div>
+      <div class="cheatsheet-row"><span class="cheatsheet-cmd">tasks/todo.md</span><span class="cheatsheet-desc">tâches en cours</span></div>
+      <div class="cheatsheet-row"><span class="cheatsheet-cmd">tasks/lessons.md</span><span class="cheatsheet-desc">leçons apprises</span></div>
+      <div class="cheatsheet-row"><span class="cheatsheet-cmd">tasks/session-log.md</span><span class="cheatsheet-desc">log de sessions</span></div>
+    </div>
+  </div>
+
+  <!-- CURSEUR -->
+  <div class="cursor-dot" id="cursor-dot"></div>
+  <div class="cursor-ring" id="cursor-ring"></div>
+
+  <script src="js/main.js"></script>
+  <script src="js/terminal.js"></script>
+</body>
+</html>

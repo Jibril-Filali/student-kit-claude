@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Comprendre Claude · SetupClaude</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <script>(function(){var t=localStorage.getItem('theme')||'dark';document.documentElement.setAttribute('data-theme',t);})();</script>
+</head>
+<body>
+
+  <div class="scroll-progress" id="scroll-progress"></div>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <a href="index.html" class="navbar-logo"><span class="prompt">$</span> SetupClaude</a>
+    <ul class="navbar-links">
+      <li class="has-dropdown">
+        <a>Installer <span class="nav-arrow">▾</span></a>
+        <div class="nav-dropdown">
+          <a href="guide.html#installation">01 · Claude CLI</a>
+          <a href="guide.html#kit-installation">02 · Kit global</a>
+          <a href="guide.html#nouveau-projet">03 · Nouveau projet</a>
+        </div>
+      </li>
+      <li class="has-dropdown">
+        <a>Configurer <span class="nav-arrow">▾</span></a>
+        <div class="nav-dropdown">
+          <a href="guide.html#claudemd">04 · CLAUDE.md</a>
+          <a href="guide.html#commandes-ps">05 · Commandes PS</a>
+        </div>
+      </li>
+      <li class="has-dropdown">
+        <a>Utiliser <span class="nav-arrow">▾</span></a>
+        <div class="nav-dropdown">
+          <a href="guide.html#skills">06 · Skills</a>
+          <a href="guide.html#sous-agents">07 · Sous-agents</a>
+          <a href="guide.html#raccourcis">08 · Raccourcis</a>
+          <a href="guide.html#workflow">09 · Workflow</a>
+        </div>
+      </li>
+      <li><a href="claude.html" style="color:var(--accent-light);background:var(--bg-4);padding:0.4rem 0.8rem;border-radius:var(--radius-sm);">Comprendre Claude</a></li>
+    </ul>
+    <div class="navbar-right">
+      <button class="navbar-burger" onclick="toggleMobileNav()" aria-label="Menu"><span></span><span></span><span></span></button>
+      <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()">Clair</button>
+      <a href="https://claude.ai" target="_blank" class="btn-nav">Ouvrir Claude ↗</a>
+    </div>
+  </nav>
+
+  <!-- GUIDE HEADER -->
+  <div class="guide-header">
+    <div class="container">
+      <div class="guide-breadcrumb"><a href="index.html">← Accueil</a> / Comprendre Claude</div>
+      <h1 class="guide-title">Comprendre <span class="accent">Claude</span></h1>
+      <p class="guide-sub">8 sections · ~6 min · De zéro à l'essentiel</p>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════
+       01 — C'EST QUOI ?
+  ══════════════════════════════════════════ -->
+  <section class="section" id="cest-quoi">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title"><span class="section-num">01 ·</span> Qu'est-ce que Claude ?</h2>
+        <p class="section-sub">Un assistant IA développé par Anthropic, pas un simple chatbot.</p>
+      </div>
+
+      <div class="two-col">
+        <div>
+          <p style="margin-bottom: 1rem;">Claude est un <strong>LLM</strong> (Large Language Model, grand modèle de langage). Contrairement à un chatbot classique basé sur des règles, Claude a été entraîné sur des milliards de textes et a développé la capacité de comprendre du contexte, raisonner sur des problèmes complexes et produire du texte cohérent.</p>
+          <p style="margin-bottom: 1rem;">Il peut <strong>écrire et déboguer du code</strong>, analyser des documents entiers, expliquer des concepts techniques ou philosophiques, tenir des conversations nuancées et t'aider à planifier des projets complexes.</p>
+          <p>Son nom fait référence à <strong>Claude Shannon</strong>, le mathématicien américain considéré comme le père de la théorie de l'information, une discipline fondatrice de tout ce qui touche à la communication numérique.</p>
+        </div>
+        <div>
+          <ul class="feature-list">
+            <li>✓ Raisonnement et analyse complexe</li>
+            <li>✓ Génération et révision de code</li>
+            <li>✓ Explication de concepts (idéal pour apprendre)</li>
+            <li>✓ Lecture et résumé de documents longs</li>
+            <li>✓ Aide à la planification et organisation</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="info-box" style="margin-top: 2rem;">Claude n'est pas omniscient. Il <strong>prédit le texte le plus probable</strong>, ce qui lui permet d'être brillant sur certains sujets et de se tromper sur d'autres.</div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       02 — HISTOIRE
+  ══════════════════════════════════════════ -->
+  <section class="section section-alt" id="histoire">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title"><span class="section-num">02 ·</span> L'histoire d'Anthropic et Claude</h2>
+        <p class="section-sub">Une startup née d'une question : comment rendre l'IA vraiment sûre ?</p>
+      </div>
+
+      <div class="steps">
+        <div class="step-card">
+          <div class="step-num">2021</div>
+          <div class="step-content">
+            <h3>Fondation d'Anthropic</h3>
+            <p>Dario Amodei, Daniela Amodei et 7 autres anciens d'OpenAI fondent Anthropic. Objectif central : mener une <strong>recherche sérieuse sur la sécurité des systèmes d'IA</strong> avancés, avant que ces systèmes ne deviennent incontrôlables.</p>
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-num">2022</div>
+          <div class="step-content">
+            <h3>Constitutional AI</h3>
+            <p>Anthropic développe une technique innovante appelée <strong>Constitutional AI</strong> : au lieu d'annoter manuellement des milliers d'exemples, on donne au modèle une "constitution" (un ensemble de principes) et il apprend à s'aligner dessus de manière autonome. Une avancée majeure en alignement.</p>
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-num">Mars 2023</div>
+          <div class="step-content">
+            <h3>Lancement de Claude 1</h3>
+            <p>Premier modèle public d'Anthropic. Moins mis en avant que GPT-4 à l'époque, mais déjà remarqué pour son <strong>honnêteté et sa prudence</strong>. Claude 1 refusait clairement les demandes problématiques plutôt que de les contourner vaguement.</p>
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-num">Juillet 2023</div>
+          <div class="step-content">
+            <h3>Claude 2 : 100K tokens</h3>
+            <p>Saut significatif : <strong>fenêtre de contexte de 100 000 tokens</strong> (soit ~75 000 mots), meilleures performances en code, raisonnement et analyse de longs documents. Claude commence à être utilisé en production par de nombreuses entreprises.</p>
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-num">2024</div>
+          <div class="step-content">
+            <h3>Famille Claude 3 : Haiku, Sonnet, Opus</h3>
+            <p>Première fois qu'un modèle Anthropic <strong>surpasse GPT-4 sur plusieurs benchmarks</strong> clés. La famille tripartite (petit/équilibré/puissant) devient un standard dans l'industrie. Claude 3 Opus établit de nouveaux records en raisonnement avancé.</p>
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-num">2025</div>
+          <div class="step-content">
+            <h3>Claude 4 / Claude Code</h3>
+            <p>Intégration directe dans les terminaux et IDEs. <strong>Claude devient un vrai partenaire de développement</strong> : il lit ton code, comprend ton projet, exécute des commandes et corrige des bugs de manière autonome. C'est l'ère du coding assisté.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-box" style="margin-top: 2rem; border-left-color: var(--cyan);">Anthropic a reçu plusieurs milliards de dollars d'investissement de <strong>Google et Amazon</strong>. L'entreprise est valorisée à plus de <strong>18 milliards de dollars</strong> en 2024.</div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       03 — COMMENT ÇA MARCHE
+  ══════════════════════════════════════════ -->
+  <section class="section" id="comment-ca-marche">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title"><span class="section-num">03 ·</span> Comment ça marche (vraiment)</h2>
+        <p class="section-sub">La version honnête : ni trop simple, ni incompréhensible.</p>
+      </div>
+
+      <div class="tips-grid">
+        <div class="tip-card">
+          <div class="tip-num">1</div>
+          <h3>Tokenisation</h3>
+          <p>Le texte est découpé en <strong>"tokens"</strong> (des morceaux de mots). "Bonjour" = 1 token, "anticonstitutionnellement" = 4 tokens. Claude travaille avec ces tokens, pas des mots entiers. C'est pourquoi il peut parfois faire des erreurs sur des mots rares ou des coupures syllabiques.</p>
+        </div>
+        <div class="tip-card">
+          <div class="tip-num">2</div>
+          <h3>Architecture Transformer</h3>
+          <p>Un réseau de neurones avec un mécanisme d'<strong>"attention"</strong> qui pèse l'importance de chaque token par rapport aux autres. C'est ce qui lui permet de comprendre qu'un "il" en fin de phrase réfère à un sujet mentionné 10 lignes plus tôt.</p>
+        </div>
+        <div class="tip-card">
+          <div class="tip-num">3</div>
+          <h3>Entraînement</h3>
+          <p>Claude a été entraîné sur d'immenses quantités de texte : livres, code, web. Il a appris les <strong>patterns statistiques</strong> du langage humain, pas des règles explicites. Personne ne lui a dit "une fonction Java se termine par }", il l'a déduit des millions d'exemples.</p>
+        </div>
+        <div class="tip-card">
+          <div class="tip-num">4</div>
+          <h3>Alignement</h3>
+          <p>Après l'entraînement de base, Anthropic utilise le <strong>RLHF</strong> (Reinforcement Learning from Human Feedback) et <strong>Constitutional AI</strong> pour rendre Claude utile, honnête et inoffensif, sans le rendre inutilement restrictif.</p>
+        </div>
+      </div>
+
+      <div class="warn-box" style="margin: 2rem 0;">Claude ne "comprend" pas comme un humain. Il <strong>génère le texte statistiquement le plus probable</strong> selon son entraînement. C'est pourquoi il peut parfois affirmer des choses fausses avec confiance.</div>
+
+      <div class="code-block">
+        <div class="code-bar">
+          <span class="code-lang">terminal</span>
+          <button class="btn-copy" onclick="copier(this, '# Ce que tu envoies :\n&quot;Explique les boucles Java&quot;\n\n# Ce que Claude fait :\n→ Tokenise ta requête (8 tokens)\n→ Analyse le contexte des 200 000 tokens précédents\n→ Prédit token par token la meilleure réponse\n→ Génère ~150 tokens en ~2 secondes\n→ Filtre via Constitutional AI\n→ Retourne la réponse')">Copier</button>
+        </div>
+        <pre><code><span class="t-comment"># Ce que tu envoies :</span>
+<span class="t-prompt">"Explique les boucles Java"</span>
+
+<span class="t-comment"># Ce que Claude fait :</span>
+<span class="t-key">→</span> Tokenise ta requête <span class="t-comment">(8 tokens)</span>
+<span class="t-key">→</span> Analyse le contexte des 200 000 tokens précédents
+<span class="t-key">→</span> Prédit token par token la meilleure réponse
+<span class="t-key">→</span> Génère ~150 tokens en ~2 secondes
+<span class="t-key">→</span> Filtre via Constitutional AI
+<span class="t-key">→</span> Retourne la réponse</code></pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       04 — LES MODÈLES
+  ══════════════════════════════════════════ -->
+  <section class="section section-alt" id="les-modeles">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title"><span class="section-num">04 ·</span> Les modèles disponibles</h2>
+        <p class="section-sub">Haiku, Sonnet, Opus : chaque modèle a son rôle.</p>
+      </div>
+
+      <div class="raccourcis-grid">
+        <div class="raccourci-card">
+          <div class="raccourci-key">Claude Haiku</div>
+          <div class="raccourci-label">Le plus rapide, le moins cher</div>
+          <div class="raccourci-desc">
+            <p style="margin-bottom: 0.5rem;">Contexte : <strong>200K tokens</strong></p>
+            <p style="margin-bottom: 0.5rem;">Idéal pour : réponses courtes, tâches simples, validation rapide</p>
+            <p style="margin-bottom: 0.8rem;">Prix API : <strong>~$0.25 / million tokens</strong></p>
+            <span style="background: var(--bg-4); color: var(--text-muted); font-size: 0.75rem; padding: 0.2rem 0.6rem; border-radius: 99px; font-family: var(--mono);">Économique</span>
+          </div>
+        </div>
+
+        <div class="raccourci-card raccourci-featured">
+          <div class="raccourci-key">⭐ Claude Sonnet</div>
+          <div class="raccourci-label">L'équilibre parfait · celui de Claude Code</div>
+          <div class="raccourci-desc">
+            <p style="margin-bottom: 0.5rem;">Contexte : <strong>200K tokens</strong></p>
+            <p style="margin-bottom: 0.5rem;">Idéal pour : code, analyse, rédaction longue, usage quotidien</p>
+            <p style="margin-bottom: 0.8rem;">Prix API : <strong>~$3 / million tokens</strong></p>
+            <span style="background: var(--accent); color: white; font-size: 0.75rem; padding: 0.2rem 0.6rem; border-radius: 99px; font-family: var(--mono);">Recommandé</span>
+          </div>
+        </div>
+
+        <div class="raccourci-card">
+          <div class="raccourci-key">Claude Opus</div>
+          <div class="raccourci-label">Le plus puissant</div>
+          <div class="raccourci-desc">
+            <p style="margin-bottom: 0.5rem;">Contexte : <strong>200K tokens</strong></p>
+            <p style="margin-bottom: 0.5rem;">Idéal pour : tâches très complexes, raisonnement avancé, recherche</p>
+            <p style="margin-bottom: 0.8rem;">Prix API : <strong>~$15 / million tokens</strong></p>
+            <span style="background: linear-gradient(135deg, #7c3aed, #06b6d4); color: white; font-size: 0.75rem; padding: 0.2rem 0.6rem; border-radius: 99px; font-family: var(--mono);">Premium</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-box" style="margin-top: 2rem;">Claude Code utilise <strong>Sonnet par défaut</strong>. Tu peux passer à Opus avec <kbd>/model</kbd> ou en précisant le modèle. Haiku est utilisé pour les vérifications rapides (ex: validation de clé API).</div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       05 — BIEN L'UTILISER
+  ══════════════════════════════════════════ -->
+  <section class="section" id="bien-utiliser">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title"><span class="section-num">05 ·</span> Comment bien l'utiliser</h2>
+        <p class="section-sub">La différence entre quelqu'un qui galère et quelqu'un qui obtient des résultats.</p>
+      </div>
+
+      <div class="bp-grid">
+        <div class="bp-card bp-good">
+          <div class="bp-header">Ce qui marche</div>
+          <ul>
+            <li>Donne du contexte : fichier, méthode, erreur exacte</li>
+            <li>Sois spécifique sur ce que tu attends</li>
+            <li>Demande de planifier avant d'implémenter</li>
+            <li>Corrige au lieu de recommencer depuis zéro</li>
+            <li>Demande des explications si tu ne comprends pas</li>
+            <li>Utilise CLAUDE.md pour ne pas réexpliquer à chaque fois</li>
+          </ul>
+        </div>
+        <div class="bp-card bp-bad">
+          <div class="bp-header">Ce qui ne marche pas</div>
+          <ul>
+            <li>"Améliore mon code" sans préciser quoi</li>
+            <li>Coller 500 lignes sans contexte</li>
+            <li>Accepter la première réponse sans vérifier</li>
+            <li>Ignorer les warnings de Claude</li>
+            <li>Demander du code que tu ne comprends pas</li>
+            <li>Partager des mots de passe ou clés API</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3 class="sub-title" style="margin: 2.5rem 0 1rem; font-size: 1rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em;">Prompts qui marchent bien</h3>
+      <div class="prompt-examples">
+        <div class="prompt-card" onclick="copierPrompt(this)">
+          <div class="prompt-text">Lis le fichier <em>[X]</em>, explique ce que fait la méthode <em>[Y]</em> et dis-moi si tu vois des problèmes potentiels.</div>
+          <span class="prompt-copy-hint">cliquer pour copier</span>
+        </div>
+        <div class="prompt-card" onclick="copierPrompt(this)">
+          <div class="prompt-text">Avant de coder, planifie les étapes. J'ai besoin de <em>[fonctionnalité]</em>, utilise le stack <em>[X]</em>.</div>
+          <span class="prompt-copy-hint">cliquer pour copier</span>
+        </div>
+        <div class="prompt-card" onclick="copierPrompt(this)">
+          <div class="prompt-text">J'ai cette erreur : <em>[stack trace]</em>. Lis le code, trouve la cause racine, explique avant de corriger.</div>
+          <span class="prompt-copy-hint">cliquer pour copier</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       06 — LIMITES
+  ══════════════════════════════════════════ -->
+  <section class="section section-alt" id="limites">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title"><span class="section-num">06 ·</span> Limites et mises en garde</h2>
+        <p class="section-sub">Ce que Claude ne peut pas faire, et où il peut se tromper.</p>
+      </div>
+
+      <div class="tips-grid">
+        <div class="tip-card">
+          <h3>Hallucinations</h3>
+          <p>Claude peut <strong>inventer des faits, des fonctions, des URLs</strong> avec la même confiance qu'une vraie réponse. Toujours vérifier les informations critiques, surtout les noms de méthodes, les APIs et les citations.</p>
+        </div>
+        <div class="tip-card">
+          <h3>Cutoff de connaissance</h3>
+          <p>Sa connaissance s'arrête à <strong>août 2025</strong>. Il ignore les librairies sorties après, les événements récents, les nouvelles APIs. Pour du code récent, toujours confronter avec la documentation officielle.</p>
+        </div>
+        <div class="tip-card">
+          <h3>Pas d'internet</h3>
+          <p>Par défaut, Claude <strong>n'a pas accès au web</strong>. Il ne peut pas consulter ta documentation, les issues GitHub ou les dernières docs. Il travaille uniquement avec ce que tu lui fournis et ce qu'il a appris.</p>
+        </div>
+        <div class="tip-card">
+          <h3>Pas de mémoire</h3>
+          <p>Chaque conversation <strong>repart de zéro</strong>. Sans CLAUDE.md, il ne se souvient pas de tes préférences d'une session à l'autre : ton stack, tes conventions de nommage, tes projets.</p>
+        </div>
+        <div class="tip-card">
+          <h3>Erreurs de code</h3>
+          <p>Claude peut générer du code qui <strong>semble correct mais ne compile pas</strong>, ou qui a des bugs subtils de logique. Toujours tester. Ne jamais pousser en production sans relire.</p>
+        </div>
+        <div class="tip-card">
+          <h3>Limites éthiques</h3>
+          <p>Claude <strong>refusera certaines demandes</strong> : contenu nocif, aide à des activités illégales, manipulation. Ce n'est pas un bug, c'est intentionnel. Constitutional AI garantit ces gardes-fous.</p>
+        </div>
+      </div>
+
+      <div class="warn-box" style="margin-top: 2rem;">Ne partage jamais tes <strong>clés API, mots de passe ou données personnelles</strong> dans une conversation Claude. Même si Claude est privé, prends l'habitude de ne jamais coller des secrets.</div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       07 — CLAUDE VS AUTRES
+  ══════════════════════════════════════════ -->
+  <section class="section" id="vs-autres">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title"><span class="section-num">07 ·</span> Claude vs les autres IA</h2>
+        <p class="section-sub">Un comparatif honnête : chaque outil a ses forces.</p>
+      </div>
+
+      <div class="cmd-table-card">
+        <table class="cmd-table">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Claude (Anthropic)</th>
+              <th>ChatGPT (OpenAI)</th>
+              <th>Gemini (Google)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Contexte</strong></td>
+              <td>200K tokens</td>
+              <td>128K tokens</td>
+              <td>1M tokens</td>
+            </tr>
+            <tr>
+              <td><strong>Code</strong></td>
+              <td>★★★★★</td>
+              <td>★★★★</td>
+              <td>★★★</td>
+            </tr>
+            <tr>
+              <td><strong>Raisonnement</strong></td>
+              <td>★★★★★</td>
+              <td>★★★★</td>
+              <td>★★★★</td>
+            </tr>
+            <tr>
+              <td><strong>Intégration IDE</strong></td>
+              <td>Claude Code</td>
+              <td>Copilot</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <td><strong>Accès web</strong></td>
+              <td>Non (par défaut)</td>
+              <td>Oui (ChatGPT Plus)</td>
+              <td>Oui</td>
+            </tr>
+            <tr>
+              <td><strong>Génération d'images</strong></td>
+              <td>Non</td>
+              <td>Oui (DALL-E)</td>
+              <td>Oui (Imagen)</td>
+            </tr>
+            <tr>
+              <td><strong>Prix API (Sonnet)</strong></td>
+              <td>~$3/M tokens</td>
+              <td>~$5/M tokens</td>
+              <td>~$3.5/M tokens</td>
+            </tr>
+            <tr>
+              <td><strong>Points forts</strong></td>
+              <td>Code, sécurité, honnêteté</td>
+              <td>Plugins, images, web</td>
+              <td>Long contexte, Google</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="info-box" style="margin-top: 2rem;">Pour du <strong>développement</strong>, Claude est généralement le meilleur choix, surtout avec Claude Code. Pour des besoins <strong>multimédia ou la recherche web</strong>, ChatGPT Plus peut être complémentaire.</div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       08 — UTILISATION RESPONSABLE
+  ══════════════════════════════════════════ -->
+  <section class="section section-alt" id="responsable">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title"><span class="section-num">08 ·</span> Utilisation responsable</h2>
+        <p class="section-sub">L'IA amplifie tes capacités, elle ne remplace pas ton jugement.</p>
+      </div>
+
+      <p style="margin-bottom: 2rem; max-width: 700px;">L'IA est un outil puissant qui peut t'aider à aller plus vite, mais elle <strong>ne vérifie pas</strong> si ce que tu fais est éthique, légal ou correct. C'est ton rôle. Un code généré par une IA reste ta responsabilité dès l'instant où tu l'utilises.</p>
+
+      <div class="tips-grid">
+        <div class="tip-card">
+          <h3>Vérifie les sources</h3>
+          <p>Ne publie jamais du code ou une information venant de Claude <strong>sans l'avoir compris et testé</strong>. Si tu ne comprends pas ce que fait un bloc de code, demande une explication avant de l'utiliser.</p>
+        </div>
+        <div class="tip-card">
+          <h3>©️ Respecte les droits</h3>
+          <p>Le code généré peut <strong>ressembler à du code existant</strong>. Fais attention aux licences dans les projets commerciaux. En cas de doute, reformule la demande pour obtenir une implémentation différente.</p>
+        </div>
+        <div class="tip-card">
+          <h3>Sécurité d'abord</h3>
+          <p>Claude <strong>ne détecte pas toutes les failles de sécurité</strong>. Fais des revues de sécurité séparées pour le code en production. Ne lui fais pas confiance aveuglément sur la gestion des authentifications ou des données sensibles.</p>
+        </div>
+        <div class="tip-card">
+          <h3>Ton apprentissage</h3>
+          <p>Utiliser Claude pour <strong>comprendre</strong> est excellent. Utiliser Claude pour <strong>éviter de comprendre</strong> est contre-productif : tu auras des lacunes qui remonteront à la surface au pire moment.</p>
+        </div>
+      </div>
+
+      <div class="success-box" style="margin-top: 2rem;"><strong>La bonne approche :</strong> utilise Claude comme un partenaire. Il génère, tu révises. Il suggère, tu décides. Il explique, tu apprends.</div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <span class="prompt">$</span> SetupClaude
+        <p>Un guide fait par et pour des devs. Pas officiel, juste utile.</p>
+        <p class="footer-credit">Réalisé par <strong>Jibril Filali</strong> · <a href="https://jibril-filali.page.gd/" target="_blank" style="color:var(--text-dim);text-decoration:underline;font-size:0.8rem">Portfolio</a></p>
+      </div>
+      <div class="footer-nav-cols">
+        <div class="footer-nav-col">
+          <span class="footer-nav-title">Comprendre Claude</span>
+          <a href="#cest-quoi">01 · Qu'est-ce que Claude</a>
+          <a href="#histoire">02 · Histoire</a>
+          <a href="#comment-ca-marche">03 · Comment ca marche</a>
+          <a href="#les-modeles">04 · Les modeles</a>
+          <a href="#bien-utiliser">05 · Bien utiliser</a>
+          <a href="#limites">06 · Limites</a>
+          <a href="#vs-autres">07 · vs Autres IA</a>
+          <a href="#responsable">08 · Utilisation responsable</a>
+        </div>
+        <div class="footer-nav-col">
+          <span class="footer-nav-title">Guide</span>
+          <a href="guide.html">Guide complet</a>
+          <a href="guide.html#installation">Installation</a>
+          <a href="guide.html#troubleshooting">Problemes</a>
+          <a href="guide.html#telechargements">Telechargements</a>
+        </div>
+        <div class="footer-nav-col">
+          <span class="footer-nav-title">Liens</span>
+          <a href="index.html">Accueil</a>
+          <a href="https://docs.anthropic.com" target="_blank">Docs officielles</a>
+          <a href="https://console.anthropic.com" target="_blank">Console Anthropic</a>
+          <a href="https://claude.ai" target="_blank">Claude.ai</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">Réalisé par <strong>Jibril Filali</strong> · 4 mois de travail · Guide à jour pour Claude Code 2026</div>
+  </footer>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast"></div>
+
+  <!-- SEARCH MODAL -->
+  <div class="search-overlay" id="search-overlay">
+    <div class="search-box">
+      <div class="search-input-wrap">
+        <input type="text" id="search-input" placeholder="Rechercher une section, commande..." autocomplete="off" />
+        <span class="search-esc">Esc</span>
+      </div>
+      <div class="search-results" id="search-results"></div>
+      <div class="search-hint">↑↓ naviguer &nbsp;·&nbsp; Enter ouvrir &nbsp;·&nbsp; Esc fermer</div>
+    </div>
+  </div>
+
+  <!-- CHEAT SHEET -->
+  <button class="cheatsheet-btn" onclick="toggleCheatsheet()">Recap</button>
+  <div class="cheatsheet-panel" id="cheatsheet-panel">
+    <div class="cheatsheet-panel-header">
+      <strong>Cheat Sheet</strong>
+      <button onclick="toggleCheatsheet()">✕</button>
+    </div>
+    <div class="cheatsheet-section">
+      <div class="cheatsheet-section-title">Installation</div>
+      <div class="cheatsheet-row"><span class="cheatsheet-cmd">npm i -g @anthropic-ai/claude-code</span><span class="cheatsheet-desc">installer</span></div>
+      <div class="cheatsheet-row"><span class="cheatsheet-cmd">claude login</span><span class="cheatsheet-desc">se connecter</span></div>
+      <div class="cheatsheet-row"><span class="cheatsheet-cmd">nouveau-projet</span><span class="cheatsheet-desc">init projet</span></div>
+    </div>
+    <div class="cheatsheet-section">
+      <div class="cheatsheet-section-title">Commandes quotidiennes</div>
+      <div class="cheatsheet-row"><span class="cheatsheet-cmd">claude</span><span class="cheatsheet-desc">démarrer</span></div>
+      <div class="cheatsheet-row"><span class="cheatsheet-cmd">claude -c</span><span class="cheatsheet-desc">continuer session</span></div>
+      <div class="cheatsheet-row"><span class="cheatsheet-cmd">claude --dangerously-skip-permissions</span><span class="cheatsheet-desc">mode auto</span></div>
+    </div>
+    <div class="cheatsheet-section">
+      <div class="cheatsheet-section-title">Raccourcis clavier</div>
+      <div class="cheatsheet-row"><span class="cheatsheet-cmd">Ctrl K</span><span class="cheatsheet-desc">recherche rapide (ce site)</span></div>
+      <div class="cheatsheet-row"><span class="cheatsheet-cmd">Ctrl C</span><span class="cheatsheet-desc">interrompre Claude</span></div>
+    </div>
+    <div class="cheatsheet-section">
+      <div class="cheatsheet-section-title">Modèles Claude</div>
+      <div class="cheatsheet-row"><span class="cheatsheet-cmd">claude-haiku-4-5</span><span class="cheatsheet-desc">rapide, léger</span></div>
+      <div class="cheatsheet-row"><span class="cheatsheet-cmd">claude-sonnet-4-6</span><span class="cheatsheet-desc">équilibré ★</span></div>
+      <div class="cheatsheet-row"><span class="cheatsheet-cmd">claude-opus-4-6</span><span class="cheatsheet-desc">le plus puissant</span></div>
+    </div>
+  </div>
+
+  <!-- CURSEUR + SIDEBAR -->
+  <div class="cursor-dot" id="cursor-dot"></div>
+  <div class="cursor-ring" id="cursor-ring"></div>
+  <div class="sidebar-right" id="sidebar-right"></div>
+
+  <script src="js/main.js"></script>
+
+</body>
+</html>
