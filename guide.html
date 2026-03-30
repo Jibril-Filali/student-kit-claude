@@ -45,6 +45,7 @@
           <a href="#prompts">10 · Prompts</a>
           <a href="#telechargements">11 · Téléchargements</a>
           <a href="#troubleshooting">12 · Problèmes</a>
+          <a href="#mise-a-jour">13 · Mise à jour</a>
         </div>
       </li>
       <li><a href="claude.html" style="color:var(--accent-light)">Comprendre Claude</a></li>
@@ -690,6 +691,37 @@ claude</code></pre>
 
       <div class="prompts-grid">
         <div class="prompt-category">
+          <h3>Java</h3>
+          <div class="prompt-examples">
+            <div class="prompt-card" onclick="copierPrompt(this)"><div class="prompt-text">J'ai une NullPointerException ligne <em>[X]</em>. Lis le stack trace, trouve la cause racine et corrige-la.</div><span class="prompt-copy-hint">cliquer pour copier</span></div>
+            <div class="prompt-card" onclick="copierPrompt(this)"><div class="prompt-text">Crée la classe <em>[nom]</em> avec les attributs <em>[liste]</em>. Génère les getters, setters et toString.</div><span class="prompt-copy-hint">cliquer pour copier</span></div>
+            <div class="prompt-card" onclick="copierPrompt(this)"><div class="prompt-text">Ce code ne ferme pas la connexion. Réécris-le avec try-with-resources.</div><span class="prompt-copy-hint">cliquer pour copier</span></div>
+            <div class="prompt-card" onclick="copierPrompt(this)"><div class="prompt-text">Explique-moi l'héritage en Java avec un exemple concret adapté à mon projet.</div><span class="prompt-copy-hint">cliquer pour copier</span></div>
+            <div class="prompt-card" onclick="copierPrompt(this)"><div class="prompt-text">Ce code compile pas : <em>[erreur javac]</em>. Corrige et explique pourquoi.</div><span class="prompt-copy-hint">cliquer pour copier</span></div>
+          </div>
+        </div>
+
+        <div class="prompt-category">
+          <h3>MySQL</h3>
+          <div class="prompt-examples">
+            <div class="prompt-card" onclick="copierPrompt(this)"><div class="prompt-text">Écris une requête JOIN entre <em>[table A]</em> et <em>[table B]</em> pour récupérer <em>[colonnes]</em>. Utilise une PreparedStatement.</div><span class="prompt-copy-hint">cliquer pour copier</span></div>
+            <div class="prompt-card" onclick="copierPrompt(this)"><div class="prompt-text">J'ai cette erreur MySQL : <em>[message d'erreur]</em>. Qu'est-ce qui cloche dans ma requête ?</div><span class="prompt-copy-hint">cliquer pour copier</span></div>
+            <div class="prompt-card" onclick="copierPrompt(this)"><div class="prompt-text">Crée la table <em>[nom]</em> avec ces colonnes : <em>[liste]</em>. Ajoute les index utiles.</div><span class="prompt-copy-hint">cliquer pour copier</span></div>
+            <div class="prompt-card" onclick="copierPrompt(this)"><div class="prompt-text">Explique-moi la différence entre INNER JOIN et LEFT JOIN avec un exemple sur mes tables.</div><span class="prompt-copy-hint">cliquer pour copier</span></div>
+          </div>
+        </div>
+
+        <div class="prompt-category">
+          <h3>MongoDB</h3>
+          <div class="prompt-examples">
+            <div class="prompt-card" onclick="copierPrompt(this)"><div class="prompt-text">Écris une requête find() pour récupérer <em>[condition]</em> dans la collection <em>[nom]</em>.</div><span class="prompt-copy-hint">cliquer pour copier</span></div>
+            <div class="prompt-card" onclick="copierPrompt(this)"><div class="prompt-text">Crée une agrégation MongoDB pour calculer <em>[résultat]</em> groupé par <em>[champ]</em>.</div><span class="prompt-copy-hint">cliquer pour copier</span></div>
+            <div class="prompt-card" onclick="copierPrompt(this)"><div class="prompt-text">Regarde ce document MongoDB : <em>[exemple]</em>. Est-ce que le schéma est bien structuré ? Améliore-le.</div><span class="prompt-copy-hint">cliquer pour copier</span></div>
+            <div class="prompt-card" onclick="copierPrompt(this)"><div class="prompt-text">Explique-moi la différence entre find() et aggregate() avec un exemple simple.</div><span class="prompt-copy-hint">cliquer pour copier</span></div>
+          </div>
+        </div>
+
+        <div class="prompt-category">
           <h3>Débogage</h3>
           <div class="prompt-examples">
             <div class="prompt-card" onclick="copierPrompt(this)"><div class="prompt-text">Corrige ce bug : <em>[colle le stack trace]</em></div><span class="prompt-copy-hint">cliquer pour copier</span></div>
@@ -699,15 +731,7 @@ claude</code></pre>
         </div>
 
         <div class="prompt-category">
-          <h3>Nouvelles fonctionnalités</h3>
-          <div class="prompt-examples">
-            <div class="prompt-card" onclick="copierPrompt(this)"><div class="prompt-text">Ajoute <em>[fonctionnalité]</em>. Planifie d'abord, puis implémente.</div><span class="prompt-copy-hint">cliquer pour copier</span></div>
-            <div class="prompt-card" onclick="copierPrompt(this)"><div class="prompt-text">Crée la classe <em>[nom]</em> qui fait <em>[comportement]</em>. Suis les conventions du projet.</div><span class="prompt-copy-hint">cliquer pour copier</span></div>
-          </div>
-        </div>
-
-        <div class="prompt-category">
-          <h3>Compréhension</h3>
+          <h3>Comprendre le code</h3>
           <div class="prompt-examples">
             <div class="prompt-card" onclick="copierPrompt(this)"><div class="prompt-text">Explique ce que fait cette méthode et pourquoi elle est structurée ainsi.</div><span class="prompt-copy-hint">cliquer pour copier</span></div>
             <div class="prompt-card" onclick="copierPrompt(this)"><div class="prompt-text">Fais une revue de code de mes derniers changements. Signale ce qui peut poser problème.</div><span class="prompt-copy-hint">cliquer pour copier</span></div>
@@ -771,11 +795,10 @@ claude</code></pre>
             <div class="dl-content-title">Contenu :</div>
             <ul>
               <li>CLAUDE.md · config principale</li>
-              <li>agents/java-reviewer.md</li>
-              <li>agents/tutor.md</li>
-              <li>skills/debug-java, explain, sql, mongo</li>
-              <li>tasks/lessons.md + todo.md + session-log.md</li>
-              <li>.claude/settings.json · hooks + permissions</li>
+              <li>agents/ · java-reviewer, tutor, code-reviewer, test-writer, doc-generator</li>
+              <li>skills/ · debug-java, explain, sql, mongo, techdebt, commit-push-pr, simplify</li>
+              <li>tasks/ · todo.md + lessons.md</li>
+              <li>.claude/settings.json · permissions git/java + rappel lessons.md</li>
             </ul>
           </div>
           <div class="dl-install">
@@ -977,6 +1000,58 @@ claude</code></pre>
     </div>
   </section>
 
+  <!-- ══════════════════════════════════════════
+       13 — MISE A JOUR DU KIT
+  ══════════════════════════════════════════ -->
+  <section class="section" id="mise-a-jour">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title"><span class="section-num">13 ·</span> Mettre à jour le kit</h2>
+        <p class="section-sub">Quand une nouvelle version sort, une seule commande suffit.</p>
+      </div>
+
+      <div class="steps">
+        <div class="step-card">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <h3>Vérifier s'il y a une mise à jour</h3>
+            <p>Les nouvelles versions du kit sont publiées sur GitHub. Regarde si la date du fichier <code>student-kit.zip</code> a changé.</p>
+            <div class="code-block">
+              <div class="code-bar"><span class="code-lang">lien</span><button class="btn-copy" onclick="copier(this, 'https://github.com/Jibril-Filali/student-kit-claude')">Copier</button></div>
+              <pre><code>https://github.com/Jibril-Filali/student-kit-claude</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <h3>Télécharger le nouveau kit</h3>
+            <p>Télécharge le zip depuis la section <a href="#telechargements">Téléchargements</a> et extrais-le dans ton dossier Téléchargements, en remplaçant l'ancien.</p>
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <h3>Lancer update-kit</h3>
+            <p>La commande <code>update-kit</code> copie les nouveaux agents et skills dans ton profil global. Elle ne touche pas à tes projets existants.</p>
+            <div class="code-block">
+              <div class="code-bar"><span class="code-lang">powershell</span><button class="btn-copy" onclick="copier(this, 'cd $HOME\\Downloads\\student-kit\nupdate-kit')">Copier</button></div>
+              <pre><code>cd $HOME\Downloads\student-kit
+update-kit</code></pre>
+            </div>
+            <div class="success-box">Tu dois voir : <code>Skills et agents mis à jour !</code></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-box" style="margin-top:1.5rem">
+        <strong>Tes projets ne sont pas affectés.</strong> <code>update-kit</code> met à jour uniquement les fichiers dans <code>$HOME\.claude\</code> (global). Tes <code>CLAUDE.md</code> et <code>tasks/</code> de chaque projet restent intacts.
+      </div>
+    </div>
+  </section>
+
   <!-- FOOTER -->
   <footer class="footer">
     <div class="footer-inner">
@@ -1006,6 +1081,7 @@ claude</code></pre>
           <a href="#prompts">10 · Prompts</a>
           <a href="#telechargements">11 · Téléchargements</a>
           <a href="#troubleshooting">12 · Problèmes</a>
+          <a href="#mise-a-jour">13 · Mise à jour</a>
         </div>
         <div class="footer-nav-col">
           <span class="footer-nav-title">Liens</span>
