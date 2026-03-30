@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FAQ · SetupClaude</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <script>(function(){var t=localStorage.getItem('theme')||'dark';document.documentElement.setAttribute('data-theme',t);})();</script>
+</head>
+<body>
+
+  <div class="scroll-progress" id="scroll-progress"></div>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <a href="index.html" class="navbar-logo"><span class="prompt">$</span> SetupClaude</a>
+    <ul class="navbar-links">
+      <li class="has-dropdown">
+        <a>Installer <span class="nav-arrow">▾</span></a>
+        <div class="nav-dropdown">
+          <a href="guide.html#installation">01 · Claude CLI</a>
+          <a href="guide.html#kit-installation">02 · Kit global</a>
+          <a href="guide.html#nouveau-projet">03 · Nouveau projet</a>
+        </div>
+      </li>
+      <li class="has-dropdown">
+        <a>Configurer <span class="nav-arrow">▾</span></a>
+        <div class="nav-dropdown">
+          <a href="guide.html#claudemd">04 · CLAUDE.md</a>
+          <a href="guide.html#commandes-ps">05 · Commandes PS</a>
+        </div>
+      </li>
+      <li class="has-dropdown">
+        <a>Utiliser <span class="nav-arrow">▾</span></a>
+        <div class="nav-dropdown">
+          <a href="guide.html#skills">06 · Skills</a>
+          <a href="guide.html#sous-agents">07 · Sous-agents</a>
+          <a href="guide.html#raccourcis">08 · Raccourcis</a>
+          <a href="guide.html#workflow">09 · Workflow</a>
+        </div>
+      </li>
+      <li class="has-dropdown">
+        <a>Ressources <span class="nav-arrow">▾</span></a>
+        <div class="nav-dropdown">
+          <a href="guide.html#prompts">10 · Prompts</a>
+          <a href="guide.html#telechargements">11 · Téléchargements</a>
+          <a href="guide.html#troubleshooting">12 · Problèmes</a>
+          <a href="faq.html" style="color:var(--accent-light)">FAQ</a>
+        </div>
+      </li>
+      <li><a href="claude.html" style="color:var(--accent-light)">Comprendre Claude</a></li>
+    </ul>
+    <div class="navbar-right">
+      <button class="navbar-burger" onclick="toggleMobileNav()" aria-label="Menu"><span></span><span></span><span></span></button>
+      <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()">Clair</button>
+      <a href="https://claude.ai" target="_blank" class="btn-nav">Ouvrir Claude ↗</a>
+    </div>
+  </nav>
+
+  <!-- GUIDE HEADER -->
+  <div class="guide-header">
+    <div class="container">
+      <div class="guide-breadcrumb"><a href="index.html">← Accueil</a> / FAQ</div>
+      <h1 class="guide-title">Questions <span class="accent">fréquentes</span></h1>
+      <p class="guide-sub">5 thèmes · ~4 min · Les vraies questions que tout le monde se pose</p>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       01 — ETHIQUE ET USAGE SCOLAIRE
+  ══════════════════════════════════════════ -->
+  <section class="section" id="ethique">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title"><span class="section-num">01 ·</span> Ethique et usage scolaire</h2>
+        <p class="section-sub">Les questions que tout étudiant se pose avant de se lancer.</p>
+      </div>
+
+      <div class="steps">
+
+        <div class="step-card">
+          <div class="step-num">?</div>
+          <div class="step-content">
+            <h3>Est-ce que c'est de la triche ?</h3>
+            <p>Ca dépend de <strong>comment tu l'utilises</strong> et de la politique de ton établissement.</p>
+            <ul style="margin-top:0.8rem;display:flex;flex-direction:column;gap:0.4rem;padding-left:1rem">
+              <li><strong>Pas de la triche :</strong> utiliser Claude pour comprendre un concept, déboguer une erreur, améliorer la qualité de ton code, apprendre une technologie.</li>
+              <li><strong>Potentiellement problématique :</strong> copier-coller une réponse sans la comprendre et la rendre comme ton travail lors d'une évaluation qui l'interdit.</li>
+            </ul>
+            <div class="info-box" style="margin-top:1rem">De plus en plus de profs intègrent l'IA dans leur pédagogie. Certains l'autorisent, d'autres non. En cas de doute, demande directement à ton prof avant l'évaluation.</div>
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-num">?</div>
+          <div class="step-content">
+            <h3>Mon prof peut-il détecter que j'ai utilisé Claude ?</h3>
+            <p>Pour du code : <strong>pratiquement non</strong>. Les détecteurs d'IA ont un taux de faux positifs très élevé sur le code — ils accusent souvent du code humain d'être généré par IA.</p>
+            <p style="margin-top:0.8rem">Pour du texte rédigé : les détecteurs (GPTZero, Turnitin) sont plus sensibles, mais restent peu fiables. Un texte entièrement généré et non retravaillé peut être repéré.</p>
+            <div class="warn-box" style="margin-top:1rem">Ce n'est pas la bonne question à se poser. Utilise Claude pour <strong>apprendre</strong>, pas pour contourner. Si tu copies sans comprendre, les lacunes remonteront à la surface lors des examens sur table.</div>
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-num">?</div>
+          <div class="step-content">
+            <h3>Est-ce que ça va me rendre dépendant(e) ?</h3>
+            <p>Si tu copies sans comprendre : oui, tu creuses des lacunes. Si tu utilises Claude pour <strong>apprendre plus vite</strong>, non.</p>
+            <div class="tips-grid" style="margin-top:1rem">
+              <div class="tip-card">
+                <h3>Bonne approche</h3>
+                <p>Demande toujours "pourquoi" en plus du "quoi". Fais relire ton code avec une explication de chaque changement. Utilise le sous-agent <code>tutor</code> pour comprendre les concepts.</p>
+              </div>
+              <div class="tip-card">
+                <h3>Mauvaise approche</h3>
+                <p>Copier le code sans lire. Accepter la première réponse sans tester. Utiliser Claude pour les évaluations sur table que tu ne peux pas passer sans lui.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       02 — COUT ET ACCES
+  ══════════════════════════════════════════ -->
+  <section class="section section-alt" id="cout">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title"><span class="section-num">02 ·</span> Coût et accès</h2>
+        <p class="section-sub">Ce que tu paies, ce que tu obtiens.</p>
+      </div>
+
+      <div class="steps">
+
+        <div class="step-card">
+          <div class="step-num">?</div>
+          <div class="step-content">
+            <h3>C'est gratuit ?</h3>
+            <p><strong>Claude.ai</strong> (la version web) a une offre gratuite avec des limitations : modèle moins puissant, nombre de messages limité par jour.</p>
+            <p style="margin-top:0.8rem"><strong>Claude Code</strong> (le CLI de ce guide) nécessite un abonnement <strong>Claude Pro (~20$/mois)</strong> ou des crédits API. L'abonnement Pro couvre les deux : Claude.ai Pro et Claude Code.</p>
+            <div class="info-box" style="margin-top:1rem">Il existe aussi une option <strong>crédits API</strong> (pay-as-you-go) via console.anthropic.com si tu veux payer uniquement ce que tu utilises sans abonnement mensuel.</div>
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-num">?</div>
+          <div class="step-content">
+            <h3>L'abonnement Pro vaut-il le coup pour un étudiant ?</h3>
+            <p>Si tu utilises Claude Code régulièrement pour tes projets de développement, oui. Un bug résolu en 5 minutes au lieu de 2 heures, multiplié par ta semaine de cours, dépasse largement 20$.</p>
+            <p style="margin-top:0.8rem">Si tu veux juste tester, commence avec les crédits API ou la version gratuite de Claude.ai. Claude Code lui-même a aussi une période d'essai.</p>
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-num">?</div>
+          <div class="step-content">
+            <h3>Quelle différence entre abonnement Pro et crédits API ?</h3>
+            <div class="tips-grid" style="margin-top:0.5rem">
+              <div class="tip-card">
+                <h3>Abonnement Pro (~20$/mois)</h3>
+                <p>Accès illimité à Claude.ai + Claude Code. Idéal si tu utilises Claude tous les jours. Prix fixe, pas de surprise.</p>
+              </div>
+              <div class="tip-card">
+                <h3>Crédits API (pay-as-you-go)</h3>
+                <p>Tu paies au token utilisé. Idéal si ton usage est irrégulier. Peut coûter moins cher si tu utilises peu, plus si tu utilises beaucoup.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       03 — CONFIDENTIALITE
+  ══════════════════════════════════════════ -->
+  <section class="section" id="confidentialite">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title"><span class="section-num">03 ·</span> Confidentialité</h2>
+        <p class="section-sub">Ce qu'Anthropic voit, ce qu'il ne voit pas.</p>
+      </div>
+
+      <div class="steps">
+
+        <div class="step-card">
+          <div class="step-num">?</div>
+          <div class="step-content">
+            <h3>Mes conversations sont-elles privées ?</h3>
+            <p>Anthropic peut traiter les conversations pour améliorer ses modèles, sauf si tu désactives cette option dans les <a href="https://claude.ai" target="_blank">paramètres de ton compte</a>. Les données sont hébergées aux Etats-Unis.</p>
+            <p style="margin-top:0.8rem">Pour un usage scolaire normal (projets de cours, exercices Java, requêtes SQL), ce n'est pas un problème. Tes conversations de TP ne présentent aucun risque particulier.</p>
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-num">?</div>
+          <div class="step-content">
+            <h3>Mon code est-il en sécurité ?</h3>
+            <p>Tes fichiers restent sur ton PC. Claude Code transmet <strong>uniquement le contenu des fichiers qu'il lit</strong> aux serveurs Anthropic pour générer une réponse. Aucune copie permanente n'est stockée.</p>
+            <div class="warn-box" style="margin-top:1rem">Ne partage jamais de code contenant des <strong>clés API, mots de passe, tokens ou données personnelles</strong> dans une conversation Claude. Prends l'habitude de ne jamais coller de secrets dans n'importe quel outil en ligne.</div>
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-num">?</div>
+          <div class="step-content">
+            <h3>Anthropic peut-il voir mes fichiers de projet ?</h3>
+            <p>Uniquement les parties que Claude lit pour répondre à ta question. Si tu demandes à Claude de corriger <code>Main.java</code>, le contenu de ce fichier est transmis. Les autres fichiers de ton projet ne sont pas envoyés automatiquement.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       04 — UTILISATION PRATIQUE
+  ══════════════════════════════════════════ -->
+  <section class="section section-alt" id="pratique">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title"><span class="section-num">04 ·</span> Utilisation pratique</h2>
+        <p class="section-sub">Les questions sur l'usage au quotidien.</p>
+      </div>
+
+      <div class="steps">
+
+        <div class="step-card">
+          <div class="step-num">?</div>
+          <div class="step-content">
+            <h3>Quelle différence entre Claude.ai et Claude Code ?</h3>
+            <div class="tips-grid" style="margin-top:0.5rem">
+              <div class="tip-card">
+                <h3>Claude.ai (Web)</h3>
+                <p>Interface web dans le navigateur. Tu poses des questions, tu obtiens des réponses. Pas d'accès direct à tes fichiers. Idéal pour les explications, les documents, les questions générales.</p>
+              </div>
+              <div class="tip-card">
+                <h3>Claude Code (CLI)</h3>
+                <p>Outil terminal qui accède directement à tes fichiers. Il lit ton code, modifie tes fichiers, lance des commandes. Beaucoup plus puissant pour le développement. C'est ce que ce guide couvre.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-num">?</div>
+          <div class="step-content">
+            <h3>Ca marche pour Java, MySQL, MongoDB ?</h3>
+            <p>Oui, et très bien. C'est exactement le stack pour lequel ce kit est conçu.</p>
+            <ul style="margin-top:0.8rem;display:flex;flex-direction:column;gap:0.4rem;padding-left:1rem">
+              <li><strong>Java :</strong> gestion des exceptions, JDBC, Maven, héritage, génériques, streams, Javadoc.</li>
+              <li><strong>MySQL :</strong> requêtes complexes, JOIN, GROUP BY, optimisation, PreparedStatement, index.</li>
+              <li><strong>MongoDB :</strong> agrégations, pipelines, schémas, drivers Java, find() vs aggregate().</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-num">?</div>
+          <div class="step-content">
+            <h3>Ca marche si mon prof n'utilise pas Claude ?</h3>
+            <p>Oui. Claude Code est un outil <strong>local sur ton PC</strong>. Ton prof n'a aucune interaction avec lui, il ne sait pas que tu l'utilises (sauf si tu lui en parles). Tu l'utilises comme n'importe quel autre outil : un compilateur, un debugger, Stack Overflow.</p>
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-num">?</div>
+          <div class="step-content">
+            <h3>Ca marche pour les TP de groupe ?</h3>
+            <p>Oui. Chaque membre installe Claude Code sur son PC. Claude aide chacun individuellement — il lit les fichiers du projet en local. Pour les projets partagés via Git, chacun l'utilise de son côté sur sa copie locale.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       05 — TECHNIQUE
+  ══════════════════════════════════════════ -->
+  <section class="section" id="technique">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title"><span class="section-num">05 ·</span> Questions techniques</h2>
+        <p class="section-sub">Installation, compatibilité, prérequis.</p>
+      </div>
+
+      <div class="steps">
+
+        <div class="step-card">
+          <div class="step-num">?</div>
+          <div class="step-content">
+            <h3>Ca marche sur Mac et Linux ?</h3>
+            <p>Oui. Le CLI <code>claude</code> est identique sur tous les systèmes. Ce guide est orienté Windows/PowerShell, mais Claude Code fonctionne parfaitement sur macOS (Terminal, zsh) et Linux (bash).</p>
+            <p style="margin-top:0.8rem">Seules les commandes PowerShell (<code>nouveau-projet</code>, <code>update-kit</code>...) sont spécifiques à Windows. Sur Mac/Linux, tu peux créer des équivalents en bash ou utiliser directement Claude Code sans ces raccourcis.</p>
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-num">?</div>
+          <div class="step-content">
+            <h3>J'ai besoin d'internet ?</h3>
+            <p>Oui. Claude Code communique avec les serveurs Anthropic pour générer ses réponses. Il ne fonctionne pas hors ligne. Une connexion standard suffit, pas besoin d'une connexion rapide.</p>
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-num">?</div>
+          <div class="step-content">
+            <h3>Quels sont les prérequis ?</h3>
+            <ul style="display:flex;flex-direction:column;gap:0.4rem;padding-left:1rem">
+              <li><strong>Node.js LTS</strong> (pour installer Claude Code via npm)</li>
+              <li><strong>Un compte Anthropic</strong> avec abonnement Pro ou crédits API</li>
+              <li><strong>PowerShell</strong> (déjà installé sur Windows 10/11)</li>
+              <li>Un terminal : PowerShell, VS Code terminal, ou autre</li>
+            </ul>
+            <p style="margin-top:0.8rem">Pas besoin de Java, Maven ou autre pour Claude Code lui-même. Tu les as sûrement déjà si tu fais de la programmation en cours.</p>
+          </div>
+        </div>
+
+        <div class="step-card">
+          <div class="step-num">?</div>
+          <div class="step-content">
+            <h3>Claude peut-il lancer mes programmes Java ?</h3>
+            <p>Oui, si Java et Maven sont dans ton PATH. Claude Code peut exécuter <code>mvn compile</code>, <code>mvn test</code>, <code>javac</code>, etc. Le <code>settings.json</code> du kit pré-autorise ces commandes pour éviter les confirmations répétées.</p>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="info-box" style="margin-top:2rem">
+        <strong>Une question pas dans la liste ?</strong> Utilise le terminal IA en bas à droite de cette page, ou pose-la directement à Claude avec <code>claude</code> dans ton terminal.
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <span class="prompt">$</span> SetupClaude
+        <p>Un guide fait par et pour des devs. Pas officiel, juste utile.</p>
+        <p class="footer-credit">Réalisé par <strong>Jibril Filali</strong> · <a href="https://jibril-filali.page.gd/" target="_blank" style="color:var(--text-dim);text-decoration:underline;font-size:0.8rem">Portfolio</a></p>
+      </div>
+      <div class="footer-nav-cols">
+        <div class="footer-nav-col">
+          <span class="footer-nav-title">FAQ</span>
+          <a href="#ethique">01 · Ethique</a>
+          <a href="#cout">02 · Coût</a>
+          <a href="#confidentialite">03 · Confidentialité</a>
+          <a href="#pratique">04 · Usage pratique</a>
+          <a href="#technique">05 · Technique</a>
+        </div>
+        <div class="footer-nav-col">
+          <span class="footer-nav-title">Guide</span>
+          <a href="guide.html">Guide complet</a>
+          <a href="guide.html#installation">Installation</a>
+          <a href="guide.html#telechargements">Téléchargements</a>
+          <a href="guide.html#troubleshooting">Problèmes</a>
+        </div>
+        <div class="footer-nav-col">
+          <span class="footer-nav-title">Liens</span>
+          <a href="index.html">Accueil</a>
+          <a href="claude.html">Comprendre Claude</a>
+          <a href="https://docs.anthropic.com" target="_blank">Docs officielles</a>
+          <a href="https://console.anthropic.com" target="_blank">Console Anthropic</a>
+          <a href="https://claude.ai" target="_blank">Claude.ai</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">Réalisé par <strong>Jibril Filali</strong> · Guide à jour pour Claude Code 2026</div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/terminal.js"></script>
+</body>
+</html>

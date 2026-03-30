@@ -39,6 +39,15 @@
           <a href="guide.html#workflow">09 · Workflow</a>
         </div>
       </li>
+      <li class="has-dropdown">
+        <a>Ressources <span class="nav-arrow">▾</span></a>
+        <div class="nav-dropdown">
+          <a href="guide.html#prompts">Prompts</a>
+          <a href="guide.html#telechargements">Téléchargements</a>
+          <a href="guide.html#troubleshooting">Problèmes</a>
+          <a href="faq.html">FAQ</a>
+        </div>
+      </li>
       <li><a href="claude.html" style="color:var(--accent-light);background:var(--bg-4);padding:0.4rem 0.8rem;border-radius:var(--radius-sm);">Comprendre Claude</a></li>
     </ul>
     <div class="navbar-right">
@@ -462,6 +471,106 @@
     </div>
   </section>
 
+  <!-- ══════════════════════════════════════════
+       09 — COMMENT ACCEDER A CLAUDE
+  ══════════════════════════════════════════ -->
+  <section class="section" id="acces">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title"><span class="section-num">09 ·</span> Comment accéder à Claude</h2>
+        <p class="section-sub">Cinq façons d'utiliser Claude selon ton contexte.</p>
+      </div>
+
+      <div class="agents-grid">
+
+        <div class="agent-card">
+          <div class="agent-info">
+            <div class="agent-name">Claude.ai · Web</div>
+            <div class="agent-desc">Le navigateur. Tu poses des questions, tu obtiens des réponses. Accès gratuit avec limitations, Pro ($20/mois) pour Sonnet et Opus sans limite. Idéal pour les explications, les documents et les questions générales.</div>
+          </div>
+        </div>
+
+        <div class="agent-card">
+          <div class="agent-info">
+            <div class="agent-name">Claude Code · Terminal</div>
+            <div class="agent-desc">Ce que ce guide couvre. Claude accède directement à tes fichiers, lit ton code, modifie des fichiers, lance des commandes. Nécessite Pro ou crédits API. Le plus puissant pour le développement.</div>
+          </div>
+        </div>
+
+        <div class="agent-card">
+          <div class="agent-info">
+            <div class="agent-name">Extension VS Code</div>
+            <div class="agent-desc">Claude Code intégré directement dans VS Code. Même puissance que le terminal, mais accessible depuis le panneau latéral de ton éditeur. A télécharger depuis le marketplace VS Code (cherche "Claude Code").</div>
+          </div>
+        </div>
+
+        <div class="agent-card">
+          <div class="agent-info">
+            <div class="agent-name">Extension JetBrains</div>
+            <div class="agent-desc">Pour IntelliJ IDEA, PyCharm, WebStorm. Très utile si tu fais du Java avec IntelliJ. Même fonctionnalités que l'extension VS Code. A installer depuis le marketplace JetBrains Plugins.</div>
+          </div>
+        </div>
+
+        <div class="agent-card">
+          <div class="agent-info">
+            <div class="agent-name">Application mobile</div>
+            <div class="agent-desc">Disponible sur iOS et Android. Version simplifiée de Claude.ai — tu ne peux pas accéder à tes fichiers de projet. Utile pour poser des questions rapides, comprendre un concept, ou lire une réponse longue.</div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="cmd-table-card" style="margin-top:2rem">
+        <table class="cmd-table">
+          <thead>
+            <tr>
+              <th>Outil</th>
+              <th>Accès fichiers</th>
+              <th>Idéal pour</th>
+              <th>Coût</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Claude.ai Web</strong></td>
+              <td>Non</td>
+              <td>Questions générales, explications</td>
+              <td>Gratuit / Pro</td>
+            </tr>
+            <tr>
+              <td><strong>Claude Code CLI</strong></td>
+              <td>Oui</td>
+              <td>Développement complet</td>
+              <td>Pro ou API</td>
+            </tr>
+            <tr>
+              <td><strong>Extension VS Code</strong></td>
+              <td>Oui</td>
+              <td>Modifications dans l'éditeur</td>
+              <td>Pro ou API</td>
+            </tr>
+            <tr>
+              <td><strong>Extension JetBrains</strong></td>
+              <td>Oui</td>
+              <td>Java avec IntelliJ</td>
+              <td>Pro ou API</td>
+            </tr>
+            <tr>
+              <td><strong>Mobile</strong></td>
+              <td>Non</td>
+              <td>Questions rapides</td>
+              <td>Gratuit / Pro</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="info-box" style="margin-top:1.5rem">
+        <strong>Pour ce guide :</strong> on utilise Claude Code CLI (terminal). Si tu préfères rester dans VS Code ou IntelliJ, les extensions font exactement la même chose — tu n'as pas à choisir entre les deux, tu peux utiliser les deux.
+      </div>
+    </div>
+  </section>
+
   <!-- FOOTER -->
   <footer class="footer">
     <div class="footer-inner">
@@ -481,6 +590,7 @@
           <a href="#limites">06 · Limites</a>
           <a href="#vs-autres">07 · vs Autres IA</a>
           <a href="#responsable">08 · Utilisation responsable</a>
+          <a href="#acces">09 · Accéder à Claude</a>
         </div>
         <div class="footer-nav-col">
           <span class="footer-nav-title">Guide</span>
