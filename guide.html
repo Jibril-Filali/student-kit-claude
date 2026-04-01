@@ -63,7 +63,7 @@
     <div class="container">
       <div class="guide-breadcrumb"><a href="index.html">← Accueil</a> / Guide complet</div>
       <h1 class="guide-title">Guide <span class="accent">SetupClaude</span></h1>
-      <p class="guide-sub">12 sections · ~20 min · Windows 11 + PowerShell · Mis à jour mars 2026</p>
+      <p class="guide-sub">13 sections · ~25 min · Windows 11 + PowerShell · Mis à jour avril 2026</p>
       <div class="hero-badges" style="margin-top:0.75rem">
         <span class="hero-badge">Testé sur Windows 11</span>
         <span class="hero-badge">Node.js 18+</span>
@@ -241,10 +241,13 @@ Copy-Item $HOME\Downloads\route-SKILL.md $HOME\.claude\skills\route\SKILL.md</co
 
       <div class="info-box" style="margin-top:1.5rem">
         <strong>Ce que settings.json configure automatiquement :</strong>
-        <ul style="margin-top:0.6rem;display:flex;flex-direction:column;gap:0.3rem;padding-left:1rem">
-          <li>Lint automatique après chaque édition de fichier</li>
-          <li>Rappel de mettre à jour <code>lessons.md</code> en fin de session</li>
-          <li>Permissions pré-autorisées : <code>npm run build</code>, <code>npm run test</code>, <code>npm run lint</code>, <code>git status</code>, <code>git diff</code>, <code>git add</code>, <code>git commit</code>, <code>git push</code>, <code>git pull</code></li>
+        <ul style="margin-top:0.6rem;display:flex;flex-direction:column;gap:0.5rem;padding-left:1rem">
+          <li><strong>Securite</strong> — apres chaque fichier cree ou modifie, Claude scanne le contenu pour detecter des secrets en dur (mot de passe, cle API, token, URL MongoDB/JDBC avec identifiants). Si quelque chose est detecte, il t'avertit immediatement.</li>
+          <li><strong>Protection .env</strong> — si tu crees un fichier <code>.env</code> et qu'il n'est pas dans <code>.gitignore</code>, Claude t'alerte avant que tu puisses committer tes secrets.</li>
+          <li><strong>Demarrage automatique</strong> — a chaque nouvelle session, Claude cree <code>tasks/session-log.md</code>, <code>tasks/todo.md</code> et <code>tasks/lessons.md</code> s'ils n'existent pas encore, et injecte leur contenu dans le contexte pour repartir exactement ou tu en etais.</li>
+          <li><strong>CLAUDE.md auto</strong> — si le projet n'a pas encore de <code>CLAUDE.md</code>, Claude en cree un avec les sections PROJET / STACK / COMMANDES / ARCHITECTURE / NOTES a remplir.</li>
+          <li><strong>Rappel de cloture</strong> — a la fin de chaque session, Claude te rappelle de mettre a jour <code>session-log.md</code> et <code>todo.md</code> pour ne rien perdre.</li>
+          <li><strong>Permissions pre-autorisees</strong> — <code>npm run build/test/lint</code>, <code>git status/diff/add/commit/push/pull</code> s'executent sans demande de confirmation.</li>
         </ul>
       </div>
     </div>
@@ -288,7 +291,7 @@ Copy-Item $HOME\Downloads\route-SKILL.md $HOME\.claude\skills\route\SKILL.md</co
           <div class="step-num">3</div>
           <div class="step-content">
             <h3>Configurer le CLAUDE.md du projet</h3>
-            <p>Ouvre <code>CLAUDE.md</code> et modifie la ligne <strong>Stack</strong> selon ton projet (Java, React, etc.).</p>
+            <p>Ouvre <code>CLAUDE.md</code> et remplis la section <strong>PROJET</strong> avec le nom et la description de ton application. Le reste (workflow, règles Java, SQL, MongoDB) est déjà prérempli.</p>
             <div class="code-block">
               <div class="code-bar"><span class="code-lang">powershell</span><button class="btn-copy" onclick="copier(this, 'notepad CLAUDE.md')">Copier</button></div>
               <pre><code>notepad CLAUDE.md</code></pre>
@@ -310,13 +313,16 @@ Copy-Item $HOME\Downloads\route-SKILL.md $HOME\.claude\skills\route\SKILL.md</co
       </div>
 
       <div class="info-box" style="margin-top:1.5rem">
-        <strong>Fichiers copiés dans chaque projet :</strong>
-        <ul style="margin-top:0.6rem;display:flex;flex-direction:column;gap:0.3rem;padding-left:1rem">
-          <li><code>CLAUDE.md</code> · mémoire du projet (stack, conventions, règles)</li>
-          <li><code>tasks/todo.md</code> · plan de session (Claude remplit automatiquement)</li>
-          <li><code>tasks/lessons.md</code> · erreurs apprises (Claude remplit automatiquement)</li>
-          <li><code>tasks/session-log.md</code> · journal de sessions (Claude crée et met à jour à chaque démarrage)</li>
+        <strong>Ce que tu obtiens dans chaque projet :</strong>
+        <ul style="margin-top:0.6rem;display:flex;flex-direction:column;gap:0.4rem;padding-left:1rem">
+          <li><code>CLAUDE.md</code> · mémoire du projet (stack, conventions Java/SQL/MongoDB, workflow). Remplis juste la section <strong>PROJET</strong>.</li>
+          <li><code>tasks/todo.md</code> · plan de session — Claude écrit les tâches ici avant de coder</li>
+          <li><code>tasks/lessons.md</code> · erreurs apprises — Claude les relit à chaque démarrage pour ne pas les répéter</li>
+          <li><code>tasks/session-log.md</code> · journal de sessions — Claude le met à jour automatiquement à chaque ouverture</li>
         </ul>
+        <div style="margin-top:0.8rem;padding-top:0.8rem;border-top:1px solid var(--border)">
+          <strong>Automatique au démarrage :</strong> quand tu tapes <code>claude</code>, le hook SessionStart injecte automatiquement le contenu de <code>session-log.md</code> et <code>todo.md</code> dans le contexte. Claude sait exactement où tu en étais — sans que tu aies à réexpliquer.
+        </div>
       </div>
     </div>
   </section>
@@ -368,10 +374,15 @@ Copy-Item $HOME\Downloads\route-SKILL.md $HOME\.claude\skills\route\SKILL.md</co
           <span class="code-lang">markdown</span>
           <button class="btn-copy" onclick="copierBloc(this, 'claudemd-example')">Copier</button>
         </div>
-        <pre id="claudemd-example"><code><span class="t-key">## PROJET</span>
+        <pre id="claudemd-example"><code><span class="t-key">## DÉMARRAGE DE SESSION OBLIGATOIRE</span>
+<span class="t-comment">1. Lire tasks/session-log.md — reprendre où on s'est arrêtés</span>
+<span class="t-comment">2. Lire tasks/todo.md — voir ce qui reste à faire</span>
+<span class="t-comment">3. Lire tasks/lessons.md — ne pas répéter les mêmes erreurs</span>
+
+<span class="t-key">## PROJET</span>
+<span class="t-comment">Application de gestion de bibliothèque</span>
 Stack : Java + MySQL
-Objectif : Application de gestion de bibliothèque
-Niveau développeur : intermédiaire
+Niveau : intermédiaire — exemples concrets, pas de condescendance
 
 <span class="t-key">## RÈGLES DE CODE</span>
 - Toujours fermer les ressources avec try-with-resources
@@ -383,7 +394,11 @@ Niveau développeur : intermédiaire
 - Corriger les bugs directement sans demander confirmation
 - Réponses courtes et directes
 
-<span class="t-key">## LEÇONS APPRISES</span>
+<span class="t-key">## CLÔTURE DE SESSION OBLIGATOIRE</span>
+<span class="t-comment">1. Écrire dans tasks/session-log.md ce qui a été fait</span>
+<span class="t-comment">2. Mettre à jour tasks/todo.md avec ce qui reste</span>
+
+<span class="t-key">## APPRENTISSAGES</span>
 <span class="t-comment"># [date] | problème | règle pour éviter</span>
 - 2026-01-15 | connexion non fermée | toujours try-with-resources</code></pre>
       </div>
@@ -645,7 +660,7 @@ Utilise java-reviewer pour relire ce fichier</code></pre>
           <div class="workflow-title">Chaque jour</div>
           <div class="workflow-steps">
             <div class="wf-step"><span class="wf-num">1</span><span>Ouvrir PowerShell dans ton projet</span></div>
-            <div class="wf-step"><span class="wf-num">2</span><span>Taper <code>claude</code> : Claude relit le CLAUDE.md automatiquement</span></div>
+            <div class="wf-step"><span class="wf-num">2</span><span>Taper <code>claude</code> : le kit injecte automatiquement <code>session-log.md</code> + <code>todo.md</code> — Claude sait où tu en es</span></div>
             <div class="wf-step"><span class="wf-num">3</span><span><kbd>Shift+Tab</kbd> × 2 si la tâche est complexe (Plan Mode)</span></div>
             <div class="wf-step"><span class="wf-num">4</span><span>Si Claude fait une erreur → lui dire <code>"ajoute dans tasks/lessons.md"</code></span></div>
           </div>
@@ -795,11 +810,11 @@ claude</code></pre>
           <div class="dl-contents">
             <div class="dl-content-title">Contenu :</div>
             <ul>
-              <li>CLAUDE.md · config principale</li>
-              <li>agents/ · java-reviewer, tutor, code-reviewer, test-writer, doc-generator</li>
-              <li>skills/ · debug-java, explain, sql, mongo, techdebt, commit-push-pr, simplify</li>
-              <li>tasks/ · todo.md + lessons.md</li>
-              <li>.claude/settings.json · permissions git/java + rappel lessons.md</li>
+              <li><code>CLAUDE.md</code> · workflow complet (DÉMARRAGE/CLÔTURE, règles Java/SQL/MongoDB). Modifie juste la section PROJET.</li>
+              <li><code>agents/</code> · java-reviewer, tutor, code-reviewer, test-writer, doc-generator</li>
+              <li><code>skills/</code> · debug-java, explain, sql, mongo, techdebt, commit-push-pr, simplify</li>
+              <li><code>tasks/</code> · todo.md + lessons.md + session-log.md</li>
+              <li><code>.claude/settings.json</code> · scan de secrets, protection .env, création auto des fichiers tasks/, injection de contexte au démarrage, rappel de clôture, permissions git/java/npm</li>
             </ul>
           </div>
           <div class="dl-install">

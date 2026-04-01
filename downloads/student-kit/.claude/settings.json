@@ -1,0 +1,82 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run build)",
+      "Bash(npm run test)",
+      "Bash(npm run test:*)",
+      "Bash(npm run lint)",
+      "Bash(npm run dev)",
+      "Bash(npx *)",
+      "Bash(mvn *)",
+      "Bash(javac *)",
+      "Bash(java *)",
+      "Bash(git status)",
+      "Bash(git diff)",
+      "Bash(git log:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push)",
+      "Bash(git pull)",
+      "Bash(git checkout:*)",
+      "Bash(git branch:*)"
+    ],
+    "deny": []
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "statusMessage": "Vérification sécurité...",
+            "timeout": 10,
+            "command": "node -e \"let d=''; process.stdin.on('data',c=>d+=c); process.stdin.on('end',()=>{ try{ const j=JSON.parse(d); const f=j.tool_input&&j.tool_input.file_path; if(!f) process.exit(0); const fs=require('fs'); if(!fs.existsSync(f)) process.exit(0); const c=fs.readFileSync(f,'utf8'); const p=[/password\\s*[=:]\\s*[\\\"'][^\\\"\\']{3,}[\\\"']/i,/api_key\\s*[=:]\\s*[\\\"'][^\\\"\\']{3,}[\\\"']/i,/secret\\s*[=:]\\s*[\\\"'][^\\\"\\']{3,}[\\\"']/i,/token\\s*[=:]\\s*[\\\"'][^\\\"\\']{3,}[\\\"']/i,/mongodb\\+srv:\\/\\/[^:]+:[^@]+@/,/jdbc:[^\\s]*password=[^\\s&\\\"']+/i]; if(p.some(r=>r.test(c))){ console.log(JSON.stringify({systemMessage:'[SECURITE] Secret potentiel detecte dans '+f+'. Utilise des variables d environnement (.env) !'})); } }catch(e){} });\""
+          }
+        ]
+      },
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "timeout": 10,
+            "command": "node -e \"let d=''; process.stdin.on('data',c=>d+=c); process.stdin.on('end',()=>{ try{ const j=JSON.parse(d); const f=j.tool_input&&j.tool_input.file_path; if(!f||!f.match(/\\.env\\b/i)) process.exit(0); const path=require('path'),fs=require('fs'); const gi=path.join(path.dirname(f),'.gitignore'); if(!fs.existsSync(gi)||!fs.readFileSync(gi,'utf8').includes('.env')){ console.log(JSON.stringify({systemMessage:'[SECURITE] Fichier .env detecte mais absent de .gitignore ! Ajoute .env a .gitignore pour ne pas committer tes secrets.'})); } }catch(e){} });\""
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "statusMessage": "Initialisation du projet...",
+            "timeout": 15,
+            "command": "node -e \"const fs=require('fs'),path=require('path'),os=require('os');const cwd=process.cwd();const home=os.homedir();if(cwd===home||cwd.includes('.claude'))process.exit(0);const tasksDir=path.join(cwd,'tasks');if(!fs.existsSync(tasksDir))fs.mkdirSync(tasksDir,{recursive:true});const today=new Date().toISOString().split('T')[0];const slPath=path.join(tasksDir,'session-log.md');const tdPath=path.join(tasksDir,'todo.md');const lsPath=path.join(tasksDir,'lessons.md');if(!fs.existsSync(slPath))fs.writeFileSync(slPath,'# Session Log\\n\\n## '+today+'\\n- Session initialisee\\n');if(!fs.existsSync(tdPath))fs.writeFileSync(tdPath,'# TODO\\n\\n## En cours\\n\\n## A faire\\n\\n## Termine\\n');if(!fs.existsSync(lsPath))fs.writeFileSync(lsPath,'# Lessons\\n\\nFormat : [date] | ce qui a mal tourne | regle pour eviter\\n');const sl=fs.readFileSync(slPath,'utf8');const td=fs.readFileSync(tdPath,'utf8');const ctx='=== SESSION LOG ===\\n'+sl+'\\n=== TODO ===\\n'+td+'\\nInstruction : lis ces fichiers et mets a jour session-log.md avec la date du jour et letat au demarrage.';console.log(JSON.stringify({hookSpecificOutput:{hookEventName:'SessionStart',additionalContext:ctx}}))\""
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "statusMessage": "Création CLAUDE.md...",
+            "timeout": 10,
+            "command": "node -e \"const fs=require('fs'),path=require('path'),os=require('os');const cwd=process.cwd();const home=os.homedir();if(cwd===home||cwd.includes('.claude'))process.exit(0);const p=path.join(cwd,'CLAUDE.md');if(fs.existsSync(p))process.exit(0);const t=['# CLAUDE.md','','## PROJET','<!-- Decris ce que fait ce projet en 1-2 phrases -->','Stack : Java + MySQL / MongoDB','','## STACK','- Backend : Java','- Base de donnees : MySQL / MongoDB','- Frontend : HTML / CSS / JavaScript','','## COMMANDES','<!-- Compile : javac -d out src/**/*.java -->','<!-- Lance   : java -cp out Main -->','','## ARCHITECTURE','<!-- src/ : code Java | web/ : HTML CSS JS | resources/ : config SQL -->','','## NOTES','<!-- Contraintes, APIs externes, etc. -->'].join('\\n');fs.writeFileSync(p,t);console.log(JSON.stringify({systemMessage:'CLAUDE.md cree. Remplis la section PROJET avec le contexte de ton application avant de commencer.'}));\""
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo '{\"systemMessage\":\"CLOTURE : mets a jour tasks/session-log.md (ce qui a ete fait) et tasks/todo.md (ce qui reste) avant de terminer.\"}'"
+          }
+        ]
+      }
+    ]
+  }
+}
