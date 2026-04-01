@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Exemples · Claude en action · SetupClaude</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <script>(function(){var t=localStorage.getItem('theme')||'dark';document.documentElement.setAttribute('data-theme',t);})();</script>
+</head>
+<body>
+
+  <div id="page-loader" aria-hidden="true">
+    <div class="loader-logo-txt"><span class="prompt">$</span> SetupClaude</div>
+    <div class="loader-bar-wrap"><div class="loader-bar-fill"></div></div>
+  </div>
+
+  <div class="scroll-progress" id="scroll-progress"></div>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <a href="index.html" class="navbar-logo"><span class="prompt">$</span> SetupClaude</a>
+    <ul class="navbar-links">
+      <li class="has-dropdown">
+        <a>Installer <span class="nav-arrow">▾</span></a>
+        <div class="nav-dropdown">
+          <a href="guide.html#installation">01 · Claude CLI</a>
+          <a href="guide.html#kit-installation">02 · Kit global</a>
+          <a href="guide.html#nouveau-projet">03 · Nouveau projet</a>
+        </div>
+      </li>
+      <li class="has-dropdown">
+        <a>Configurer <span class="nav-arrow">▾</span></a>
+        <div class="nav-dropdown">
+          <a href="guide.html#claudemd">04 · CLAUDE.md</a>
+          <a href="guide.html#commandes-ps">05 · Commandes PS</a>
+        </div>
+      </li>
+      <li class="has-dropdown">
+        <a>Utiliser <span class="nav-arrow">▾</span></a>
+        <div class="nav-dropdown">
+          <a href="guide.html#skills">06 · Skills</a>
+          <a href="guide.html#sous-agents">07 · Sous-agents</a>
+          <a href="guide.html#raccourcis">08 · Raccourcis</a>
+          <a href="guide.html#workflow">09 · Workflow</a>
+        </div>
+      </li>
+      <li class="has-dropdown">
+        <a>Ressources <span class="nav-arrow">▾</span></a>
+        <div class="nav-dropdown">
+          <a href="guide.html#prompts">10 · Prompts</a>
+          <a href="guide.html#telechargements">11 · Téléchargements</a>
+          <a href="guide.html#troubleshooting">12 · Problèmes</a>
+          <a href="faq.html">FAQ</a>
+        </div>
+      </li>
+      <li><a href="examples.html" style="color:var(--accent-light);background:var(--bg-4);padding:0.4rem 0.8rem;border-radius:var(--radius-sm);">Exemples</a></li>
+      <li><a href="claude.html">Comprendre Claude</a></li>
+    </ul>
+    <div class="navbar-right">
+      <button class="navbar-burger" onclick="toggleMobileNav()" aria-label="Menu"><span></span><span></span><span></span></button>
+      <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()">Clair</button>
+      <a href="https://claude.ai" target="_blank" class="btn-nav">Ouvrir Claude ↗</a>
+    </div>
+  </nav>
+
+  <!-- HEADER -->
+  <div class="ex-page-header">
+    <div class="container">
+      <div class="guide-breadcrumb"><a href="index.html">← Accueil</a> / Exemples</div>
+      <h1 class="ex-page-title">Claude <span class="accent">en action</span></h1>
+      <p class="ex-page-sub">Ce que Claude fait concrètement quand tu lui donnes une vraie tâche. Clique sur un filtre pour voir par catégorie.</p>
+      <div class="ex-page-badges">
+        <span class="ex-page-badge">Java</span>
+        <span class="ex-page-badge">SQL</span>
+        <span class="ex-page-badge">MongoDB</span>
+        <span class="ex-page-badge">Revue de code</span>
+        <span class="ex-page-badge">Git</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- FILTRES -->
+  <div class="ex-filters">
+    <button class="ex-pill active" onclick="filtrer(this, 'tous')">Tous</button>
+    <button class="ex-pill" onclick="filtrer(this, 'java')">Java</button>
+    <button class="ex-pill" onclick="filtrer(this, 'sql')">SQL</button>
+    <button class="ex-pill" onclick="filtrer(this, 'mongo')">MongoDB</button>
+    <button class="ex-pill" onclick="filtrer(this, 'revue')">Revue de code</button>
+    <button class="ex-pill" onclick="filtrer(this, 'git')">Git</button>
+  </div>
+
+  <!-- GRILLE -->
+  <section class="ex-section">
+    <div class="ex-grid">
+
+      <!-- 1. DEBUG JAVA NPE -->
+      <div class="ex-card" data-cat="java">
+        <div class="ex-card-top">
+          <span class="ex-badge ex-badge-java">Java</span>
+          <span class="ex-card-title">Corriger une NullPointerException</span>
+        </div>
+        <div class="ex-body">
+          <div class="ex-msg">
+            <div class="ex-label">Toi</div>
+            <div class="ex-bubble">
+              J'ai cette erreur et je comprends pas d'ou ca vient :
+              <div class="ex-code"><span class="hl-r">Exception in thread "main" java.lang.NullPointerException</span>
+<span class="hl-d">    at EtudiantDAO.getAll(EtudiantDAO.java:34)</span>
+<span class="hl-d">    at Main.main(Main.java:12)</span></div>
+              Mon code :
+              <div class="ex-code"><span class="hl-p">public</span> List&lt;Etudiant&gt; <span class="hl-c">getAll</span>() {
+  List&lt;Etudiant&gt; liste;
+  <span class="hl-p">while</span> (rs.<span class="hl-c">next</span>()) {
+    liste.<span class="hl-c">add</span>(<span class="hl-p">new</span> <span class="hl-c">Etudiant</span>(rs.<span class="hl-c">getString</span>(<span class="hl-g">"nom"</span>)));
+  }
+  <span class="hl-p">return</span> liste;
+}</div>
+            </div>
+          </div>
+          <div class="ex-sep"></div>
+          <div class="ex-msg">
+            <div class="ex-label lbl-claude">Claude</div>
+            <div class="ex-bubble claude-bubble">
+              Le problème est ligne 2 : <code>liste</code> est déclarée mais jamais initialisée. Java la voit comme <code>null</code>, et appeler <code>null.add(...)</code> provoque la NPE.
+              <div class="ex-code"><span class="hl-d">// Avant — liste vaut null</span>
+List&lt;Etudiant&gt; liste;
+
+<span class="hl-d">// Après — initialise la liste vide</span>
+List&lt;Etudiant&gt; liste = <span class="hl-p">new</span> <span class="hl-c">ArrayList</span>&lt;&gt;();</div>
+              Règle : en Java, déclarer une variable ne l'initialise pas. Toujours faire <code>= new ArrayList&lt;&gt;()</code> avant de l'utiliser.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. SQL LEFT JOIN -->
+      <div class="ex-card" data-cat="sql">
+        <div class="ex-card-top">
+          <span class="ex-badge ex-badge-sql">SQL</span>
+          <span class="ex-card-title">Ecrire une requête avec note moyenne</span>
+        </div>
+        <div class="ex-body">
+          <div class="ex-msg">
+            <div class="ex-label">Toi</div>
+            <div class="ex-bubble">
+              Je veux lister tous les étudiants avec leur note moyenne. Même ceux qui n'ont encore aucune note doivent apparaître dans les résultats.
+            </div>
+          </div>
+          <div class="ex-sep"></div>
+          <div class="ex-msg">
+            <div class="ex-label lbl-claude">Claude</div>
+            <div class="ex-bubble claude-bubble">
+              Il faut un <code>LEFT JOIN</code> pour garder les étudiants sans notes (un <code>INNER JOIN</code> les exclurait).
+              <div class="ex-code"><span class="hl-p">SELECT</span>
+  e.nom,
+  e.prenom,
+  <span class="hl-c">ROUND</span>(<span class="hl-c">AVG</span>(n.valeur), <span class="hl-y">2</span>) <span class="hl-p">AS</span> moyenne
+<span class="hl-p">FROM</span> etudiants e
+<span class="hl-p">LEFT JOIN</span> notes n <span class="hl-p">ON</span> n.etudiant_id = e.id
+<span class="hl-p">GROUP BY</span> e.id, e.nom, e.prenom
+<span class="hl-p">ORDER BY</span> moyenne <span class="hl-p">DESC</span>;
+
+<span class="hl-d">-- Résultat : étudiants sans notes → moyenne NULL</span>
+<span class="hl-d">-- ROUND(..., 2) → arrondi à 2 décimales</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. MONGODB AGGREGATION -->
+      <div class="ex-card" data-cat="mongo">
+        <div class="ex-card-top">
+          <span class="ex-badge ex-badge-mongo">MongoDB</span>
+          <span class="ex-card-title">Top 5 produits les plus commandés</span>
+        </div>
+        <div class="ex-body">
+          <div class="ex-msg">
+            <div class="ex-label">Toi</div>
+            <div class="ex-bubble">
+              Je veux les 5 produits les plus vendus ce mois-ci, avec leur total de quantités commandées.
+            </div>
+          </div>
+          <div class="ex-sep"></div>
+          <div class="ex-msg">
+            <div class="ex-label lbl-claude">Claude</div>
+            <div class="ex-bubble claude-bubble">
+              Voici l'agrégation pipeline, étape par étape :
+              <div class="ex-code">db.commandes.<span class="hl-c">aggregate</span>([
+  <span class="hl-d">// 1. Filtre sur le mois en cours</span>
+  { <span class="hl-p">$match</span>: {
+    date: { <span class="hl-p">$gte</span>: <span class="hl-p">new</span> <span class="hl-c">Date</span>(<span class="hl-g">"2026-04-01"</span>) }
+  }},
+  <span class="hl-d">// 2. Déroule le tableau produits</span>
+  { <span class="hl-p">$unwind</span>: <span class="hl-g">"$produits"</span> },
+  <span class="hl-d">// 3. Groupe par nom de produit</span>
+  { <span class="hl-p">$group</span>: {
+    _id: <span class="hl-g">"$produits.nom"</span>,
+    total: { <span class="hl-p">$sum</span>: <span class="hl-g">"$produits.quantite"</span> }
+  }},
+  <span class="hl-d">// 4. Trie par total décroissant</span>
+  { <span class="hl-p">$sort</span>: { total: <span class="hl-y">-1</span> } },
+  { <span class="hl-p">$limit</span>: <span class="hl-y">5</span> }
+])</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. CODE REVIEW JAVA -->
+      <div class="ex-card" data-cat="revue">
+        <div class="ex-card-top">
+          <span class="ex-badge ex-badge-revue">Revue de code</span>
+          <span class="ex-card-title">Détecter les problèmes dans une méthode Java</span>
+        </div>
+        <div class="ex-body">
+          <div class="ex-msg">
+            <div class="ex-label">Toi</div>
+            <div class="ex-bubble">
+              Relis cette méthode, dis-moi ce qui va pas :
+              <div class="ex-code"><span class="hl-p">public void</span> <span class="hl-c">saveEtudiant</span>(String nom, String email) {
+  <span class="hl-p">try</span> {
+    Statement stmt = conn.<span class="hl-c">createStatement</span>();
+    stmt.<span class="hl-c">execute</span>(<span class="hl-g">"INSERT INTO etudiants VALUES ('"</span>
+      + nom + <span class="hl-g">"','"</span> + email + <span class="hl-g">"')"</span>);
+  } <span class="hl-p">catch</span> (Exception e) {}
+}</div>
+            </div>
+          </div>
+          <div class="ex-sep"></div>
+          <div class="ex-msg">
+            <div class="ex-label lbl-claude">Claude</div>
+            <div class="ex-bubble claude-bubble">
+              3 problèmes critiques :
+              <div class="ex-code"><span class="hl-r">// PROBLÈME 1 — Injection SQL</span>
+<span class="hl-d">// Tu concatènes directement les variables dans la requête.</span>
+<span class="hl-d">// Quelqu'un peut passer : nom = "x'); DROP TABLE etudiants;--"</span>
+<span class="hl-g">// FIX : utilise PreparedStatement</span>
+
+<span class="hl-r">// PROBLÈME 2 — catch vide</span>
+<span class="hl-d">// Les erreurs SQL sont silencieuses. Tu ne sauras jamais si ça plante.</span>
+<span class="hl-g">// FIX : au minimum logger l'exception</span>
+
+<span class="hl-r">// PROBLÈME 3 — Statement non fermé</span>
+<span class="hl-d">// Fuite de ressources à chaque appel.</span>
+<span class="hl-g">// FIX : try-with-resources</span>
+
+<span class="hl-d">// Version corrigée :</span>
+<span class="hl-p">public void</span> <span class="hl-c">saveEtudiant</span>(String nom, String email)
+    <span class="hl-p">throws</span> SQLException {
+  String sql = <span class="hl-g">"INSERT INTO etudiants (nom, email) VALUES (?, ?)"</span>;
+  <span class="hl-p">try</span> (PreparedStatement ps = conn.<span class="hl-c">prepareStatement</span>(sql)) {
+    ps.<span class="hl-c">setString</span>(<span class="hl-y">1</span>, nom);
+    ps.<span class="hl-c">setString</span>(<span class="hl-y">2</span>, email);
+    ps.<span class="hl-c">executeUpdate</span>();
+  }
+}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5. /explain POLYMORPHISME -->
+      <div class="ex-card" data-cat="java">
+        <div class="ex-card-top">
+          <span class="ex-badge ex-badge-java">Java</span>
+          <span class="ex-card-title">Expliquer le polymorphisme</span>
+        </div>
+        <div class="ex-body">
+          <div class="ex-msg">
+            <div class="ex-label">Toi</div>
+            <div class="ex-bubble">
+              <code>/explain le polymorphisme en Java</code>
+            </div>
+          </div>
+          <div class="ex-sep"></div>
+          <div class="ex-msg">
+            <div class="ex-label lbl-claude">Claude</div>
+            <div class="ex-bubble claude-bubble">
+              <strong>En une phrase :</strong> un même appel de méthode peut produire des résultats différents selon le type réel de l'objet.
+              <br><br>
+              <strong>Analogie :</strong> une télécommande universelle. Tu appuies sur "volume+" : peu importe si c'est une TV Samsung ou LG, chacune réagit à sa façon.
+              <div class="ex-code"><span class="hl-d">// Classe parent</span>
+<span class="hl-p">abstract class</span> Animal {
+  <span class="hl-p">abstract void</span> <span class="hl-c">parler</span>();
+}
+<span class="hl-p">class</span> Chien <span class="hl-p">extends</span> Animal {
+  <span class="hl-p">void</span> <span class="hl-c">parler</span>() { System.out.<span class="hl-c">println</span>(<span class="hl-g">"Woof !"</span>); }
+}
+<span class="hl-p">class</span> Chat <span class="hl-p">extends</span> Animal {
+  <span class="hl-p">void</span> <span class="hl-c">parler</span>() { System.out.<span class="hl-c">println</span>(<span class="hl-g">"Miaou !"</span>); }
+}
+
+Animal a = <span class="hl-p">new</span> <span class="hl-c">Chien</span>();
+a.<span class="hl-c">parler</span>();  <span class="hl-d">// → "Woof !"</span>
+a = <span class="hl-p">new</span> <span class="hl-c">Chat</span>();
+a.<span class="hl-c">parler</span>();  <span class="hl-d">// → "Miaou !" — même appel, résultat différent</span></div>
+              <strong>Piège classique :</strong> oublier <code>@Override</code>. Java appelle alors la méthode du parent sans erreur, et tu te demandes pourquoi ton code "ne fait rien".
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6. GIT COMMIT-PUSH-PR -->
+      <div class="ex-card" data-cat="git">
+        <div class="ex-card-top">
+          <span class="ex-badge ex-badge-git">Git</span>
+          <span class="ex-card-title">Commit + push + PR en une commande</span>
+        </div>
+        <div class="ex-body">
+          <div class="ex-msg">
+            <div class="ex-label">Toi</div>
+            <div class="ex-bubble">
+              <code>/commit-push-pr</code>
+            </div>
+          </div>
+          <div class="ex-sep"></div>
+          <div class="ex-msg">
+            <div class="ex-label lbl-claude">Claude</div>
+            <div class="ex-bubble claude-bubble">
+              <div class="ex-code"><span class="hl-d">Analyse des changements...</span>
+<span class="hl-d">3 fichiers modifiés :</span>
+  <span class="hl-g">EtudiantDAO.java</span>  <span class="hl-d">+68 -0</span>
+  <span class="hl-g">Main.java</span>          <span class="hl-d">+12 -3</span>
+  <span class="hl-g">schema.sql</span>         <span class="hl-d">+15 -0</span>
+
+<span class="hl-p">Commit créé :</span>
+  <span class="hl-g">feat(etudiant): add DAO with full CRUD operations</span>
+
+  <span class="hl-d">- EtudiantDAO : findAll, findById, save, delete</span>
+  <span class="hl-d">- PreparedStatement sur toutes les requêtes SQL</span>
+  <span class="hl-d">- try-with-resources pour fermer les connexions</span>
+
+<span class="hl-c">Push vers origin/main... OK</span>
+
+<span class="hl-p">PR ouverte :</span> <span class="hl-g">#12 "feat(etudiant): add DAO with full CRUD"</span>
+<span class="hl-d">→ github.com/jibril/projet-java/pull/12</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 7. JAVA TRY-WITH-RESOURCES -->
+      <div class="ex-card" data-cat="java">
+        <div class="ex-card-top">
+          <span class="ex-badge ex-badge-java">Java</span>
+          <span class="ex-card-title">Convertir en try-with-resources</span>
+        </div>
+        <div class="ex-body">
+          <div class="ex-msg">
+            <div class="ex-label">Toi</div>
+            <div class="ex-bubble">
+              Ce code ne ferme pas la connexion proprement. Réécris-le correctement.
+              <div class="ex-code">Connection conn = <span class="hl-c">DriverManager</span>.<span class="hl-c">getConnection</span>(url, user, pass);
+PreparedStatement ps = conn.<span class="hl-c">prepareStatement</span>(sql);
+ResultSet rs = ps.<span class="hl-c">executeQuery</span>();
+<span class="hl-d">// ... traitement ...</span>
+rs.<span class="hl-c">close</span>();
+ps.<span class="hl-c">close</span>();
+conn.<span class="hl-c">close</span>();</div>
+            </div>
+          </div>
+          <div class="ex-sep"></div>
+          <div class="ex-msg">
+            <div class="ex-label lbl-claude">Claude</div>
+            <div class="ex-bubble claude-bubble">
+              Le problème avec les <code>close()</code> manuels : si une exception est levée avant, la connexion reste ouverte. <code>try-with-resources</code> ferme automatiquement, même en cas d'erreur.
+              <div class="ex-code"><span class="hl-p">try</span> (
+  Connection conn = <span class="hl-c">DriverManager</span>.<span class="hl-c">getConnection</span>(url, user, pass);
+  PreparedStatement ps = conn.<span class="hl-c">prepareStatement</span>(sql);
+  ResultSet rs = ps.<span class="hl-c">executeQuery</span>()
+) {
+  <span class="hl-d">// ... traitement ...</span>
+} <span class="hl-p">catch</span> (SQLException e) {
+  logger.<span class="hl-c">error</span>(<span class="hl-g">"Erreur DB"</span>, e);
+}
+<span class="hl-d">// conn, ps, rs fermés automatiquement ici</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 8. SQL OPTIMISATION INDEX -->
+      <div class="ex-card" data-cat="sql">
+        <div class="ex-card-top">
+          <span class="ex-badge ex-badge-sql">SQL</span>
+          <span class="ex-card-title">Optimiser une requête lente</span>
+        </div>
+        <div class="ex-body">
+          <div class="ex-msg">
+            <div class="ex-label">Toi</div>
+            <div class="ex-bubble">
+              Cette requête prend 3 secondes sur 10 000 lignes, c'est trop lent :
+              <div class="ex-code"><span class="hl-p">SELECT</span> * <span class="hl-p">FROM</span> commandes
+<span class="hl-p">WHERE</span> statut = <span class="hl-g">'en_attente'</span>
+  <span class="hl-p">AND</span> date_creation > <span class="hl-g">'2026-01-01'</span>;</div>
+            </div>
+          </div>
+          <div class="ex-sep"></div>
+          <div class="ex-msg">
+            <div class="ex-label lbl-claude">Claude</div>
+            <div class="ex-bubble claude-bubble">
+              La requête fait un full table scan parce qu'il n'y a pas d'index sur les colonnes du <code>WHERE</code>. Ajoute un index composé dans le bon ordre :
+              <div class="ex-code"><span class="hl-d">-- Index composé (statut d'abord, date ensuite)</span>
+<span class="hl-d">-- Ordre important : filtre d'égalité AVANT filtre de range</span>
+<span class="hl-p">CREATE INDEX</span> idx_commandes_statut_date
+  <span class="hl-p">ON</span> commandes (statut, date_creation);
+
+<span class="hl-d">-- Vérifie que MySQL utilise l'index :</span>
+<span class="hl-p">EXPLAIN SELECT</span> * <span class="hl-p">FROM</span> commandes
+<span class="hl-p">WHERE</span> statut = <span class="hl-g">'en_attente'</span>
+  <span class="hl-p">AND</span> date_creation > <span class="hl-g">'2026-01-01'</span>;
+<span class="hl-d">-- Colonne "key" doit afficher : idx_commandes_statut_date</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="claude-cta-section">
+    <div class="container">
+      <div class="claude-cta-card">
+        <div class="claude-cta-left">
+          <span class="claude-cta-label">Prêt à l'utiliser ?</span>
+          <h2>Installe le kit et commence en <span class="accent">5 minutes</span></h2>
+          <p>Le student kit inclut tout ce qu'il faut : CLAUDE.md préconfiguré, skills Java/SQL/MongoDB, sous-agents et hooks de sécurité automatiques.</p>
+        </div>
+        <div class="claude-cta-right">
+          <a href="guide.html" class="btn btn-primary" style="font-size:1rem;padding:0.75rem 1.75rem;">Voir le guide →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <span class="prompt">$</span> SetupClaude
+        <p>Un guide fait par et pour des devs. Pas officiel, juste utile.</p>
+        <p class="footer-credit">Réalisé par <strong>Jibril Filali</strong> · <a href="https://jibril-filali.github.io/" target="_blank" style="color:var(--text-dim);text-decoration:underline;font-size:0.8rem">Portfolio</a></p>
+      </div>
+      <div class="footer-nav-cols">
+        <div class="footer-nav-col">
+          <span class="footer-nav-title">Installer</span>
+          <a href="guide.html#installation">01 · Claude CLI</a>
+          <a href="guide.html#kit-installation">02 · Kit global</a>
+          <a href="guide.html#nouveau-projet">03 · Nouveau projet</a>
+        </div>
+        <div class="footer-nav-col">
+          <span class="footer-nav-title">Configurer</span>
+          <a href="guide.html#claudemd">04 · CLAUDE.md</a>
+          <a href="guide.html#commandes-ps">05 · Commandes PS</a>
+          <a href="guide.html#skills">06 · Skills</a>
+        </div>
+        <div class="footer-nav-col">
+          <span class="footer-nav-title">Utiliser</span>
+          <a href="guide.html#sous-agents">07 · Sous-agents</a>
+          <a href="guide.html#raccourcis">08 · Raccourcis</a>
+          <a href="guide.html#workflow">09 · Workflow</a>
+          <a href="guide.html#prompts">10 · Prompts</a>
+        </div>
+        <div class="footer-nav-col">
+          <span class="footer-nav-title">Liens</span>
+          <a href="examples.html">Exemples</a>
+          <a href="claude.html">Comprendre Claude</a>
+          <a href="faq.html">FAQ</a>
+          <a href="https://docs.anthropic.com" target="_blank">Docs officielles</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">Réalisé par <strong>Jibril Filali</strong> · Guide à jour pour Claude Code 2026</div>
+  </footer>
+
+  <div class="toast" id="toast"></div>
+  <div class="cursor-dot" id="cursor-dot"></div>
+  <div class="cursor-ring" id="cursor-ring"></div>
+
+  <script src="js/main.js"></script>
+  <script>
+    function filtrer(btn, cat) {
+      document.querySelectorAll('.ex-pill').forEach(function(p){ p.classList.remove('active'); });
+      btn.classList.add('active');
+      document.querySelectorAll('.ex-card').forEach(function(card){
+        if (cat === 'tous' || card.dataset.cat === cat) {
+          card.classList.remove('ex-hidden');
+        } else {
+          card.classList.add('ex-hidden');
+        }
+      });
+    }
+  </script>
+</body>
+</html>

@@ -1,3 +1,14 @@
+/* ===== PAGE LOADER ===== */
+(function(){
+  var l = document.getElementById('page-loader');
+  if (!l) return;
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function(){ setTimeout(function(){ l.classList.add('loader-done'); }, 180); });
+  } else {
+    setTimeout(function(){ l.classList.add('loader-done'); }, 50);
+  }
+})();
+
 /* ===== ANIMATION TERMINAL HERO ===== */
 const lignes = [
   { cmd: 'npm install -g @anthropic-ai/claude-code', output: 'claude-code installed successfully' },
