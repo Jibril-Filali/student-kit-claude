@@ -87,6 +87,7 @@
     <button class="ex-pill" onclick="filtrer(this, 'mongo')">MongoDB</button>
     <button class="ex-pill" onclick="filtrer(this, 'revue')">Revue de code</button>
     <button class="ex-pill" onclick="filtrer(this, 'git')">Git</button>
+    <button class="ex-pill pill-ia" onclick="filtrer(this, 'ia')">✦ Capacités IA</button>
   </div>
 
   <!-- GRILLE -->
@@ -410,6 +411,178 @@ conn.<span class="hl-c">close</span>();</div>
 <span class="hl-p">WHERE</span> statut = <span class="hl-g">'en_attente'</span>
   <span class="hl-p">AND</span> date_creation > <span class="hl-g">'2026-01-01'</span>;
 <span class="hl-d">-- Colonne "key" doit afficher : idx_commandes_statut_date</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- 9. GÉNÉRER UN DAO COMPLET -->
+      <div class="ex-card ex-card-ia" data-cat="ia">
+        <div class="ex-card-top">
+          <span class="ex-badge ex-badge-ia">✦ Capacités</span>
+          <span class="ex-card-title">Générer une classe entière depuis zéro</span>
+        </div>
+        <div class="ex-body">
+          <div class="ex-msg">
+            <div class="ex-label">Toi</div>
+            <div class="ex-bubble">
+              Crée un <code>EtudiantDAO</code> complet avec <code>findAll</code>, <code>findById</code>, <code>save</code> et <code>delete</code>. Table : <code>etudiants(id, nom, email, date_inscription)</code>.
+            </div>
+          </div>
+          <div class="ex-sep"></div>
+          <div class="ex-msg">
+            <div class="ex-label lbl-claude">Claude</div>
+            <div class="ex-bubble claude-bubble">
+              <div class="ex-code"><span class="hl-p">public class</span> EtudiantDAO {
+
+  <span class="hl-p">private final</span> Connection conn;
+
+  <span class="hl-p">public</span> <span class="hl-c">EtudiantDAO</span>(Connection conn) { <span class="hl-p">this</span>.conn = conn; }
+
+  <span class="hl-p">public</span> List&lt;Etudiant&gt; <span class="hl-c">findAll</span>() <span class="hl-p">throws</span> SQLException {
+    List&lt;Etudiant&gt; list = <span class="hl-p">new</span> ArrayList&lt;&gt;();
+    <span class="hl-p">try</span> (Statement st = conn.<span class="hl-c">createStatement</span>();
+         ResultSet rs = st.<span class="hl-c">executeQuery</span>(<span class="hl-g">"SELECT * FROM etudiants"</span>)) {
+      <span class="hl-p">while</span> (rs.<span class="hl-c">next</span>()) list.<span class="hl-c">add</span>(<span class="hl-c">map</span>(rs));
+    }
+    <span class="hl-p">return</span> list;
+  }
+
+  <span class="hl-p">public</span> Optional&lt;Etudiant&gt; <span class="hl-c">findById</span>(<span class="hl-p">int</span> id) <span class="hl-p">throws</span> SQLException {
+    <span class="hl-p">try</span> (PreparedStatement ps = conn.<span class="hl-c">prepareStatement</span>(
+        <span class="hl-g">"SELECT * FROM etudiants WHERE id = ?"</span>)) {
+      ps.<span class="hl-c">setInt</span>(<span class="hl-y">1</span>, id);
+      <span class="hl-p">try</span> (ResultSet rs = ps.<span class="hl-c">executeQuery</span>()) {
+        <span class="hl-p">return</span> rs.<span class="hl-c">next</span>() ? Optional.<span class="hl-c">of</span>(<span class="hl-c">map</span>(rs)) : Optional.<span class="hl-c">empty</span>();
+      }
+    }
+  }
+
+  <span class="hl-p">public void</span> <span class="hl-c">save</span>(Etudiant e) <span class="hl-p">throws</span> SQLException {
+    <span class="hl-p">try</span> (PreparedStatement ps = conn.<span class="hl-c">prepareStatement</span>(
+        <span class="hl-g">"INSERT INTO etudiants (nom, email) VALUES (?, ?)"</span>,
+        Statement.RETURN_GENERATED_KEYS)) {
+      ps.<span class="hl-c">setString</span>(<span class="hl-y">1</span>, e.<span class="hl-c">getNom</span>());
+      ps.<span class="hl-c">setString</span>(<span class="hl-y">2</span>, e.<span class="hl-c">getEmail</span>());
+      ps.<span class="hl-c">executeUpdate</span>();
+      <span class="hl-p">try</span> (ResultSet keys = ps.<span class="hl-c">getGeneratedKeys</span>()) {
+        <span class="hl-p">if</span> (keys.<span class="hl-c">next</span>()) e.<span class="hl-c">setId</span>(keys.<span class="hl-c">getInt</span>(<span class="hl-y">1</span>));
+      }
+    }
+  }
+
+  <span class="hl-p">public void</span> <span class="hl-c">delete</span>(<span class="hl-p">int</span> id) <span class="hl-p">throws</span> SQLException {
+    <span class="hl-p">try</span> (PreparedStatement ps = conn.<span class="hl-c">prepareStatement</span>(
+        <span class="hl-g">"DELETE FROM etudiants WHERE id = ?"</span>)) {
+      ps.<span class="hl-c">setInt</span>(<span class="hl-y">1</span>, id);
+      ps.<span class="hl-c">executeUpdate</span>();
+    }
+  }
+
+  <span class="hl-p">private</span> Etudiant <span class="hl-c">map</span>(ResultSet rs) <span class="hl-p">throws</span> SQLException {
+    <span class="hl-p">return new</span> <span class="hl-c">Etudiant</span>(
+      rs.<span class="hl-c">getInt</span>(<span class="hl-g">"id"</span>), rs.<span class="hl-c">getString</span>(<span class="hl-g">"nom"</span>),
+      rs.<span class="hl-c">getString</span>(<span class="hl-g">"email"</span>), rs.<span class="hl-c">getDate</span>(<span class="hl-g">"date_inscription"</span>)
+    );
+  }
+}</div>
+              70 lignes, zéro copier-coller, tout suit les conventions du projet.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 10. CONCEVOIR UN SCHÉMA SQL -->
+      <div class="ex-card ex-card-ia" data-cat="ia">
+        <div class="ex-card-top">
+          <span class="ex-badge ex-badge-ia">✦ Capacités</span>
+          <span class="ex-card-title">Concevoir un schéma de base de données</span>
+        </div>
+        <div class="ex-body">
+          <div class="ex-msg">
+            <div class="ex-label">Toi</div>
+            <div class="ex-bubble">
+              Conçois le schéma SQL pour une appli de bibliothèque : livres, membres, emprunts. Avec les contraintes et les index utiles.
+            </div>
+          </div>
+          <div class="ex-sep"></div>
+          <div class="ex-msg">
+            <div class="ex-label lbl-claude">Claude</div>
+            <div class="ex-bubble claude-bubble">
+              <div class="ex-code"><span class="hl-p">CREATE TABLE</span> livres (
+  id          <span class="hl-c">INT</span> <span class="hl-p">PRIMARY KEY AUTO_INCREMENT</span>,
+  titre       <span class="hl-c">VARCHAR</span>(<span class="hl-y">255</span>) <span class="hl-p">NOT NULL</span>,
+  auteur      <span class="hl-c">VARCHAR</span>(<span class="hl-y">150</span>) <span class="hl-p">NOT NULL</span>,
+  isbn        <span class="hl-c">VARCHAR</span>(<span class="hl-y">13</span>) <span class="hl-p">UNIQUE NOT NULL</span>,
+  disponible  <span class="hl-c">BOOLEAN</span> <span class="hl-p">DEFAULT</span> <span class="hl-y">TRUE</span>
+);
+
+<span class="hl-p">CREATE TABLE</span> membres (
+  id          <span class="hl-c">INT</span> <span class="hl-p">PRIMARY KEY AUTO_INCREMENT</span>,
+  nom         <span class="hl-c">VARCHAR</span>(<span class="hl-y">100</span>) <span class="hl-p">NOT NULL</span>,
+  email       <span class="hl-c">VARCHAR</span>(<span class="hl-y">150</span>) <span class="hl-p">UNIQUE NOT NULL</span>,
+  inscrit_le  <span class="hl-c">DATE</span> <span class="hl-p">DEFAULT</span> (<span class="hl-c">CURDATE</span>())
+);
+
+<span class="hl-p">CREATE TABLE</span> emprunts (
+  id            <span class="hl-c">INT</span> <span class="hl-p">PRIMARY KEY AUTO_INCREMENT</span>,
+  livre_id      <span class="hl-c">INT</span> <span class="hl-p">NOT NULL</span>,
+  membre_id     <span class="hl-c">INT</span> <span class="hl-p">NOT NULL</span>,
+  emprunte_le   <span class="hl-c">DATE</span> <span class="hl-p">NOT NULL DEFAULT</span> (<span class="hl-c">CURDATE</span>()),
+  retour_prevu  <span class="hl-c">DATE</span> <span class="hl-p">NOT NULL</span>,
+  rendu_le      <span class="hl-c">DATE</span>,
+  <span class="hl-p">FOREIGN KEY</span> (livre_id)  <span class="hl-p">REFERENCES</span> livres(id),
+  <span class="hl-p">FOREIGN KEY</span> (membre_id) <span class="hl-p">REFERENCES</span> membres(id)
+);
+
+<span class="hl-d">-- Index pour les recherches fréquentes</span>
+<span class="hl-p">CREATE INDEX</span> idx_emprunts_membre  <span class="hl-p">ON</span> emprunts (membre_id);
+<span class="hl-p">CREATE INDEX</span> idx_emprunts_retour  <span class="hl-p">ON</span> emprunts (retour_prevu)
+  <span class="hl-p">WHERE</span> rendu_le <span class="hl-p">IS NULL</span>; <span class="hl-d">-- index partiel : que les emprunts actifs</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 11. REFACTORING + EXPLICATION -->
+      <div class="ex-card ex-card-ia" data-cat="ia">
+        <div class="ex-card-top">
+          <span class="ex-badge ex-badge-ia">✦ Capacités</span>
+          <span class="ex-card-title">Refactoriser du code illisible</span>
+        </div>
+        <div class="ex-body">
+          <div class="ex-msg">
+            <div class="ex-label">Toi</div>
+            <div class="ex-bubble">
+              Ce code marche mais c'est illisible. Refactorise sans changer le comportement.
+              <div class="ex-code"><span class="hl-p">public</span> String <span class="hl-c">f</span>(List&lt;String&gt; l, String s) {
+  String r = <span class="hl-g">""</span>;
+  <span class="hl-p">for</span> (<span class="hl-p">int</span> i = <span class="hl-y">0</span>; i &lt; l.<span class="hl-c">size</span>(); i++) {
+    <span class="hl-p">if</span> (l.<span class="hl-c">get</span>(i) != <span class="hl-p">null</span> &amp;&amp; l.<span class="hl-c">get</span>(i).<span class="hl-c">contains</span>(s)) {
+      r = r + l.<span class="hl-c">get</span>(i) + <span class="hl-g">","</span>;
+    }
+  }
+  <span class="hl-p">if</span> (r.<span class="hl-c">length</span>() > <span class="hl-y">0</span>) r = r.<span class="hl-c">substring</span>(<span class="hl-y">0</span>, r.<span class="hl-c">length</span>() - <span class="hl-y">1</span>);
+  <span class="hl-p">return</span> r;
+}</div>
+            </div>
+          </div>
+          <div class="ex-sep"></div>
+          <div class="ex-msg">
+            <div class="ex-label lbl-claude">Claude</div>
+            <div class="ex-bubble claude-bubble">
+              4 problèmes : noms illisibles, concaténation dans une boucle (O(n²)), null check manuel, suppression du dernier caractère à la main. Version refactorisée :
+              <div class="ex-code"><span class="hl-d">/**
+ * Filtre les éléments contenant le mot-clé
+ * et les rejoint par des virgules.
+ */</span>
+<span class="hl-p">public</span> String <span class="hl-c">joinMatching</span>(List&lt;String&gt; items, String keyword) {
+  <span class="hl-p">return</span> items.<span class="hl-c">stream</span>()
+    .<span class="hl-c">filter</span>(item -&gt; item != <span class="hl-p">null</span> &amp;&amp; item.<span class="hl-c">contains</span>(keyword))
+    .<span class="hl-c">collect</span>(Collectors.<span class="hl-c">joining</span>(<span class="hl-g">","</span>));
+}</div>
+              8 lignes → 4. Même comportement. Lisible, performant, idiomatique Java 8+.
             </div>
           </div>
         </div>

@@ -1118,14 +1118,14 @@ code:not(pre code) { background: var(--bg-4); border: 1px solid var(--border); p
   background: var(--bg);
   display: flex; align-items: center; justify-content: center;
   flex-direction: column; gap: 1.2rem;
-  transition: opacity 0.45s ease, visibility 0.45s ease;
+  transition: opacity 0.18s ease, visibility 0.18s ease;
 }
 #page-loader.loader-done { opacity: 0; visibility: hidden; pointer-events: none; }
 .loader-logo-txt { font-family: var(--mono); font-size: 1.05rem; color: var(--text-muted); letter-spacing: 0.04em; }
 .loader-logo-txt .prompt { color: var(--accent-light); margin-right: 0.4em; }
 .loader-bar-wrap { width: 140px; height: 2px; background: var(--bg-4); border-radius: 99px; overflow: hidden; }
-.loader-bar-fill { height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent-light)); border-radius: 99px; animation: loaderFill 0.55s cubic-bezier(.4,0,.2,1) forwards; }
-@keyframes loaderFill { 0%{width:0} 65%{width:82%} 100%{width:100%} }
+.loader-bar-fill { height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent-light)); border-radius: 99px; animation: loaderFill 0.22s cubic-bezier(.4,0,.2,1) forwards; }
+@keyframes loaderFill { 0%{width:0} 100%{width:100%} }
 
 /* ===== EXAMPLES PAGE ===== */
 .ex-page-header { background: var(--bg); border-bottom: 1px solid var(--border); padding: 3rem 0 2rem; text-align: center; }
@@ -1172,3 +1172,22 @@ code:not(pre code) { background: var(--bg-4); border: 1px solid var(--border); p
 .ex-code .hl-d { color: var(--text-dim); }
 .ex-code .hl-w { color: #e8e8e8; }
 .ex-sep { height: 1px; background: var(--border); margin: 0 -1.25rem; }
+
+/* Catégorie "capacités" — effet spécial */
+.ex-badge-ia {
+  background: linear-gradient(135deg, rgba(124,58,237,0.3), rgba(6,182,212,0.2));
+  color: #fff;
+  background-size: 200% 200%;
+  animation: iaBadgePulse 3s ease infinite;
+}
+@keyframes iaBadgePulse {
+  0%,100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+.ex-pill.pill-ia { background: linear-gradient(135deg, var(--accent), var(--cyan)); color: #fff; border-color: transparent; }
+.ex-pill.pill-ia:hover { opacity: 0.9; }
+.ex-pill.pill-ia.active { box-shadow: 0 0 16px rgba(124,58,237,0.5); }
+.ex-card.ex-card-ia { border-color: rgba(124,58,237,0.3); background: linear-gradient(160deg, var(--bg-2) 0%, rgba(124,58,237,0.04) 100%); }
+.ex-card.ex-card-ia:hover { border-color: rgba(124,58,237,0.6); box-shadow: 0 8px 40px rgba(124,58,237,0.15); }
+.ex-card.ex-card-ia .ex-card-top { background: linear-gradient(90deg, rgba(124,58,237,0.1), rgba(6,182,212,0.05)); }
+.ex-card.ex-card-ia .claude-bubble { background: rgba(124,58,237,0.1); border-color: rgba(124,58,237,0.3); }

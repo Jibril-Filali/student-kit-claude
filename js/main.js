@@ -3,7 +3,7 @@
   var l = document.getElementById('page-loader');
   if (!l) return;
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', function(){ setTimeout(function(){ l.classList.add('loader-done'); }, 180); });
+    document.addEventListener('DOMContentLoaded', function(){ l.classList.add('loader-done'); });
   } else {
     setTimeout(function(){ l.classList.add('loader-done'); }, 50);
   }
