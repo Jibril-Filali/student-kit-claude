@@ -234,7 +234,8 @@ function initEntranceAnimations() {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('anim-visible');
-        observer.unobserve(entry.target);
+      } else {
+        entry.target.classList.remove('anim-visible');
       }
     });
   }, { threshold: 0.07, rootMargin: '0px 0px -40px 0px' });
