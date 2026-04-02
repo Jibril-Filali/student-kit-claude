@@ -696,13 +696,18 @@ code:not(pre code) { background: var(--bg-4); border: 1px solid var(--border); p
 /* ===== ENTRANCE ANIMATIONS ===== */
 .anim-hidden {
   opacity: 0;
-  transform: translateY(22px);
-  transition: opacity 0.5s ease, transform 0.5s ease;
+  transform: translateY(30px);
+  transition: opacity 0.55s cubic-bezier(.22,1,.36,1), transform 0.55s cubic-bezier(.22,1,.36,1);
 }
 .anim-visible {
   opacity: 1;
   transform: translateY(0);
 }
+.anim-hidden.anim-d1 { transition-delay: 0.08s; }
+.anim-hidden.anim-d2 { transition-delay: 0.16s; }
+.anim-hidden.anim-d3 { transition-delay: 0.24s; }
+.anim-hidden.anim-d4 { transition-delay: 0.32s; }
+.anim-hidden.anim-d5 { transition-delay: 0.40s; }
 
 /* ===== HERO GRID BACKGROUND ===== */
 .hero { position: relative; overflow: hidden; }

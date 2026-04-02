@@ -189,10 +189,46 @@ function initCardTilt() {
 
 /* ===== ENTRANCE ANIMATIONS ===== */
 function initEntranceAnimations() {
-  const targets = document.querySelectorAll(
-    '.feat-card, .skill-card, .agent-card, .raccourci-card, .tip-card, .dl-card, .workflow-block, .prompt-category, .bp-card'
-  );
-  if (!targets.length) return;
+  if (!window.IntersectionObserver) return;
+
+  // Conteneurs dont les enfants sont animés en stagger
+  const staggerContainers = [
+    '.features-grid', '.agents-grid', '.tips-grid',
+    '.raccourcis-grid', '.ex-grid', '.steps',
+    '.two-col', '.workflow-grid', '.dl-grid',
+    '.prompts-grid', '.dl-extra-row', '.skills-table-card tbody',
+  ];
+
+  // Éléments animés individuellement
+  const singleSel = [
+    '.section-header', '.info-box', '.warn-box', '.success-box',
+    '.claude-cta-card', '.cmd-table-card', '.claudemd-dl-card',
+    '.best-practices', '.checklist-card', '.feat-card',
+    '.agent-card', '.tip-card', '.dl-card', '.workflow-block',
+    '.prompt-category', '.bp-card', '.ex-card',
+    '.raccourci-card', '.skill-card',
+  ].join(',');
+
+  const seen = new Set();
+
+  // Stagger : animer chaque enfant avec un délai progressif
+  staggerContainers.forEach(sel => {
+    document.querySelectorAll(sel).forEach(container => {
+      Array.from(container.children).forEach((child, i) => {
+        if (seen.has(child)) return;
+        child.classList.add('anim-hidden');
+        if (i > 0 && i <= 5) child.classList.add('anim-d' + i);
+        seen.add(child);
+      });
+    });
+  });
+
+  // Individuels
+  document.querySelectorAll(singleSel).forEach(el => {
+    if (seen.has(el)) return;
+    el.classList.add('anim-hidden');
+    seen.add(el);
+  });
 
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -201,12 +237,9 @@ function initEntranceAnimations() {
         observer.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.08 });
+  }, { threshold: 0.07, rootMargin: '0px 0px -40px 0px' });
 
-  targets.forEach(el => {
-    el.classList.add('anim-hidden');
-    observer.observe(el);
-  });
+  seen.forEach(el => observer.observe(el));
 }
 
 /* ===== CURSEUR PERSONNALISE ===== */
