@@ -2,10 +2,16 @@
 (function(){
   var l = document.getElementById('page-loader');
   if (!l) return;
+  var t0 = Date.now();
+  var MIN = 500;
+  function hide() {
+    var wait = Math.max(0, MIN - (Date.now() - t0));
+    setTimeout(function(){ l.classList.add('loader-done'); }, wait);
+  }
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', function(){ l.classList.add('loader-done'); });
+    document.addEventListener('DOMContentLoaded', hide);
   } else {
-    setTimeout(function(){ l.classList.add('loader-done'); }, 50);
+    hide();
   }
 })();
 

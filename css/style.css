@@ -1124,8 +1124,8 @@ code:not(pre code) { background: var(--bg-4); border: 1px solid var(--border); p
 .loader-logo-txt { font-family: var(--mono); font-size: 1.05rem; color: var(--text-muted); letter-spacing: 0.04em; }
 .loader-logo-txt .prompt { color: var(--accent-light); margin-right: 0.4em; }
 .loader-bar-wrap { width: 140px; height: 2px; background: var(--bg-4); border-radius: 99px; overflow: hidden; }
-.loader-bar-fill { height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent-light)); border-radius: 99px; animation: loaderFill 0.22s cubic-bezier(.4,0,.2,1) forwards; }
-@keyframes loaderFill { 0%{width:0} 100%{width:100%} }
+.loader-bar-fill { height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent-light)); border-radius: 99px; animation: loaderFill 0.45s cubic-bezier(.4,0,.2,1) forwards; }
+@keyframes loaderFill { 0%{width:0} 70%{width:88%} 100%{width:100%} }
 
 /* ===== EXAMPLES PAGE ===== */
 .ex-page-header { background: var(--bg); border-bottom: 1px solid var(--border); padding: 3rem 0 2rem; text-align: center; }
