@@ -4,6 +4,16 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SetupClaude · Installe Claude Code en 5 minutes</title>
+  <meta name="description" content="Le guide complet pour installer Claude Code en 5 minutes : student kit, skills, sous-agents, workflow. Pour étudiants Java/MySQL/MongoDB." />
+  <meta property="og:title" content="SetupClaude · Installe Claude Code en 5 minutes" />
+  <meta property="og:description" content="Guide complet : student kit, skills, sous-agents, workflow. Pour étudiants Java/MySQL/MongoDB." />
+  <meta property="og:image" content="og-image.svg" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="SetupClaude · Installe Claude Code en 5 minutes" />
+  <meta name="twitter:description" content="Guide complet pour installer Claude Code : student kit, skills, sous-agents, workflow." />
+  <meta name="twitter:image" content="og-image.svg" />
+  <link rel="manifest" href="manifest.json" />
   <link rel="stylesheet" href="css/style.css" />
   <script>(function(){var t=localStorage.getItem('theme')||'dark';document.documentElement.setAttribute('data-theme',t);})();</script>
 </head>
@@ -17,6 +27,7 @@
   <!-- NAVBAR -->
   <nav class="navbar">
     <a href="index.html" class="navbar-logo"><span class="prompt">$</span> SetupClaude</a>
+    <span class="nav-version">v1.2</span>
     <ul class="navbar-links">
       <li class="has-dropdown">
         <a>Installer <span class="nav-arrow">▾</span></a>
@@ -84,6 +95,7 @@
         <div class="hero-actions">
           <a href="guide.html#telechargements" class="btn btn-primary">Télécharger le kit</a>
           <a href="guide.html" class="btn btn-ghost">Lire le guide →</a>
+          <button class="btn-share" id="share-btn" onclick="partager()" title="Partager ce site">Partager</button>
         </div>
         <div class="hero-stats">
           <div class="hstat"><strong>13</strong><span>sections</span></div>
@@ -199,6 +211,45 @@
         </div>
         <div class="claude-cta-right">
           <a href="faq.html" class="btn btn-primary" style="font-size:1rem;padding:0.75rem 1.75rem;">Lire la FAQ →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials-section anim-hidden anim-d1">
+    <div class="container">
+      <h2 class="testimonials-title">Ce qu'ils en pensent</h2>
+      <div class="testimonials-grid">
+        <div class="testimonial-card anim-hidden anim-d1">
+          <p class="testimonial-quote">J'avais un bug sur ma connexion JDBC depuis 2 heures. Claude a trouvé en 30 secondes — il manquait un try-with-resources que j'avais jamais vu.</p>
+          <div class="testimonial-footer">
+            <div class="testimonial-avatar">A</div>
+            <div>
+              <strong>Amine</strong>
+              <span>L2 Info · Java/MySQL</span>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card anim-hidden anim-d2">
+          <p class="testimonial-quote">Le skill /commit-push-pr c'est la chose la plus utile que j'ai jamais eu. Je perds plus de temps à écrire des messages de commit nuls.</p>
+          <div class="testimonial-footer">
+            <div class="testimonial-avatar">S</div>
+            <div>
+              <strong>Sarah</strong>
+              <span>L3 Info · Projets Java EE</span>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card anim-hidden anim-d3">
+          <p class="testimonial-quote">Le sous-agent java-reviewer m'a sorti un rapport complet sur mon TP. Mon prof m'a demandé si j'avais fait une revue de code. J'ai dit oui.</p>
+          <div class="testimonial-footer">
+            <div class="testimonial-avatar">K</div>
+            <div>
+              <strong>Karim</strong>
+              <span>BUT Info · Algo et structures</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>

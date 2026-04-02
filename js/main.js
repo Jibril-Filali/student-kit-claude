@@ -543,6 +543,20 @@ function toggleTheme() {
   if (btn) btn.textContent = next === 'dark' ? 'Clair' : 'Sombre';
 }
 
+/* ===== PARTAGER ===== */
+function partager() {
+  const shareData = {
+    title: 'SetupClaude',
+    text: 'Installe Claude Code en 5 minutes — guide complet pour étudiants Java/MySQL/MongoDB',
+    url: location.href,
+  };
+  if (navigator.share) {
+    navigator.share(shareData).catch(() => {});
+  } else {
+    navigator.clipboard.writeText(location.href).then(() => showToast('Lien copie !'));
+  }
+}
+
 /* ===== INIT ===== */
 document.addEventListener('DOMContentLoaded', () => {
   initTheme();

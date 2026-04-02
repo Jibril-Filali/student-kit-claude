@@ -1117,6 +1117,78 @@ code:not(pre code) { background: var(--bg-4); border: 1px solid var(--border); p
   @page { margin: 2cm; size: A4; }
 }
 
+/* ===== VERSION BADGE NAVBAR ===== */
+.nav-version {
+  background: rgba(124,58,237,0.15); border: 1px solid rgba(124,58,237,0.3);
+  color: var(--accent-light); font-size: 0.68rem; font-weight: 700;
+  padding: 0.18rem 0.55rem; border-radius: 99px; font-family: var(--mono);
+  transition: all 0.2s; white-space: nowrap; text-decoration: none;
+  flex-shrink: 0;
+}
+.nav-version:hover { background: rgba(124,58,237,0.3); color: #fff; }
+
+/* ===== TESTIMONIALS ===== */
+.testimonials-section { padding: 4rem 0 4.5rem; background: var(--bg); border-top: 1px solid var(--border); }
+.testimonials-title { text-align: center; font-size: clamp(1.3rem, 3vw, 1.8rem); font-weight: 700; margin-bottom: 2.5rem; }
+.testimonials-head { text-align: center; margin-bottom: 2.5rem; }
+.testimonials-head h2 { font-size: clamp(1.3rem, 3vw, 1.8rem); font-weight: 700; margin-bottom: 0.35rem; }
+.testimonials-head p { color: var(--text-muted); font-size: 0.9rem; }
+.testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; max-width: 1000px; margin: 0 auto; padding: 0 1.5rem; }
+@media (max-width: 800px) { .testimonials-grid { grid-template-columns: 1fr; max-width: 480px; } }
+.testimonial-card { background: var(--bg-2); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.25rem 1.25rem 1rem; display: flex; flex-direction: column; gap: 0.9rem; transition: border-color 0.2s, transform 0.2s; }
+.testimonial-card:hover { border-color: rgba(124,58,237,0.3); transform: translateY(-2px); }
+.testimonial-quote { font-size: 0.875rem; line-height: 1.65; color: var(--text); position: relative; padding-left: 1rem; }
+.testimonial-quote::before { content: '"'; position: absolute; left: 0; top: -0.1em; color: var(--accent-light); font-size: 1.6rem; line-height: 1; font-family: Georgia, serif; }
+.testimonial-footer { display: flex; align-items: center; gap: 0.6rem; }
+.testimonial-footer > div:last-child { display: flex; flex-direction: column; gap: 0.1rem; }
+.testimonial-footer strong { font-size: 0.8rem; color: var(--text); }
+.testimonial-footer span { font-size: 0.73rem; color: var(--text-muted); }
+.testimonial-avatar { width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--cyan)); display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; color: #fff; flex-shrink: 0; }
+.testimonial-info { display: flex; flex-direction: column; }
+.testimonial-name { font-size: 0.8rem; font-weight: 600; color: var(--text); }
+.testimonial-role { font-size: 0.73rem; color: var(--text-muted); }
+
+/* ===== SHARE BUTTON ===== */
+.btn-share {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  background: transparent; border: 1px solid var(--border);
+  color: var(--text-muted); font-size: 0.875rem; font-weight: 500;
+  padding: 0.6rem 1.1rem; border-radius: var(--radius);
+  cursor: pointer; transition: border-color 0.2s, color 0.2s, background 0.2s;
+  font-family: inherit;
+}
+.btn-share:hover { border-color: rgba(124,58,237,0.5); color: var(--text); background: rgba(124,58,237,0.08); }
+.btn-share::before { content: '↗'; font-size: 0.8em; }
+
+/* ===== MOBILE TABLE SCROLL ===== */
+@media (max-width: 700px) {
+  .cmd-table-card, .skills-table-card { overflow-x: auto; }
+  .cmd-table, .skills-table { min-width: 460px; }
+}
+
+/* ===== EXTRA MOBILE FIXES (< 480px) ===== */
+@media (max-width: 480px) {
+  .hero-stats { flex-wrap: wrap; gap: 0.8rem 1.5rem; }
+  .hero-actions { flex-direction: column; align-items: stretch; }
+  .hero-actions .btn { text-align: center; }
+  .guide-sub { font-size: 0.82rem; }
+  .section-title { font-size: 1.2rem; }
+  .section-num { font-size: 0.85rem; }
+  .step-card { gap: 0.8rem; }
+  .step-num { min-width: 2rem; height: 2rem; font-size: 0.8rem; }
+  .code-bar { flex-wrap: wrap; gap: 0.3rem; }
+  .claudemd-dl-card { flex-direction: column; }
+  .claudemd-dl-actions { flex-direction: column; }
+  .navbar-logo { font-size: 0.95rem; }
+  .nav-version { display: none; }
+  .ex-grid { padding: 0 0.75rem; }
+  .ex-body { padding: 0.9rem 1rem; }
+  .ex-code { font-size: 0.7rem; }
+  .footer-nav-cols { grid-template-columns: 1fr 1fr; }
+  .claude-cta-card { gap: 1.5rem; }
+  .claude-cta-meta { flex-wrap: wrap; gap: 0.3rem 0.8rem; }
+}
+
 /* ===== PAGE LOADER ===== */
 #page-loader {
   position: fixed; inset: 0; z-index: 99999;
